@@ -30,3 +30,21 @@
     transform: rotate(360deg);
   }
 }
+
+
+.login{
+  width: 500px;
+height:500px;
+margin-left: 400px;
+}
+.reginfo{
+  width: 500px;
+height:500px;
+margin-left: 400px;
+}
+.forgetinfo
+{
+  width: 500px;
+height:300px;
+margin-left: 400px;
+}

@@ -2,22 +2,37 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
-import Login from './components/login';
+import Login from './pages/login';
+
+import Regestration from './pages/registration';
+import Forgetpassword from './components/restpassword';
+import forpassword from './pages/passwordReset';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+     <div className="App">
        <Router>
-       <Route path="/" component={Login}>
+<Route path="/" component={Login}/>
+
+ </Router>
+ </div>
+  //  <div className="App">
+  //  <Router>
+  //      <Route path="/registration" component={Regestration}/>
        
+  //      </Router>
+  //      </div>
+      //  <div className="App">
+      //  <Router>
+      //  <Route path="/forgetpassword" component={forpassword}/>
+      //  </Router>
        
-       </Route>
-       
-       
-       </Router>
-      </div>
-    );
+      //  </div>
+      
+     
+    )
   }
 }
 
