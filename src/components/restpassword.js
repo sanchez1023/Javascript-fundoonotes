@@ -1,7 +1,7 @@
 import React,  {Component } from 'react';
-import Textfeild from 'material-ui/TextField'
 
-import Raisedbutton from 'material-ui/RaisedButton';
+
+import { TextField, Button } from '@material-ui/core';
 
 
 class Forgetpassword extends Component{
@@ -12,8 +12,8 @@ class Forgetpassword extends Component{
             <div>
             <h1>forgot password</h1>
             <p>
-            <Textfeild
-            hintText="Enter e-mail Id"
+            <TextField
+            label="Enter e-mail Id"
             floatingLabelText="Registered e-mail Id"
           
         
@@ -22,11 +22,9 @@ class Forgetpassword extends Component{
             />
         </p>
         <p>
-        <Raisedbutton
-        label="submit"
-        primary={true}
-       // style={style.button}
-        />
+        <Button variant="contained" >
+        Submit
+      </Button>
         </p>
         </div>
         )

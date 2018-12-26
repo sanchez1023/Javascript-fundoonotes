@@ -1,9 +1,9 @@
 import React,  {Component } from 'react';
-import  ThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Appbar from 'material-ui/AppBar';
-import  { Card } from 'material-ui/Card'
+import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+
 
 import Logininfo from '../components/Textfield';
+import { Card, AppBar, Toolbar } from '@material-ui/core';
 
 
 class Login extends Component {
@@ -19,26 +19,37 @@ class Login extends Component {
 
         return ( 
 
-        
-            <ThemeProvider>
-            <React.Fragment>
+        <ThemeProvider>
+          
+            <Toolbar
+            className= 'tool'
+             >
+            <h1
+            className ='head'
+            >User Login</h1>
+            </Toolbar>
+         <Card
          
-            <Appbar title="User login"/>
-       <Card
-       className='login'
-       
-       >
+         className='login'
+         
+         >
+         
     
       <Logininfo/>
-     
-            </Card>
+     <a 
+     className='forget'
+      href='/forgetpassword'>forgetpassword</a>
+      <p>
+     <a 
+     className='register' 
+     href='/registration'>Not a registered user ? Click here to register</a>
+     </p>
             
-
+            </Card>
+      </ThemeProvider>
            
            
-            </React.Fragment>
-        </ThemeProvider>           
-      
+     
         );
     }
 }

@@ -14,9 +14,14 @@ class App extends Component {
     return (
      <div className="App">
        <Router>
-<Route path="/" component={Login}/>
+       <div>
+<Route path="/login" component={Login}/>
 
+<Route path="/registration" component={Regestration}/>
+<Route path="/forgetpassword" component={forpassword}/>
+</div>
  </Router>
+
  </div>
   //  <div className="App">
   //  <Router>

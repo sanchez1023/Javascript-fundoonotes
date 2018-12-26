@@ -1,32 +1,37 @@
 import React,  {Component } from 'react';
-import  ThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Appbar from 'material-ui/AppBar';
-import Regesitration from '../components/registrationInfo';
-import { Card } from 'material-ui';
+import  ThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import Regesitrationinfo from '../components/registrationInfo';
+import { Card, AppBar, Toolbar } from '@material-ui/core';
 
 
 
 
-class Login extends Component {
+
+class Regesiter extends Component {
     
     
     render() {
 
         return ( 
             <ThemeProvider>
-            <React.Fragment>
-            <Appbar title="Registration Page"/>
-            <Card 
+           
+            <AppBar title="Registration Page"/>
+            <Toolbar
+            className='tool'>
+            <h1
+            className='head'>Registration Page</h1>
+            </Toolbar>
+            <Card
                   className='reginfo'
                   >      
 
-            <Regesitration/>
+            <Regesitrationinfo/>
             </Card>
-            </React.Fragment>
+          
             </ThemeProvider>
 
             
         )
     }
 }
-export default Login;
+export default Regesiter;

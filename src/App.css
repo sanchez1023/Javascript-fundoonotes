@@ -48,3 +48,18 @@ margin-left: 400px;
 height:300px;
 margin-left: 400px;
 }
+.tool
+{
+
+  background-color: aqua;
+}
+.head{
+margin-left: 550px;
+}
+.register
+{
+  margin-left: 50px;
+}
+.help{
+  color:red;
+}

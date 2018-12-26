@@ -1,9 +1,9 @@
 
 import React,  {Component } from 'react';
-import  ThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Appbar from 'material-ui/AppBar';
-import { Card } from 'material-ui';
-import Forgetpassword from '../components/restpassword';
+
+
+import Forgetpassword from "../components/restpassword";
+import {  Toolbar, Card, MuiThemeProvider } from '@material-ui/core';
 
 
 class forpassword extends Component {
@@ -12,20 +12,22 @@ class forpassword extends Component {
     render() {
 
         return (
-            <ThemeProvider>
-            <React.Fragment>
-            <Appbar title="Forgot password Page"/>
-            <Card 
-                  className='forgetinfo'
-                  >      
+            <MuiThemeProvider>
+            <Toolbar
+            className='tool'>
+            <h1
+            className='head'></h1>
+            </Toolbar>
+    
+<Card
+className='login'>
+         
 
             <Forgetpassword/>
             </Card>
-            </React.Fragment>
-            </ThemeProvider>
+            </MuiThemeProvider>
             
-            
-            )
+            );
 
 
 
