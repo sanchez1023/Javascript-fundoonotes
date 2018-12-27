@@ -5,8 +5,9 @@ import './App.css';
 import Login from './pages/login';
 
 import Regestration from './pages/registration';
-import Forgetpassword from './components/restpassword';
+
 import forpassword from './pages/passwordReset';
+import Dash from './pages/Dashboard';
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
 
 <Route path="/registration" component={Regestration}/>
 <Route path="/forgetpassword" component={forpassword}/>
+<Route path="/dashboard" component={Dash}/>
 </div>
  </Router>
 
@@ -35,6 +37,7 @@ class App extends Component {
       //  </Router>
        
       //  </div>
+      
       
      
     )

@@ -3,7 +3,7 @@ import React,  {Component } from 'react';
 
 
 import { TextField, Button } from '@material-ui/core';
-import Login from '../pages/login';
+
 
 
 class Regesitration extends Component{
@@ -30,7 +30,7 @@ validate = () => {
 
     console.log("in validate", );
     
-    let  flag = false;
+    var flag = false;
     const error={
         Firstnameerrtxt: '',
         Lastnameerrtxt: '',
@@ -46,6 +46,7 @@ validate = () => {
       console.log(this.state.Firstname)
      // console.log(this.state.Password);
       error.Firstnameerrtxt= "*firstname should not be blank*";
+      
       console.log(error.Firstnameerrtxt)
     }
     if(!/[a-zA-Z]+$/.test(this.state.Firstname))
@@ -53,8 +54,8 @@ validate = () => {
         
         {
             flag=true;
-            error.Firstnameerrtxt="*enter character*"
-            console.log(error.Firstnameerrtxt)
+            error.Firstnameerrtxt="*enter alphabets only*";
+            console.log(error.Firstnameerrtxt);
         }
     }
 
@@ -102,7 +103,7 @@ if(this.state.ContactNo.length<10)
     console.log(error.ContactNoerrtxt)
     
 }
- else if(!/[789]{1}[0-9]{9}/.test(this.state.ContactNo))
+  if(!/^[0-9]*$/.test(this.state.ContactNo))
 
 {
 flag=true
@@ -152,18 +153,20 @@ console.log("in submit");
             <h1>Register</h1>
         
             <TextField
+            
             hintText="Enter Firstname"
             helperText className='help'
-            name="fistname"
+            placeholder=" enter fistname"
             label="Firstname" 
             value={this.state.Firstname}
             onChange={(event) => this.setState({Firstname : event.target.value})}
+            
             helperText={this.state.Firstnameerrtxt}
 
             />
       
             <TextField
-            hintText="Enter Lastname"
+            placeholder="Enter Lastname"
             name="lastname"
             label="Lastname"
             value={this.state.Lastname}
@@ -174,7 +177,7 @@ console.log("in submit");
         
             <TextField
             InputLabelProps="Enter EmailId"
-            name="email"
+            placeholder=" enter email"
             label="Email"
             value={this.state.EmailId}
             onChange={(event) => this.setState({EmailId: event.target.value})}
@@ -186,7 +189,7 @@ console.log("in submit");
            
              <TextField
             label="Password"
-            name="password" 
+            placeholder="password" 
             value={this.state.Password}
             onChange={(event) => this.setState({Password: event.target.value})}
             helperText={this.state.passwrderrtxt}
@@ -194,7 +197,7 @@ console.log("in submit");
            
             <TextField
             label="Confirm password"
-            name="cpassword"
+            placeholder="enter password"
             value={this.state.Confirmpassword}
             onChange={(event) => this.setState({Confirmpassword : event.target.value})}
             helperText={this.state.Confirmpassworderrtxt}
@@ -203,7 +206,7 @@ console.log("in submit");
            
             <TextField
             label="ContactNo"
-            name="contact"
+            placeholder="enter contact"
             value={this.state.ContactNo}
             onChange={(event) => this.setState({ContactNo : event.target.value})}
        helperText={this.state.ContactNoerrtxt}

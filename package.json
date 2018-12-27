@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.7.1",
+    "firebase": "^5.7.1",
     "npm": "^6.5.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -24,5 +25,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "bootstrap": "^4.2.1"
+  }
 }

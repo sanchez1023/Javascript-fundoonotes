@@ -8,11 +8,6 @@ import { Card, AppBar, Toolbar } from '@material-ui/core';
 
 class Login extends Component {
     
-    validate() {
-
-
-        
-    }
     
     render() {
                
@@ -21,13 +16,7 @@ class Login extends Component {
 
         <ThemeProvider>
           
-            <Toolbar
-            className= 'tool'
-             >
-            <h1
-            className ='head'
-            >User Login</h1>
-            </Toolbar>
+           
          <Card
          
          className='login'
@@ -38,7 +27,7 @@ class Login extends Component {
       <Logininfo/>
      <a 
      className='forget'
-      href='/forgetpassword'>forgetpassword</a>
+      href='/forgetpassword'>Forgot password ?</a>
       <p>
      <a 
      className='register' 

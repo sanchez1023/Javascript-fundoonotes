@@ -9,67 +9,101 @@ class Logininfo extends Component{
         super();
         this.state={
             username:"",
-            password:""
+            usernameerrtxt:"",
+            password:"",
+            passworderrtxt:""
         }
     }
-  //this.handleUsername=this.handleUsername.bind(this);
-//      }
-//     handleUsername(event){
-//       this.setState({username:event.target.value});
-
-//      }
-//      validate(event){
-//      //event.preventDefault();
-//          if(event.target.value="")
-//          {
-//              console.log('username empty')
-//          }
-//      }
+ 
+     validate=()=>{
+var flag=false;
+        const error={
+            usernameerrtxt:"",
+            passworderrtxt:''
+        }
+         if(this.state.username.length===0)
+         {
+             flag=true;
+         }
+     
+    if (this.state.username.indexOf("@") === -1) {
+        flag = true;
+        error.usernameerrtxt= "*Requires valid email*";
+  }
+  if(this.state.username.indexOf('.')===-1)
+  {
+      flag=true;
+      error.usernameerrtxt="*requires valid email";
+  }
+  if(this.state.password.length<5)
+  {
+      flag=true;
+      error.passworderrtxt="*password must be more than 5 characters "
+  }
+  this.setState({
+      ...this.state,
+      ...error
+  })
+  return flag
+     }
     
-// onSubmit=event=>{
-// event.preventDefault();
-// const error=this.validate();
-// if(error)
-// {
+onSubmit=event=>{
+event.preventDefault();
+const error=this.validate();
+if(!error)
+{
+    this.set={
+        username:"",
+        usernameerrtxt:"",
+        password:"",
+        passworderrtxt:""
+    }
+    window.location="http://localhost:3000/dashboard"
+}
+}
 
-// }
 
 // }
 render()
 {
         return (
             <div>
-            <h1>Login</h1>
-<p>
+            <h1>Login to Fundoonotes</h1>
+
     <TextField
             // value={this.state.username}
             // 
-            label="UserName"
-        // value={this.state.username}
-         //onChange={this.handleUsername}
+            label="Username or email address"
+            placeholder="enter email id"
+            helperText={this.state.usernameerrtxt}
+        value={this.state.username}
+         onChange={(event) => this.setState({username : event.target.value})}
            // defaultValue={values.username}
         
             />
-            </p>
-
-            <p>
+        
         
             <TextField
             label=" Password"
         Floatinglabeltext="password"
+        placeholder="enter password"
+        value={this.state.password}
+        onChange={(event) => this.setState({password: event.target.value})}
+        helperText={this.state.passworderrtxt}
+        
+        
               />
-            </p>
+         
             
                      
-        <p>
-           
-        <Button onClick="validate(event)" 
-        color="primary">
+     
+        <Button   color="primary"
+        onClick={event=>this.onSubmit(event)}> 
+      
         Submit
         
       </Button>
-            </p>
-
+           
 
             </div>
           
