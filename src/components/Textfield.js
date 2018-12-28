@@ -1,9 +1,10 @@
-/* eslint-disable no-redeclare */
+
 import React,  {Component } from 'react';
-
-import  { TextField } from '@material-ui/core/'
+import firebase from'../firebase'
+import  { TextField, Snackbar, SnackbarContent } from'@material-ui/core'
 import Button from '@material-ui/core/Button';
-
+//import UserController from "../controller/usercontroller";
+//var userCtrl = new UserController();
 class Logininfo extends Component{
     constructor(){
         super();
@@ -38,9 +39,33 @@ var flag=false;
   if(this.state.password.length<5)
   {
       flag=true;
-      error.passworderrtxt="*password must be more than 5 characters "
+      error.passworderrtxt="*password must have 5 characters "
   }
-  this.setState({
+// userCtrl.signIn(this.state.username,this.state.password)
+
+const promise=firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password);
+promise.catch(e=>alert(e.message));
+// Handle Errors here.
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
+//         if(errorCode)
+//         {
+//             flag=true;
+//         }
+//     if (errorCode === 'auth/wrong-password') {
+// alert('Wrong password.');
+//     }
+//  else {
+//   alert(errorMessage);
+// }
+// console.log(errorCode);
+// });
+  //   if(err)
+//   {
+//       flag=true;
+//       prompt('invalid credentials')
+//   }
+    this.setState({
       ...this.state,
       ...error
   })
@@ -58,7 +83,7 @@ if(!error)
         password:"",
         passworderrtxt:""
     }
-    window.location="http://localhost:3000/dashboard"
+   // window.location="http://localhost:3000/dashboard"
 }
 }
 
@@ -67,13 +92,14 @@ if(!error)
 render()
 {
         return (
-            <div>
+            
+         <div>
             <h1>Login to Fundoonotes</h1>
-
-    <TextField
+            <div className='text'>
+    <TextField id='child'
             // value={this.state.username}
             // 
-            label="Username or email address"
+            label=" email address"
             placeholder="enter email id"
             helperText={this.state.usernameerrtxt}
         value={this.state.username}
@@ -83,9 +109,9 @@ render()
             />
         
         
-            <TextField
+            <TextField id='child'
             label=" Password"
-        Floatinglabeltext="password"
+        
         placeholder="enter password"
         value={this.state.password}
         onChange={(event) => this.setState({password: event.target.value})}
@@ -95,7 +121,7 @@ render()
               />
          
             
-                     
+                     </div>
      
         <Button   color="primary"
         onClick={event=>this.onSubmit(event)}> 
@@ -105,9 +131,11 @@ render()
       </Button>
            
 
-            </div>
+            
           
-             
+             <Snackbar>
+             </Snackbar>
+             </div>
         );
 }
 }
