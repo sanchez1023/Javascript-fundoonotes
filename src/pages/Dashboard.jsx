@@ -1,5 +1,7 @@
 import React,  {Component } from 'react';
-import { Button, MuiThemeProvider, Toolbar } from '@material-ui/core';
+import { Button, MuiThemeProvider, Toolbar, AppBar, Typography, IconButton, Menu } from '@material-ui/core';
+
+import Dashboard from '../components/dashboard';
 
 class Dash extends Component{
     onSubmit=event=>{
@@ -9,20 +11,20 @@ class Dash extends Component{
     }
     render(){
 return(
-<MuiThemeProvider>
-<Toolbar
-className= 'tool'
- >
-<h1
-className ='head'
->User Dashboard</h1>
-</Toolbar>
+<div>
 
-<Button color="secondary"
-onClick={event=>this.onSubmit(event)} 
->logout</Button>
-</MuiThemeProvider>
-)
+<Dashboard/>
+</div>
+
+
+// <Button color="secondary"
+// onClick={event=>this.onSubmit(event)} 
+// >logout
+// </Button>
+
+
+
+);
 }
 }
 export default Dash

@@ -8,11 +8,12 @@ import Button from '@material-ui/core/Button';
 class Logininfo extends Component{
     constructor(){
         super();
-        this.state={
+        this.state={ 
             username:"",
             usernameerrtxt:"",
             password:"",
-            passworderrtxt:""
+            passworderrtxt:"",
+            message:""
         }
     }
  
@@ -20,7 +21,8 @@ class Logininfo extends Component{
 var flag=false;
         const error={
             usernameerrtxt:"",
-            passworderrtxt:''
+            passworderrtxt:'',
+            message:""
         }
          if(this.state.username.length===0)
          {
@@ -43,15 +45,18 @@ var flag=false;
   }
 // userCtrl.signIn(this.state.username,this.state.password)
 
-const promise=firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password);
-promise.catch(e=>alert(e.message));
+let promise=firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password);
+promise.catch(e=>console.log(e.message));
 // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//         if(errorCode)
-//         {
-//             flag=true;
-//         }
+    // var errorCode = err;
+    // var errorMessage = err.message;
+    //     if(errorCode)
+    //     {
+    //         flag=true;
+    //         error.message="*invalid crediantails"
+    //         console.log(errorMessage)
+    //     }
+    
 //     if (errorCode === 'auth/wrong-password') {
 // alert('Wrong password.');
 //     }
@@ -81,7 +86,8 @@ if(!error)
         username:"",
         usernameerrtxt:"",
         password:"",
-        passworderrtxt:""
+        passworderrtxt:"",
+        message:""
     }
    // window.location="http://localhost:3000/dashboard"
 }
@@ -124,7 +130,8 @@ render()
                      </div>
      
         <Button   color="primary"
-        onClick={event=>this.onSubmit(event)}> 
+        onClick={event=>this.onSubmit(event)}
+        helperText={this.state.message}> 
       
         Submit
         
@@ -133,7 +140,16 @@ render()
 
             
           
-             <Snackbar>
+             <Snackbar id ='snack'
+             anchorOrigin={{
+                    vertical:'bottom',
+                    horizontal:'left'
+             }}
+             >
+             
+             message={this.state.message}
+             open=this.state.open;
+
              </Snackbar>
              </div>
         );

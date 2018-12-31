@@ -93,3 +93,41 @@ margin-left: 550px;
   align-content: space-around
   
 }
+.search
+{
+  display: flex;
+  margin-left: 50px;
+  
+}
+.header{
+
+  display: flex;
+  align-self: auto;
+align-content: space-around;
+align-items: initial
+
+}
+.refresh
+{
+  display: flex;
+  flex-grow: 1;
+align-content: space-around;
+align-self: auto;
+
+  margin-left: 600px;
+}
+.fab {
+  margin:theme
+}
+.setting
+{
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+.text{
+  margin-left: 10px;
+}
+.account{
+  margin-right: 100px;
+}
