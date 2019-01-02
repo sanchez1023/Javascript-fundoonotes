@@ -34,13 +34,13 @@
 
 .login{
   width: 500px;
-height:600px;
+height:700px;
 margin-left: 400px;
 }
 .reginfo{
 margin-top: 40px;
   width: 500px;
-height:700px;
+height:900px;
 margin-left: 400px;
 
 }
@@ -71,7 +71,8 @@ margin-left: 550px;
   padding:0px 40px 40px 40px;
   justify-content: space-between;
   align-content: space-around;
-  margin-top: 40px;
+  margin-top: 10px;
+  align-self: auto;
 
 }
 .text{
@@ -81,7 +82,7 @@ margin-left: 550px;
   text-align-last: left;
   flex-direction:column;
   align-self: baseline;
-  padding: 80px;
+  padding: 10px;
   margin-inline-end: 40px;
 }
 .temp{
@@ -96,7 +97,9 @@ margin-left: 550px;
 .search
 {
   display: flex;
-  margin-left: 50px;
+  margin-left: 5px;
+  inline-size: 100px;
+
   
 }
 .header{
@@ -110,7 +113,7 @@ align-items: initial
 .refresh
 {
   display: flex;
-  flex-grow: 1;
+  align-content: flex-end;
 align-content: space-around;
 align-self: auto;
 
@@ -130,4 +133,53 @@ align-self: auto;
 }
 .account{
   margin-right: 100px;
+}
+.fab{
+  background-color:white;
+}
+.dash{
+  display:flex;
+  align-content: space-around;
+  align-self:flex-start;
+  justify-content: inherit;
+  
+}
+.fun
+{
+  text-decoration-color: cyan
+}
+.list
+{
+  width: 250px;
+  margin-top: 64px;
+
+}
+.label{
+  margin-left: 30px;
+}
+.listitem{
+  margin-top: 10px;
+}
+.divide{
+  margin-left: px;
+  padding-top: 30px;
+}
+.sea{
+margin-left: 50px;
+display: flex;
+border-width: thin;
+border-color: rgba(202, 202, 192, 0.561);
+border-style: outset;border-radius: 7px;
+align-self: auto;
+align-content: space-around;
+inline-size: 500px;
+
+}
+.icon{
+  margin-top: 10px;
+}
+.drawer
+{
+padding-top: 64px;
+
 }

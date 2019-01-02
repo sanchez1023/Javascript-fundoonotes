@@ -1,8 +1,9 @@
 
 import React,  {Component } from 'react';
 import firebase from'../firebase'
-import  { TextField, Snackbar, SnackbarContent } from'@material-ui/core'
-import Button from '@material-ui/core/Button';
+import  { TextField, Snackbar, SnackbarContent, Fab } from'@material-ui/core'
+
+
 //import UserController from "../controller/usercontroller";
 //var userCtrl = new UserController();
 class Logininfo extends Component{
@@ -45,8 +46,20 @@ var flag=false;
   }
 // userCtrl.signIn(this.state.username,this.state.password)
 
-let promise=firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password);
-promise.catch(e=>console.log(e.message));
+firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage)
+ 
+        return errorMessage;
+
+    
+});
+
+var msg=
+console.log(msg);
 // Handle Errors here.
     // var errorCode = err;
     // var errorMessage = err.message;
@@ -89,6 +102,9 @@ if(!error)
         passworderrtxt:"",
         message:""
     }
+   
+   
+        
    // window.location="http://localhost:3000/dashboard"
 }
 }
@@ -107,13 +123,16 @@ render()
             // 
             label=" email address"
             placeholder="enter email id"
+            error={this.state.usernameerrtxt}
             helperText={this.state.usernameerrtxt}
         value={this.state.username}
          onChange={(event) => this.setState({username : event.target.value})}
            // defaultValue={values.username}
         
             />
-        
+
+
+          
         
             <TextField id='child'
             label=" Password"
@@ -121,21 +140,21 @@ render()
         placeholder="enter password"
         value={this.state.password}
         onChange={(event) => this.setState({password: event.target.value})}
+        error={this.state.passworderrtxt}
         helperText={this.state.passworderrtxt}
-        
         
               />
          
             
                      </div>
      
-        <Button   color="primary"
+        <Fab variant='extended'  color="primary"
         onClick={event=>this.onSubmit(event)}
         helperText={this.state.message}> 
       
         Submit
         
-      </Button>
+     </Fab>
            
 
             
@@ -147,7 +166,7 @@ render()
              }}
              >
              
-             message={this.state.message}
+        
              open=this.state.open;
 
              </Snackbar>

@@ -6,7 +6,8 @@ import React, {
 
 import {
     TextField,
-    Button
+    Button,
+    Fab
 } from '@material-ui/core';
 
 
@@ -151,12 +152,13 @@ class Regesitration extends Component {
     render() {
         return ( 
             <div >
+            <img src={require('../assets.js/register.png')}/>
             
             <h1 > Register </h1>
           <div className='help'>
             <
             TextField
-            style={{paddingBottom:"40px"}}
+            style={{paddingBottom:"20px"}}
             hintText = "Enter Firstname"
             helperText placeholder = " enter fistname"
             label = "Firstname"
@@ -168,7 +170,7 @@ class Regesitration extends Component {
                     Firstname: event.target.value
                 })
             }
-
+            error={this.state.Firstnameerrtxt}
             helperText = {
                 this.state.Firstnameerrtxt
             }
@@ -177,6 +179,7 @@ class Regesitration extends Component {
 
             <
             TextField id = 'child'
+            style={{paddingBottom:"20px"}}
             placeholder = "Enter Lastname"
             name = "lastname"
             label = "Lastname"
@@ -188,6 +191,7 @@ class Regesitration extends Component {
                     Lastname: event.target.value
                 })
             }
+            error={this.state.Lastnameerrtxt}
             helperText = {
                 this.state.Lastnameerrtxt
             }
@@ -196,6 +200,7 @@ class Regesitration extends Component {
 
             <
             TextField id = 'help'
+            style={{paddingBottom:"20px"}}
             InputLabelProps = "Enter EmailId"
             placeholder = " enter email"
             label = "Email"
@@ -207,6 +212,7 @@ class Regesitration extends Component {
                     EmailId: event.target.value
                 })
             }
+            error={this.state.EmailIDerrtxt}
             helperText = {
                 this.state.EmailIDerrtxt
             }
@@ -217,6 +223,7 @@ class Regesitration extends Component {
 
             <
             TextField className = 'help'
+            style={{paddingBottom:"20px"}}
             label = "Password"
             placeholder = "password"
             value = {
@@ -227,6 +234,7 @@ class Regesitration extends Component {
                     Password: event.target.value
                 })
             }
+            error={this.state.passwrderrtxt}
             helperText = {
                 this.state.passwrderrtxt
             }
@@ -234,6 +242,7 @@ class Regesitration extends Component {
 
             <
             TextField className = 'help'
+            style={{paddingBottom:"20px"}}
             label = "Confirm password"
             placeholder = "enter password"
             value = {
@@ -244,6 +253,7 @@ class Regesitration extends Component {
                     Confirmpassword: event.target.value
                 })
             }
+            error={this.state.Confirmpassworderrtxt}
             helperText = {
                 this.state.Confirmpassworderrtxt
             }
@@ -252,6 +262,7 @@ class Regesitration extends Component {
 
             <
             TextField 
+            style={{paddingBottom:"40px"}}
             label = "ContactNo:"
             placeholder = "enter contact"
             value = {
@@ -262,6 +273,7 @@ class Regesitration extends Component {
                     ContactNo: event.target.value
                 })
             }
+            error={this.state.ContactNoerrtxt}
             helperText = {
                 this.state.ContactNoerrtxt
             }
@@ -270,12 +282,12 @@ class Regesitration extends Component {
           
 
         
-            <Button color = "primary"
+            <Fab color = "primary" variant='extended'
             onClick = {
                 event => this.onSubmit(event)
             } >
             Submit 
-            </Button> 
+           </Fab>
             </div>
             </div>
 

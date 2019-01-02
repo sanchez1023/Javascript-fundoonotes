@@ -1,9 +1,9 @@
 import React,  {Component } from 'react';
 import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
-
-
+import {Link} from 'react-router-dom'
 import Logininfo from '../components/Textfield';
 import { Card, AppBar, Toolbar } from '@material-ui/core';
+
 
 
 class Login extends Component {
@@ -22,18 +22,16 @@ class Login extends Component {
          className='login'
          
          >
+         <img src={require('../assets.js/accountview.png')}/>
          
     
       <Logininfo/>
-     <a 
-     className='forget'
-      href='/forgetpassword'>Forgot password ?</a>
-      <p>
-     <a 
-     className='register' 
-     href='/registration'>Not a registered user ? Click here to register</a>
-     </p>
-            
+<p>
+      <Link to="/forgetpassword">Forgot Password</Link>
+      </p>
+<p>
+ <Link to="/registration">Not yet registered ? Click here to register</Link>
+ </p>
             </Card>
       </ThemeProvider>
            
