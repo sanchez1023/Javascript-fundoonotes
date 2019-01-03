@@ -1,7 +1,12 @@
 
 import React,  {Component } from 'react';
 import firebase from'../firebase'
-import  { TextField, Snackbar, SnackbarContent, Fab } from'@material-ui/core'
+import  { TextField, Snackbar, MySnackbarContentWrapper, Fab, SnackbarContent } from'@material-ui/core'
+import 'js-snackbar/snackbar.css';
+import { show, ACTION_TYPE } from 'js-snackbar';
+
+// show({ pos : 'bottom-left'
+//  });
 
 
 //import UserController from "../controller/usercontroller";
@@ -14,7 +19,8 @@ class Logininfo extends Component{
             usernameerrtxt:"",
             password:"",
             passworderrtxt:"",
-            message:""
+            message:"",
+
         }
     }
  
@@ -24,6 +30,7 @@ var flag=false;
             usernameerrtxt:"",
             passworderrtxt:'',
             message:""
+            
         }
          if(this.state.username.length===0)
          {
@@ -43,6 +50,7 @@ var flag=false;
   {
       flag=true;
       error.passworderrtxt="*password must have 5 characters "
+     
   }
 // userCtrl.signIn(this.state.username,this.state.password)
 
@@ -50,16 +58,26 @@ firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.sta
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage)
- 
-        return errorMessage;
+   // alert(errorCode);
+   // console.log(errorMessage)
 
+   if(errorCode)
+   {
+       flag=true;
+   }
+show({
+    backgroundColor: '	FF0000',
+    text : errorMessage,
+    pos : "bottom-left"
+})
+
+        
+        
     
 });
 
-var msg=
-console.log(msg);
+
+
 // Handle Errors here.
     // var errorCode = err;
     // var errorMessage = err.message;
@@ -89,6 +107,12 @@ console.log(msg);
   })
   return flag
      }
+     
+     
+     handleClose=()=>
+     {
+
+     }
     
 onSubmit=event=>{
 event.preventDefault();
@@ -105,7 +129,7 @@ if(!error)
    
    
         
-   // window.location="http://localhost:3000/dashboard"
+   navigator='/dashdoard'
 }
 }
 
@@ -157,19 +181,22 @@ render()
      </Fab>
            
 
-            
-          
-             <Snackbar id ='snack'
-             anchorOrigin={{
-                    vertical:'bottom',
-                    horizontal:'left'
-             }}
-             >
-             
-        
-             open=this.state.open;
+    
+     <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={this.state.snackOpenStatus}
+        autoHideDuration={6000}
+        // onClose={handleClose}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={this.state.message}
+      />
 
-             </Snackbar>
+
              </div>
         );
 }

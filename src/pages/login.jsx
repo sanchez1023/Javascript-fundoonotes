@@ -3,7 +3,7 @@ import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import {Link} from 'react-router-dom'
 import Logininfo from '../components/Textfield';
 import { Card, AppBar, Toolbar } from '@material-ui/core';
-
+// import  { Snackbar } from'@material-ui/core'
 
 
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
                
 
         return ( 
-
+// <div>
         <ThemeProvider>
           
            
@@ -35,8 +35,21 @@ class Login extends Component {
             </Card>
       </ThemeProvider>
            
-           
-     
+    //   <Snackbar
+    //   anchorOrigin={{
+    //     vertical: 'bottom',
+    //     horizontal: 'left',
+    //   }}
+    //   open={true}
+    //   autoHideDuration={6000}
+    //   // onClose={handleClose}
+    //   ContentProps={{
+    //     'aria-describedby': 'message-id',
+    //   }}
+    //   message="test"
+    // />
+
+    //  </div>
         );
     }
 }

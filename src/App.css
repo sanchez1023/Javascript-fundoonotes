@@ -183,3 +183,9 @@ inline-size: 500px;
 padding-top: 64px;
 
 }
+
+.MuiDrawer-paperAnchorLeft-113 {
+    left: 0;
+    right: auto;
+    top: 56px;
+}
