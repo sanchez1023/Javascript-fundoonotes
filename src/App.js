@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import {IndexRoute} from 'react-router-dom'
+import { BrowserRouter as Router, Route, } from 'react-router-dom'
+
 import './App.css';
 import Login from './pages/login';
-import {hashHistory} from 'react-router-dom'
+
 import Regestration from './pages/registration';
 
 import forpassword from './pages/passwordReset';
 import Dash from './pages/Dashboard';
 
 
+
 class App extends Component {
   render() {
     return (
      <div className="App">
-       <Router >
+       <Router  >
        <div>
 <Route path="/login" component={Login}/>
 

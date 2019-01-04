@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, IconButton, MenuItem, Typography, Menu, InputBase, Icon, Fab, Paper, SwipeableDrawer, List, ListItem, ListSubheader, Divider, Tooltip } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography,  InputBase, Tooltip } from '@material-ui/core';
 import Sidemenu from './menu';
 
 
@@ -18,7 +18,7 @@ class Dashboard extends Component{
 handleDrawer=()=>{
   console.log('in hadle drawer')
     this.setState({open:!this.state.open });
-    // this.setState({close:true});
+    
   }
   
 

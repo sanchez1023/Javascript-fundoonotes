@@ -2,13 +2,15 @@ import React, {
     Component
 } from 'react';
 
-
+import firebase from'../firebase'
 
 import {
     TextField,
-    Button,
+   
     Fab
 } from '@material-ui/core';
+import database from '../firebase'
+
 
 
 
@@ -29,9 +31,11 @@ class Regesitration extends Component {
             Confirmpassworderrtxt: '',
             ContactNo: '',
             ContactNoerrtxt: ''
+            
         }
-
+        this.onSubmit = this.onSubmit.bind(this);
     }
+
     validate = () => {
 
         console.log("in validate", );
@@ -125,7 +129,29 @@ class Regesitration extends Component {
         console.log("in submit");
         event.preventDefault();
         const err = this.validate();
-        if (!err) {
+        if (!err) 
+         {   
+
+            var data={
+                firstname:this.state.Firstname,
+                lastname:this.state.Lastname,
+                email:this.state.EmailId,
+                password:this.state.Password,
+                contact:this.state.ContactNo,
+
+            }
+            console.log(data);
+            
+    database.database.ref('/users').push(data);
+           firebase.firebase.auth().createUserWithEmailAndPassword(this.state.EmailId, this.state.Password).then(()=> {
+               console.log("Adders");
+               
+           }).catch(err => {
+               console.log(err);
+               
+           })
+         
+
 
             this.setState({
                 Firstname: "",
@@ -142,12 +168,13 @@ class Regesitration extends Component {
                 ContactNo: "",
                 ContactNoerrtxt: ''
             });
-            window.location = "http://localhost:3000/login"
+           
+            
         }
-
-
+        this.props.props.history.push('/login');
 
     }
+    
 
     render() {
         return ( 
@@ -245,6 +272,7 @@ class Regesitration extends Component {
             style={{paddingBottom:"20px"}}
             label = "Confirm password"
             placeholder = "enter password"
+            type='password'
             value = {
                 this.state.Confirmpassword
             }

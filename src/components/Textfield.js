@@ -1,16 +1,12 @@
 
 import React,  {Component } from 'react';
 import firebase from'../firebase'
-import  { TextField, Snackbar, MySnackbarContentWrapper, Fab, SnackbarContent } from'@material-ui/core'
+import  { TextField, Snackbar,  Fab, } from'@material-ui/core'
 import 'js-snackbar/snackbar.css';
-import { show, ACTION_TYPE } from 'js-snackbar';
-
-// show({ pos : 'bottom-left'
-//  });
+import { show } from 'js-snackbar';
+import {} from 'react-router'
 
 
-//import UserController from "../controller/usercontroller";
-//var userCtrl = new UserController();
 class Logininfo extends Component{
     constructor(){
         super();
@@ -22,10 +18,12 @@ class Logininfo extends Component{
             message:"",
 
         }
+        this.onSubmit = this.onSubmit.bind(this);
     }
  
      validate=()=>{
 var flag=false;
+var isauthentic=false;
         const error={
             usernameerrtxt:"",
             passworderrtxt:'',
@@ -53,55 +51,28 @@ var flag=false;
      
   }
 // userCtrl.signIn(this.state.username,this.state.password)
-
-firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password).catch(function(error) {
+firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then(()=> {
+    console.log("sfdsf");
+    
+})
+.catch(function(error) {
     // Handle Errors here.
-    var errorCode = error.code;
+     var errorCode = error.code;
+
     var errorMessage = error.message;
    // alert(errorCode);
    // console.log(errorMessage)
 
-   if(errorCode)
-   {
-       flag=true;
-   }
 show({
     backgroundColor: '	FF0000',
     text : errorMessage,
     pos : "bottom-left"
-})
-
-        
-        
-    
 });
 
-
-
-// Handle Errors here.
-    // var errorCode = err;
-    // var errorMessage = err.message;
-    //     if(errorCode)
-    //     {
-    //         flag=true;
-    //         error.message="*invalid crediantails"
-    //         console.log(errorMessage)
-    //     }
+        
+});
     
-//     if (errorCode === 'auth/wrong-password') {
-// alert('Wrong password.');
-//     }
-//  else {
-//   alert(errorMessage);
-// }
-// console.log(errorCode);
-// });
-  //   if(err)
-//   {
-//       flag=true;
-//       prompt('invalid credentials')
-//   }
-    this.setState({
+   this.setState({
       ...this.state,
       ...error
   })
@@ -119,17 +90,15 @@ event.preventDefault();
 const error=this.validate();
 if(!error)
 {
+    console.log(this.e);
     this.set={
         username:"",
         usernameerrtxt:"",
         password:"",
         passworderrtxt:"",
-        message:""
-    }
-   
-   
         
-   navigator='/dashdoard'
+    }
+      this.props.props.history.push('/dashboard');
 }
 }
 
@@ -160,14 +129,14 @@ render()
         
             <TextField id='child'
             label=" Password"
-        
+        type='password'
         placeholder="enter password"
         value={this.state.password}
         onChange={(event) => this.setState({password: event.target.value})}
         error={this.state.passworderrtxt}
         helperText={this.state.passworderrtxt}
         
-              />
+             />
          
             
                      </div>
@@ -182,19 +151,7 @@ render()
            
 
     
-     <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={this.state.snackOpenStatus}
-        autoHideDuration={6000}
-        // onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={this.state.message}
-      />
+     
 
 
              </div>

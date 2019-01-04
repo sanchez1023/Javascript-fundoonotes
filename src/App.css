@@ -107,7 +107,13 @@ margin-left: 550px;
   display: flex;
   align-self: auto;
 align-content: space-around;
-align-items: initial
+align-items: initial;
+flex-wrap: wrap;
+flex-shrink: unset;
+flex-grow: unset;
+flex-flow: row;
+flex:1;
+
 
 }
 .refresh
@@ -143,6 +149,11 @@ align-self: auto;
   align-self:flex-start;
   justify-content: inherit;
   
+}
+.listview{
+  display: flex;
+  flex-grow: inherit;
+  flex-shrink: inherit;
 }
 .fun
 {
