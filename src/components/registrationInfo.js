@@ -104,7 +104,7 @@ class Regesitration extends Component {
             flag = true;
             error.EmailIDerrtxt = "*requires valid email"
         }
-        if (this.state.ContactNo.length < 10) {
+        if (this.state.ContactNo.length !==10) {
             flag = true;
             error.ContactNoerrtxt = "*length must be of 10 digits*"
             console.log(error.ContactNoerrtxt)
@@ -169,9 +169,9 @@ class Regesitration extends Component {
                 ContactNoerrtxt: ''
             });
            
-            
+            this.props.props.history.push('/login');
         }
-        this.props.props.history.push('/login');
+        
 
     }
     
@@ -179,7 +179,7 @@ class Regesitration extends Component {
     render() {
         return ( 
             <div >
-            <img src={require('../assets.js/register.png')}/>
+            <img src={require('../assets/register.png')}/>
             
             <h1 > Register </h1>
           <div className='help'>
@@ -252,6 +252,7 @@ class Regesitration extends Component {
             TextField className = 'help'
             style={{paddingBottom:"20px"}}
             label = "Password"
+            type='password'
             placeholder = "password"
             value = {
                 this.state.Password

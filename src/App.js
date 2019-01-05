@@ -6,7 +6,7 @@ import Login from './pages/login';
 
 import Regestration from './pages/registration';
 
-import forpassword from './pages/passwordReset';
+import forpassword from './pages/forgetpassword';
 import Dash from './pages/Dashboard';
 
 

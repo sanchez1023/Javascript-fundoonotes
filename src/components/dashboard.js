@@ -5,17 +5,18 @@ import Sidemenu from './menu';
 
 class Dashboard extends Component{
  
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state={
       open:false,
       close:true
 
 
     };
-
+   
   }
-handleDrawer=()=>{
+  
+handleDrawer(){
   console.log('in hadle drawer')
     this.setState({open:!this.state.open });
     
@@ -37,9 +38,9 @@ return (
 <IconButton className='fab'size="small" aria-label="main menu" role='button '
 onClick={()=>this.handleDrawer()}
 >
-<img src={require('../assets.js/menuIcon.svg')}/>
+<img src={require('../assets/menuIcon.svg')}/>
 </IconButton>
-<img src={require('../assets.js/download.png')}  />
+<img src={require('../assets/download.png')}  />
 
 
 
@@ -51,7 +52,7 @@ Fundoo
 
 <div className='sea'>
 <IconButton size='large'  color='white' aria-label="Search" role="button" aria-hidden='false' >
-<img src={require('../assets.js/search.svg')}/>
+<img src={require('../assets/search.svg')}/>
 </IconButton>
 
 
@@ -65,7 +66,7 @@ Fundoo
 <div className='refresh'>
 <IconButton className='fab' variant='round' size='small'aria-label="Search" role="button" color='inherit'>
 <Tooltip title="Refresh"> 
-<img src={require('../assets.js/refresh.svg')}/>
+<img src={require('../assets/refresh.svg')}/>
 </Tooltip>
 </IconButton>
 </div>
@@ -74,20 +75,20 @@ Fundoo
 
 <div className='listview'>
 <IconButton className='fab' variant='round' size='small'aria-label="Search" role="button" color='inherit'>
-<img src={require('../assets.js/list.svg')}/>
+<img src={require('../assets/list.svg')}/>
 </IconButton>
 </div>
 
 <div className='setting'>
 <IconButton size='small' className='fab' aria-label='settings' role='button' color='default'>
-<img src=  {require('../assets.js/settings.svg')}/>
+<img src=  {require('../assets/settings.svg')}/>
 </IconButton>
 </div>
 
 
 <div className='account'>
 <IconButton size='medium' aria-label='account' role='button'>
-<img src={require('../assets.js/account.svg')}/>
+<img src={require('../assets/account.svg')}/>
 </IconButton>
 </div>
 
@@ -99,7 +100,7 @@ Fundoo
 
 </AppBar>
 </div>
-<Sidemenu/>
+<Sidemenu parentProps={this.state.open}/>
 
 </div>
 

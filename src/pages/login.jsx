@@ -22,7 +22,7 @@ class Login extends Component {
          className='login'
          
          >
-         <img src={require('../assets.js/accountview.png')}/>
+         <img src={require('../assets/accountview.png')}/>
          
     
       <Logininfo props={this.props}/>
