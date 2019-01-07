@@ -7,7 +7,8 @@ import Login from './pages/login';
 import Regestration from './pages/registration';
 
 import forpassword from './pages/forgetpassword';
-import Dash from './pages/Dashboard';
+import Dash from './pages/Dashboard'
+import Resetpassword from './pages/Resetpassword';
 
 
 
@@ -20,8 +21,10 @@ class App extends Component {
 <Route path="/login" component={Login}/>
 
 <Route path="/registration" component={Regestration}/>
+
 <Route path="/forgetpassword" component={forpassword}/>
 <Route path="/dashboard" component={Dash}/>
+<Route path='/resetpassword' component={Resetpassword}/>
 </div>
  </Router>
 

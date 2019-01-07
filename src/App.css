@@ -22,14 +22,6 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 
 .login{
@@ -97,48 +89,118 @@ margin-left: 550px;
 .search
 {
   display: flex;
-  margin-left: 5px;
-  inline-size: 100px;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   
 }
-.header{
-
+.searchButton
+{
   display: flex;
-  align-self: auto;
-align-content: space-around;
-align-items: initial;
+  flex-direction: row;
+  flex-wrap: wrap
+}
+.noteicon
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.buttons{
+    display: flex;  
 flex-wrap: wrap;
-flex-shrink: unset;
-flex-grow: unset;
-flex-flow: row;
-flex:1;
+flex-direction: row;
 
 
 }
+.header
+{
+    padding: 0;
+    margin: 0;
+}
+  .textarea{
+      display: flex;
+      border: 1 ;
+    
+  }
+  .title{
+    display: flex;
+    border: 1px solid gray;
+     border-style: groove;
+     align-content: space-around;
+     flex-direction: row;
+     flex-flow: row;
+     flex-wrap: wrap;
+border-width: thin;
+border-color: rgba(202, 202, 192, 0.561);
+border-style: outset;border-radius: 7px;
+     
+  }
+ .bar{
+  display: flex;
+  align-content: space-around;
+  margin-left: 450px;
+  flex-direction: row;
+  margin-top: 100px;
+  flex-wrap: wrap; 
+ }
+.button{
+
+  display: flex;
+  flex-direction: row;
+  
+
+ 
+}
+.card{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 100px;
+  margin-left:450px;
+}
+.titlebuttons{
+  display: flex;
+
+  flex-direction: row
+}
+
+
+
 .refresh
 {
   display: flex;
-  align-content: flex-end;
-align-content: space-around;
-align-self: auto;
+ align-content: flex-end;
+flex-flow: row;
+align-self: flex-end;
 
-  margin-left: 600px;
+ 
 }
 .fab {
-  margin:theme
+display: flex;
+flex-flow: row;
+flex-wrap: wrap
 }
 .setting
 {
-  margin-left: 10px;
-  margin-right: 10px;
+ display: flex;
+ flex-wrap: wrap;
+ flex-direction: row;
+ align-content: flex-end;
+justify-content: flex-end;
+ align-items: flex-end
 
 }
 .text{
   margin-left: 10px;
 }
 .account{
-  margin-right: 100px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  align-self: flex-end;
+  justify-content: flex-end
 }
 .fab{
   background-color:white;
@@ -152,8 +214,9 @@ align-self: auto;
 }
 .listview{
   display: flex;
-  flex-grow: inherit;
-  flex-shrink: inherit;
+  flex-direction: row;
+  flex-flow: wrap;
+  
 }
 .fun
 {
@@ -177,14 +240,16 @@ align-self: auto;
   padding-top: 30px;
 }
 .sea{
-margin-left: 50px;
+
 display: flex;
 border-width: thin;
 border-color: rgba(202, 202, 192, 0.561);
 border-style: outset;border-radius: 7px;
 align-self: auto;
 align-content: space-around;
+align-content: space-between;
 inline-size: 500px;
+margin-left: 10px;
 
 }
 .icon{
@@ -192,7 +257,10 @@ inline-size: 500px;
 }
 .drawer
 {
-padding-top: 64px;
+
+display: flex;
+flex-wrap: wrap;
+flex-shrink: inherit;
 
 }
 
@@ -201,3 +269,7 @@ padding-top: 64px;
     right: auto;
     top: 56px;
 }
+
+
+
+

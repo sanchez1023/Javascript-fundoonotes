@@ -88,11 +88,11 @@ class Regesitration extends Component {
         }
 
 
-        if (this.state.Password !== this.state.Confirmpassword) {
-            flag = true;
-            error.Confirmpassworderrtxt = "*password and confirm password does not match*"
-            console.log(error.Confirmpassworderrtxt);
-        }
+            if (this.state.Password !== this.state.Confirmpassword) {
+                flag = true;
+                error.Confirmpassworderrtxt = "*password and confirm password does not match*"
+                console.log(error.Confirmpassworderrtxt);
+            }
 
 
 

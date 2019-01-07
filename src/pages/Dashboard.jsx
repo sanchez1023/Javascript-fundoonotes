@@ -1,7 +1,8 @@
 import React,  {Component } from 'react';
 
 
-import Dashboard from '../components/dashboard';
+import Dashboard from '../components/dashboard/Dashboard';
+import Note from '../components/dashboard/Note';
 
 class Dash extends Component{
     
@@ -12,7 +13,9 @@ return(
 <div>
 
 <Dashboard />
+<Note/>
 </div>
+
     
 
 // <Button color="secondary"
