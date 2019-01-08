@@ -1,6 +1,6 @@
 import React,  {Component } from 'react';
 import { Card, TextField, Fab } from '@material-ui/core';
-
+import { show } from 'js-snackbar';
 
 class Passwordreset extends Component{
     constructor()
@@ -24,19 +24,20 @@ class Passwordreset extends Component{
             confirmpassworderrtxt:'',
 
         }
-        if (this.state.Password.length < 5) {
-            Flag = true;
-            error.passwrderrtxt = "*password must be more than 5 characters*";
-            console.log(error.passwrderrtxt)
+        if (this.state.password.length <= 5) {
+            console.log(this.state.password.length)
+            Flag=true;
+            error.passworderrtxt = "*password must be more than 5 characters*";
+            console.log(error.passworderrtxt)
         }
         if (this.state.Password !== this.state.Confirmpassword) {
-            Flag = true;
+        Flag=true;
             error.Confirmpassworderrtxt = "*password and confirm password does not match*"
             console.log(error.Confirmpassworderrtxt);
         }
         this.setState({
-            ...this.state,
-            ...error,
+            ...this.setState,
+            ...error
         })
         return Flag;
 
@@ -47,18 +48,27 @@ class Passwordreset extends Component{
         console.log("in submit");
         event.preventDefault();
         const err = this.validate();
+        console.log(err)
         if (!err) 
          {
              
             this.setState({
                 
-            password:'',
-            passwrderrtxt:'',
-            confirmpassword:'',
-            confirmpassworderrtxt:'',
+            password:"",
+            passwrderrtxt:"",
+            confirmpassword:"",
+            confirmpassworderrtxt:"",
              } )
 
+             show({
+
+                backgroundColor: '	FF0000',
+                text : 'password has been succesfully changed check your mail for details',
+                pos : "bottom-left"
+            })
+         
          }
+            
 
         }
     render()
@@ -66,20 +76,21 @@ class Passwordreset extends Component{
         return(
             <div>
             
-
+ <Card className='login'>
        
-
+<h1>Reset password  </h1>
             <
             TextField 
             label = "Password"
-            type='password'
+           
             placeholder = "password"
+            style={{marginTop:'50px'}}
             value = {
                 this.state.Password
             }
             onChange = {
                 (event) => this.setState({
-                    Password: event.target.value
+                    password: event.target.value
                 })
             }
             error={this.state.passworderrtxt}
@@ -92,13 +103,13 @@ class Passwordreset extends Component{
             style={{paddingBottom:"20px"}}
             label = "Confirm password"
             placeholder = "enter password"
-            type='password'
+           
             value = {
                 this.state.Confirmpassword
             }
             onChange = {
                 (event) => this.setState({
-                    Confirmpassword: event.target.value
+                    confirmpassword: event.target.value
                 })
             }
             error={this.state.Confirmpassworderrtxt}
@@ -114,7 +125,7 @@ class Passwordreset extends Component{
             Submit 
          </Fab>
 
-            
+         </Card>
 
             </div>
         );

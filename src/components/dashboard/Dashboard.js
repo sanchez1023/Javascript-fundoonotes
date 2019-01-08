@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, IconButton, Typography,  InputBase, Tooltip } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, MuiThemeProvider, InputBase, Tooltip,createMuiTheme } from '@material-ui/core';
 import Sidemenu from './Menu';
 
+
+const theme=createMuiTheme({
+  overrides:{
+    MuiToolbar:
+    {
+      root:{
+      display: "flex",
+      position: "relative",
+      justifyContent:'space-between'
+  },
+    
+}
+  }
+  })
 
 class Dashboard extends Component{
  
@@ -28,32 +42,41 @@ handleDrawer(){
 render (){
   
 return (
+  <MuiThemeProvider theme ={theme}>
+
   <div>
 <div className='header'>
 <AppBar position='fixed' color='white'>
 <Toolbar>
 
-
+<div className='logoandmenu'>
 
 <IconButton className='fab'size="small" aria-label="main menu" role='button '
 onClick={()=>this.handleDrawer()}
 >
+<Tooltip title='main menu'>
 <img src={require('../../assets/menuIcon.svg')}/>
+</Tooltip>
 </IconButton>
+
 <div className='noteicon'>
 <img src={require('../../assets/download.png')}  />
-</div>
+
 
 
 <Typography color='inherit' variant='h6'>
-Fundoo 
+Fundoo  Notes
 </Typography>
+</div>
+</div>
 
 
 
 <div className='sea'>
 <IconButton size='large' id='searchButton'  color='white' aria-label="Search" role="button" aria-hidden='false' >
+<Tooltip title='search'>
 <img src={require('../../assets/search.svg')}/>
+</Tooltip>
 </IconButton>
 
 
@@ -81,7 +104,9 @@ Fundoo
 
 <div className='setting'>
 <IconButton size='small' className='fab' aria-label='settings' role='button' color='default'>
+<Tooltip title='settings'>
 <img src=  {require('../../assets/settings.svg')}/>
+</Tooltip>
 </IconButton>
 </div>
 
@@ -105,6 +130,7 @@ Fundoo
 <Sidemenu parentProps={this.state.open}/>
 
 </div>
+</MuiThemeProvider>
 
 
 );

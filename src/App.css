@@ -1,5 +1,11 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+.logoandmenu
+{
+  display: flex;
+  flex-direction: row;
 }
 
 .App-logo {
@@ -28,6 +34,14 @@
   width: 500px;
 height:700px;
 margin-left: 400px;
+display: flex;
+align-items: center;
+flex-direction: column;
+}
+.logindisplay{
+  margin-left: 90px;
+
+
 }
 .reginfo{
 margin-top: 40px;
@@ -70,10 +84,10 @@ margin-left: 550px;
 .text{
   display: flex;
   align-items: center;
-  align-content: space-between;
-  text-align-last: left;
+ 
+ margin-left: 100px;
   flex-direction:column;
-  align-self: baseline;
+ 
   padding: 10px;
   margin-inline-end: 40px;
 }
@@ -104,7 +118,7 @@ margin-left: 550px;
 {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  
 }
 .buttons{
     display: flex;  
@@ -113,11 +127,20 @@ flex-direction: row;
 
 
 }
-.header
-{
-    padding: 0;
-    margin: 0;
+
+.header{
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;
 }
+
+   .registerlogo{
+     padding-left: 100px;
+
+   }
+
+
+
   .textarea{
       display: flex;
       border: 1 ;
@@ -125,32 +148,56 @@ flex-direction: row;
   }
   .title{
     display: flex;
-    border: 1px solid gray;
-     border-style: groove;
-     align-content: space-around;
+    
+  
+     justify-content: space-between;
      flex-direction: row;
-     flex-flow: row;
-     flex-wrap: wrap;
-border-width: thin;
-border-color: rgba(202, 202, 192, 0.561);
-border-style: outset;border-radius: 7px;
+    
+   
+
      
+  }
+  .createnote{
+    display: flex;
+    flex-direction: row
+  }
+  .extend{
+    display: flex;
+    flex-direction: row;
+    align-self: baseline;
   }
  .bar{
   display: flex;
-  align-content: space-around;
-  margin-left: 450px;
-  flex-direction: row;
-  margin-top: 100px;
-  flex-wrap: wrap; 
+  justify-content: space-between;
+flex-flow: row;
+  flex-direction: column;
+   margin-top: 100px;
+ 
+ 
+ }
+ .inputcard{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: column;
+ 
+ margin-top: 100px;
+ 
  }
 .button{
 
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap row;
   
 
  
+}
+.area{
+  margin-left: 450px;
+  display: flex;
+  flex-direction: column;
+flex-wrap: wrap;
 }
 .card{
   display: flex;
@@ -161,11 +208,15 @@ border-style: outset;border-radius: 7px;
 }
 .titlebuttons{
   display: flex;
+  align-content: flex-end;
 
   flex-direction: row
 }
 
+.inputbase{
+display: flex;
 
+}
 
 .refresh
 {
@@ -184,7 +235,6 @@ flex-wrap: wrap
 .setting
 {
  display: flex;
- flex-wrap: wrap;
  flex-direction: row;
  align-content: flex-end;
 justify-content: flex-end;
@@ -197,7 +247,7 @@ justify-content: flex-end;
 .account{
   display: flex;
   flex-flow: row;
-  flex-wrap: wrap;
+
   align-content: flex-end;
   align-self: flex-end;
   justify-content: flex-end
@@ -245,11 +295,11 @@ display: flex;
 border-width: thin;
 border-color: rgba(202, 202, 192, 0.561);
 border-style: outset;border-radius: 7px;
-align-self: auto;
+align-self: center;
 align-content: space-around;
 align-content: space-between;
 inline-size: 500px;
-margin-left: 10px;
+
 
 }
 .icon{

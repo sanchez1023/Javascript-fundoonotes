@@ -10,6 +10,7 @@ import {
     Fab
 } from '@material-ui/core';
 import database from '../firebase'
+import { show } from 'js-snackbar';
 
 
 
@@ -24,7 +25,7 @@ class Regesitration extends Component {
             Lastnameerrtxt: '',
             EmailId: '',
             EmailIDerrtxt: '',
-
+            verify:false,
             Password: '',
             passwrderrtxt: '',
             Confirmpassword: '',
@@ -132,6 +133,12 @@ class Regesitration extends Component {
         if (!err) 
          {   
 
+            database.database.ref('/users').on('value',(snapshot)=>{
+                const user = snapshot.val();
+                console.log(user);
+            })
+           
+
             var data={
                 firstname:this.state.Firstname,
                 lastname:this.state.Lastname,
@@ -141,16 +148,33 @@ class Regesitration extends Component {
 
             }
             console.log(data);
+            firebase.firebase.auth().createUserWithEmailAndPassword(this.state.EmailId, this.state.Password).then(()=> {
+                console.log("Adders");
+                
+            }).catch(err => {
+               
+                if(err)
+                {
+                    var flag=true;
+               this.setState({verify:true})
+               console.log('in error catch',this.state.verify)
+               if(this.state.verify===true)
+{
+    console.log(this.state.verify)
+    show({
+        backgroundColor: '	FF0000',
+        text : err,
+        pos : "bottom-left"
+       })
             
+    this.setState({
+        ...this.setState,
+
+    })
+}
+else{
     database.database.ref('/users').push(data);
-           firebase.firebase.auth().createUserWithEmailAndPassword(this.state.EmailId, this.state.Password).then(()=> {
-               console.log("Adders");
-               
-           }).catch(err => {
-               console.log(err);
-               
-           })
-         
+                
 
 
             this.setState({
@@ -160,7 +184,7 @@ class Regesitration extends Component {
                 Lastnameerrtxt: '',
                 EmailId: "",
                 EmailIDerrtxt: '',
-
+                verify:false,
                 Password: "",
                 passwrderrtxt: '',
                 Confirmpassword: '',
@@ -168,8 +192,18 @@ class Regesitration extends Component {
                 ContactNo: "",
                 ContactNoerrtxt: ''
             });
+        }
            
-            this.props.props.history.push('/login');
+
+
+                }
+               
+            })
+            
+   
+          
+ 
+            //this.props.props.history.push('/login');
         }
         
 
@@ -179,9 +213,11 @@ class Regesitration extends Component {
     render() {
         return ( 
             <div >
+            <div className='registerlogo'>       
             <img src={require('../assets/register.png')}/>
-            
+          
             <h1 > Register </h1>
+            </div>  
           <div className='help'>
             <
             TextField

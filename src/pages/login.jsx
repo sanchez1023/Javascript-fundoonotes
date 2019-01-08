@@ -22,6 +22,7 @@ class Login extends Component {
          className='login'
          
          >
+         <div className ='logindisplay'>
          <img src={require('../assets/accountview.png')}/>
          
     
@@ -32,6 +33,7 @@ class Login extends Component {
 <p>
  <Link to="/registration">Not yet registered ? Click here to register</Link>
  </p>
+ </div>
             </Card>
       </ThemeProvider>
            

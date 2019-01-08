@@ -15,7 +15,7 @@ class Logininfo extends Component{
             usernameerrtxt:"",
             password:"",
             passworderrtxt:"",
-            message:"",
+            verify:false,
 
         }
         this.onSubmit = this.onSubmit.bind(this);
@@ -51,26 +51,6 @@ var isauthentic=false;
      
   }
 // userCtrl.signIn(this.state.username,this.state.password)
-firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then(()=> {
-    console.log("sfdsf");
-    
-})
-.catch(function(error) {
-    // Handle Errors here.
-     var errorCode = error.code;
-
-    var errorMessage = error.message;
-   // alert(errorCode);
-   // console.log(errorMessage)
-
-show({
-    backgroundColor: '	FF0000',
-    text : errorMessage,
-    pos : "bottom-left"
-});
-
-        
-});
     
    this.setState({
       ...this.state,
@@ -90,15 +70,53 @@ event.preventDefault();
 const error=this.validate();
 if(!error)
 {
-    console.log(this.e);
-    this.set={
-        username:"",
-        usernameerrtxt:"",
-        password:"",
-        passworderrtxt:"",
+    firebase.firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then(()=> {
+        console.log("sfdsf");
         
+    })
+    .catch(error=> {
+        // Handle Errors here.
+         var errorCode = error.code;
+    
+        var errorMessage = error.message;
+        if(error    ){
+       // alert(errorCode);
+        console.log(errorCode)
+        this.setState({
+            verify:true
+        })
+    if(this.state.verify===true){
+    show({
+        backgroundColor: '	FF0000',
+        text : errorMessage,
+        pos : "bottom-left"
+    });
+    this.setState({
+        ...this.setState
+    })
+}
+       
+else{
+        console.log("in else") 
+this.setState={
+    username:"",
+    usernameerrtxt:"",
+    password:"",
+    verify:'false',
+    passworderrtxt:"",
+    
+}
+  this.props.props.history.push('/dashboard');
+        }
     }
-      this.props.props.history.push('/dashboard');
+
+    });
+
+
+    
+    
+   
+    
 }
 }
 
@@ -108,9 +126,9 @@ render()
 {
         return (
             
-         <div>
+         <div className='text'>
             <h1>Login to Fundoonotes</h1>
-            <div className='text'>
+            <div >
     <TextField id='child'
             // value={this.state.username}
             // 
@@ -135,6 +153,7 @@ render()
         onChange={(event) => this.setState({password: event.target.value})}
         error={this.state.passworderrtxt}
         helperText={this.state.passworderrtxt}
+        style={{paddingBottom:'10px'}}
         
              />
          
@@ -143,7 +162,9 @@ render()
      
         <Fab variant='extended'  color="primary"
         onClick={event=>this.onSubmit(event)}
-        helperText={this.state.message}> 
+        helperText={this.state.message}
+        style={{marginRight:'100px'}}> 
+        
       
         Submit
         
