@@ -1,18 +1,20 @@
 import React, {
   Component
 } from 'react';
+import {user} from '../controller/usercontroller'
 import firebase from '../firebase' /**import fire base */
 import {
   TextField,
 
   Fab,
 } from '@material-ui/core' /** in built material ui contains */
+
 import 'js-snackbar/snackbar.css';
 import {
   show
 } from 'js-snackbar'; /**Snack bar require in js */
-import {} from 'react-router'
-
+var userctr=require('../controller/usercontroller')
+  
 
 class Logininfo extends Component {
   /**
@@ -39,9 +41,11 @@ class Logininfo extends Component {
 
   validate = () => {
     var flag = false;
+    
     /**
      * array of errors to define helper text
      */
+    
     const error = {
       usernameerrtxt: "",
       passworderrtxt: '',
@@ -94,6 +98,7 @@ class Logininfo extends Component {
    */
 
   onSubmit = event => {
+  userctr.getData(this.state.username)
     event.preventDefault();
     const error = this.validate(); // returned value from validated
     if (!error) {
@@ -108,8 +113,7 @@ class Logininfo extends Component {
             usernameerrtxt: "",
             password: "",
             verify: 'false',
-            passworderrtxt: "",
-
+            passworderrtxt: ""
           }
           this.props.props.history.push('/dashboard');
 

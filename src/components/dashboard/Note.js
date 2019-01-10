@@ -84,7 +84,7 @@ console.log(this.state.isPin)
         isArchive:this.state.isArchive,
         isTrash:this.state.isTrash,
         reminder:this.state.reminder,
-        userid:this.state.userid,
+        userid:localStorage.getItem('userKey'),
         colaborator:this.state.colaborator,
         imageOf:this.state.imageOf,
 
@@ -92,6 +92,24 @@ console.log(this.state.isPin)
 
       }
       database.database.ref('/notes').push(notes);
+      var user=firebase.firebase.auth().currentUser;
+      var name,id;
+      if(user!=null)
+      {
+        name=user.email;
+        id=user.uid;
+      }
+      console.log(name);
+      console.log(id)
+      
+  //   database.database.ref('users').on('value', (snapshot) => {
+  //     const user = snapshot.val();
+  //     console.log('user',user);
+  //     console.log("key", snapshot.key);
+      
+  // })
+    
+    
   }
 
   render() {

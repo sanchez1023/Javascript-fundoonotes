@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, MuiThemeProvider, InputBase, createMuiTheme } from '@material-ui/core';
 import Sidemenu from './Menu';
 import Sign from './Signout';
+import firebase from '../../firebase' /**import fire base */
 
 
 const theme=createMuiTheme({
@@ -26,6 +27,7 @@ class Dashboard extends Component{
       open:false,
       close:true,
       menu:false,
+      name:"",
 
 
     };
@@ -33,7 +35,18 @@ class Dashboard extends Component{
   }
   openDailog()
   {
+    console.log("in sign out function");
+    var user=firebase.firebase.auth().currentUser;
+      var name;
+      console.log(user)
+      if(user!=null)
+      {
+        name=user.email;
+      }
+      console.log(name);
+
 this.setState({
+  name:name,
   menu:!this.state.menu,
 })
   }
@@ -59,7 +72,7 @@ return (
 
 <div className='logoandmenu'>
 
-<IconButton className='fab'size="small" aria-label="main menu" role='button '
+<IconButton className='fab'size="small"role='button '
 onClick={()=>this.handleDrawer()}
 >
 <img src={require('../../assets/menuIcon.svg')}/>
@@ -133,7 +146,12 @@ onClick={event=>this.openDailog(event)}
 </AppBar>
 </div>
 <Sidemenu parentProps={this.state.open}/>
-<Sign/>
+<div className='sign'>
+<Sign accountProps={this.state.menu}
+nameProps={this.state.name}
+
+/>
+</div>
 </div>
 </MuiThemeProvider>
 

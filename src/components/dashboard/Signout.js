@@ -1,7 +1,9 @@
 import React, {
     Component
   } from 'react';
-import { Card, Fab } from '@material-ui/core';
+import { Card, Fab,ClickAwayListener } from '@material-ui/core';
+import database from '../../firebase'
+import firebase from '../../firebase'
 
   class Sign extends Component{
 
@@ -13,16 +15,57 @@ import { Card, Fab } from '@material-ui/core';
         open:false,
        }
     }
+handleSignout()
+{
+console.log("insignout")
+firebase.firebase.auth().signOut()
+localStorage.clear();
+this.props.dashprops.history.push('/login')
+
+}
+onOutsideclick()
+{
+  this.setState({
+    open: false
+  })
+}
+
     render()
     {
+     
         return(
-            <Card>
-            <Fab variant='extended'>
-            signout
-            </Fab>
-            
-            </Card>
+          !this.state.open ?
+          <div className =''>
+          < ClickAwayListener onClickAway = {
+            () => this.onOutsideclick()
+          } >
+          <div className='meudiv' >
+          <Card className='menudiv'
+          
+open={this.props.accountProps}
 
+>
+
+userId = {localStorage.getItem('email')}
+<button
+
+onClick={event=>this.handleSignout(event)}
+
+>
+
+Sign Out
+
+</button>
+
+</Card>
+</div>
+</ ClickAwayListener>
+
+</div>
+
+:
+<card>
+</card>
 
         )
     }

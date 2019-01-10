@@ -43,12 +43,31 @@ flex-direction: column;
 
 
 }
+.signoutcard{
+
+  margin-right: 0px;
+  margin-top: 100px;
+  margin-left: 944px;
+}
+
+.menudiv{
+   
+  margin-top: 100px;
+  margin-left: 944px;
+  margin-right: -4px;
+  margin-bottom: -67px;
+}
 .reginfo{
 margin-top: 40px;
   width: 500px;
 height:900px;
 margin-left: 400px;
 
+}
+.carddiv{
+  margin-bottom: 10px;
+  margin-bottom: 100px;
+  margin-left: 450px;
 }
 .forgetinfo
 {
@@ -193,11 +212,24 @@ flex-flow: row;
 
  
 }
+.cardnotes{
+  width: 300px;
+  margin-left: 300px;
+  
+}
+.showcards{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-top: 20px;
+
+}
 .area{
-  margin-left: 450px;
+  margin-left: 300px;
   display: flex;
   flex-direction: column;
 flex-wrap: wrap;
+margin-right: 350px;
 }
 .card{
   display: flex;

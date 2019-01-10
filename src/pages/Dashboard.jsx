@@ -3,6 +3,7 @@ import React,  {Component } from 'react';
 
 import Dashboard from '../components/dashboard/Dashboard';
 import Note from '../components/dashboard/Note';
+import Showcards from '../components/dashboard/Shownotes';
 
 class Dash extends Component{
     
@@ -12,8 +13,9 @@ class Dash extends Component{
 return(
 <div>
 
-<Dashboard />
+<Dashboard dashProps={this.props} />
 <Note/>
+<Showcards/>
 </div>
 
     
