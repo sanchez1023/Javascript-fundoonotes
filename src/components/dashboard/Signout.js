@@ -20,7 +20,7 @@ handleSignout()
 console.log("insignout")
 firebase.firebase.auth().signOut()
 localStorage.clear();
-this.props.dashprops.history.push('/login')
+window.location='http://localhost:3000/login'
 
 }
 onOutsideclick()
@@ -46,7 +46,7 @@ open={this.props.accountProps}
 
 >
 
-userId = {localStorage.getItem('email')}
+Welcome:   {localStorage.getItem('email')}
 <button
 
 onClick={event=>this.handleSignout(event)}

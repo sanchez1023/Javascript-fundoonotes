@@ -2,6 +2,7 @@ import
 React, {
   Component
 } from 'react'
+
 import database from '../../firebase'
 import firebase from '../../firebase'
 import {
@@ -12,6 +13,7 @@ import {
   
   ClickAwayListener
 } from '@material-ui/core';
+var userctr=require('../../controller/usercontroller')
 /*
 class declared to render and creaing gloabal values
 */
@@ -67,8 +69,7 @@ class Note extends Component {
   }
   handleNotes = event =>{
 event.preventDefault();
-var user = firebase.firebase.auth().currentUser;
-console.log(user)
+
 this.setState({
   open:!this.state.open,
   title:"",
@@ -76,41 +77,15 @@ this.setState({
   
 })
 
-console.log(this.state.isPin)
-      const  notes={
-        title:this.state.title,
-        description:this.state.description,
-        isPin:this.state.isPin,
-        isArchive:this.state.isArchive,
-        isTrash:this.state.isTrash,
-        reminder:this.state.reminder,
-        userid:localStorage.getItem('userKey'),
-        colaborator:this.state.colaborator,
-        imageOf:this.state.imageOf,
+userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this.state.isArchive,this.state.reminder,this.state.colaborator,this.state.imageOf)
 
+userctr.retriveData();
 
 
       }
-      database.database.ref('/notes').push(notes);
-      var user=firebase.firebase.auth().currentUser;
-      var name,id;
-      if(user!=null)
-      {
-        name=user.email;
-        id=user.uid;
-      }
-      console.log(name);
-      console.log(id)
-      
-  //   database.database.ref('users').on('value', (snapshot) => {
-  //     const user = snapshot.val();
-  //     console.log('user',user);
-  //     console.log("key", snapshot.key);
-      
-  // })
     
     
-  }
+  
 
   render() {
     return (!this.state.open ?

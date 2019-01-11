@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card, TextField,IconButton, Input, InputBase } from '@material-ui/core';
-
+import { Card, IconButton,  InputBase } from '@material-ui/core';
+var userctr=require('../../controller/usercontroller')
 
 class Showcards extends Component{
 
@@ -8,17 +8,43 @@ class Showcards extends Component{
     constructor()
     {
         super()
-        
+        this.state={
+          title:"",
+          description:"",
+          pinned:"",
+        }
+    }
+    componentDidMount() {
+    var a;
+     var  notes = userctr.retriveData()
+     notes.then( (value) => {
+     console.log("show acrd ---", value);
+   a=value
+    console.log('resolve--',this.state.title)
+    
+  })  
+  
+ 
+       this.real();
+    }
+
+    real()
+    {
+      var details=this.state.title;
+      console.log('cdidmount--',details)
     }
 
     render()
-    {
-        return(
+    {   
+    var details=this.state.title;
+    console.log('details--',details[4])
+      
+    return(
             <div className='showcards'>
             <Card className='cardnotes'>
             <div>
             <InputBase
-            defaultValue='abc'
+            defaultValue={localStorage.getItem('title')}
             >
             
             
@@ -26,7 +52,7 @@ class Showcards extends Component{
             </div>
             <div>
             <InputBase
-            defaultValue='abc'
+            defaultValue={localStorage.getItem('description')}
             
             >
               
@@ -115,6 +141,9 @@ class Showcards extends Component{
             </div>
 
         )
-    }
+      
+    
+ 
+          }
 }
 export default Showcards

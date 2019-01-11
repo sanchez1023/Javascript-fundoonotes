@@ -1,5 +1,7 @@
 // var firebase=require('../firebase')
 import database from '../firebase'
+import { reject, promised } from 'q';
+import { resolve } from 'url';
 
 
 
@@ -9,12 +11,11 @@ export function getData(username, abc) {
 
 
     database.database.ref('users').orderByChild("email").equalTo(username).on('value', snap => {
-        //  console.log('user', snap.val());
-
+        
      snap.forEach(function (snap) {
             var value = snap.val();
-            //var a=snap.toJSON();
-            console.log(value);
+          
+           // console.log(value);
             var key = snap.key;
             var email = snap.child("email").val(); 
             var firstname=snap.child('firstname').val();
@@ -34,13 +35,48 @@ export function getData(username, abc) {
 }
 
 
-export function arraycards(firstname, lastname, email, password, contact) {
-    var array = {
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        password: password,
-        contact: contact
+export function arraynotes(title, description,isPin , isArchived, isTrash,reminder,colaborator) {
+    var notes = {
+        Title:title,
+        Description:description,
+        Pinned:isPin,
+        Archived:isArchived,
+        Trashed:isTrash,
+        Reminder:reminder,
+        Colaborator:colaborator,
+        userid:localStorage.getItem('userKey'),
+        
+      
     }
-    return array;
+    database.database.ref('/notes').push(notes);
+
+
+}
+export function retriveData()
+{
+    const arrayvalue=new Promise((resolve,reject)=>{
+
+        database.database.ref('notes').orderByChild("userid").equalTo(localStorage.getItem('userKey')).on('value', snap=> {
+            var value=[];
+            snap.forEach(function (snap) {
+                
+                   value.push( snap.val() );
+                 
+                // console.log("asdasd",value);
+                   var key = snap.key;
+                  
+                   resolve(value);
+                
+               });
+               
+           });
+    })
+
+   var a= arrayvalue.then( (value) => {
+      //  console.log("final ---", value);
+      return value;  
+    })  
+//console.log('value of a',a)
+return a;
+
 }
