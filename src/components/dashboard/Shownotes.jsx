@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Card, IconButton,  InputBase } from '@material-ui/core';
+import More from './More';
+
 var userctr=require('../../controller/usercontroller')
 
 class Showcards extends Component{
@@ -9,137 +11,376 @@ class Showcards extends Component{
     {
         super()
         this.state={
-          title:"",
+          more:false,
           description:"",
           pinned:"",
+          notes : [],
         }
     }
-    componentDidMount() {
-    var a;
-     var  notes = userctr.retriveData()
-     notes.then( (value) => {
-     console.log("show acrd ---", value);
-   a=value
-    console.log('resolve--',this.state.title)
+    async componentDidMount() {
     
-  })  
-  
- 
-       this.real();
-    }
+     var notesValue =await userctr.add();
+     console.log('notes--',notesValue)
+     this.setState({
+       notes : notesValue
+     }) 
 
-    real()
-    {
-      var details=this.state.title;
-      console.log('cdidmount--',details)
-    }
+} 
+
+  openMore()
+  {
+    this.setState({
+      more:true,
+    })
+  }
+ 
+    
+    
 
     render()
     {   
-    var details=this.state.title;
-    console.log('details--',details[4])
-      
-    return(
-            <div className='showcards'>
-            <Card className='cardnotes'>
-            <div>
-            <InputBase
-            defaultValue={localStorage.getItem('title')}
-            >
-            
-            
-            </InputBase>
-            </div>
-            <div>
-            <InputBase
-            defaultValue={localStorage.getItem('description')}
-            
-            >
-              
-            </InputBase>
-            </div>
-            <toolbar>
-            < IconButton
-            onClick={event => this.handleReminder(event)}>
-            
-          
-            
-            <img src = {
-              require('../../assets/reminderalarm.svg')
-            }
-            /> 
-             </IconButton>
-      
-      
-            < IconButton
-            onClick={event => this.addAccount(event)}> 
-           
-            <
-            img src = {
-              require('../../assets/addaccount.svg')
-            }
-            /> 
-             </IconButton>
-      
-            <IconButton 
-            onClick={event => this.handleColor(event)}>
-            
-            
-            
-            <img src = {
-              require('../../assets/colorplate.svg')
-            }
-            />
-            </IconButton>
-      
-      
-            <IconButton 
-            onClick={event => this.handleImage(event)}>
-            
-            <img src = {
-              require('../../assets/image.svg')
-            }
-            /> 
-            </IconButton>
-      
-      
-            <IconButton
-            onClick={event => this.handleArchive(event)}>
-            
-            
-           
-            <img src = {
-              require('../../assets/archive.svg')
-            }
-      
-            /> 
-            </IconButton>
-      
-      
-            <IconButton >
-            
-            
-            <img src = {
-              require('../../assets/more.svg')
-            }
-            /> 
-             </IconButton > <IconButton style = {
-              {
-                marginLeft: '100px'
-              }
-            } >
-            
-            
-            </IconButton>
+    let tempPinnedNotesArray = this.state.notes.map( (option, index) => {
+      if(option.Pinned === true && option.Trashed === false && option.Archived === false )
+      {
         
-            </toolbar>
+        return( 
           
-            
-            
-            </Card>
+          <div>
+        
+          <Card className='cardnotes'>
+        <div>
+        <InputBase
+        defaultValue={option.Title}
+        >
+        
+        
+        </InputBase>
+        </div>
+        <div>
+        <InputBase
+        defaultValue={option.Description}
+        
+        >
+          
+        </InputBase>
+        </div>
+        <toolbar>
+        < IconButton
+        onClick={event => this.handleReminder(event)}>
+        
+      
+        
+        <img src = {
+          require('../../assets/reminderalarm.svg')
+        }
+        /> 
+         </IconButton>
+  
+  
+        < IconButton
+        onClick={event => this.addAccount(event)}> 
+       
+        <
+        img src = {
+          require('../../assets/addaccount.svg')
+        }
+        /> 
+         </IconButton>
+  
+        <IconButton 
+        onClick={event => this.handleColor(event)}>
+        
+        
+        
+        <img src = {
+          require('../../assets/colorplate.svg')
+        }
+        />
+        </IconButton>
+  
+  
+        <IconButton 
+        onClick={event => this.handleImage(event)}>
+        
+        <img src = {
+          require('../../assets/image.svg')
+        }
+        /> 
+        </IconButton>
+  
+  
+        <IconButton
+        onClick={event => this.handleArchive(event)}>
+        
+        
+       
+        <img src = {
+          require('../../assets/archive.svg')
+        }
+  
+        /> 
+        </IconButton>
+  
+  
+        <IconButton
+        onClick={event =>this.openMore(event)} >
+        
+        
+        <img src = {
+          require('../../assets/more.svg')
+        }
+        /> 
+        
+         </IconButton > <IconButton style = {
+          {
+            marginLeft: '100px'
+          }
+        } >
+        
+        
+        </IconButton>
+    
+        </toolbar>
+        <More openmenu={this.state.more}/>
+       
+        
+        </Card>
+        </div> )
+      }
+    })
 
+    let tempArchivedArray = this.state.notes.map( (option, index) => {
+      if(option.Pinned === false && option.Trashed === false && option.Archived === true )
+      {
+        
+        return( 
+          
+          <div>
+        
+          <Card className='cardnotes'>
+        <div>
+        <InputBase
+        defaultValue={option.Title}
+        >
+        
+        
+        </InputBase>
+        </div>
+        <div>
+        <InputBase
+        defaultValue={option.Description}
+        
+        >
+          
+        </InputBase>
+        </div>
+        <toolbar>
+        < IconButton
+        onClick={event => this.handleReminder(event)}>
+        
+      
+        
+        <img src = {
+          require('../../assets/reminderalarm.svg')
+        }
+        /> 
+         </IconButton>
+  
+  
+        < IconButton
+        onClick={event => this.addAccount(event)}> 
+       
+        <
+        img src = {
+          require('../../assets/addaccount.svg')
+        }
+        /> 
+         </IconButton>
+  
+        <IconButton 
+        onClick={event => this.handleColor(event)}>
+        
+        
+        
+        <img src = {
+          require('../../assets/colorplate.svg')
+        }
+        />
+        </IconButton>
+  
+  
+        <IconButton 
+        onClick={event => this.handleImage(event)}>
+        
+        <img src = {
+          require('../../assets/image.svg')
+        }
+        /> 
+        </IconButton>
+  
+  
+        <IconButton
+        onClick={event => this.handleArchive(event)}>
+        
+        
+       
+        <img src = {
+          require('../../assets/archive.svg')
+        }
+  
+        /> 
+        </IconButton>
+  
+  
+        <IconButton
+        onClick={event =>this.openMore(event)} >
+        
+        
+        <img src = {
+          require('../../assets/more.svg')
+        }
+        /> 
+        
+         </IconButton > <IconButton style = {
+          {
+            marginLeft: '100px'
+          }
+        } >
+        
+        
+        </IconButton>
+    
+        </toolbar>
+        <More openmenu={this.state.more}/>
+       
+        
+        </Card>
+        </div> )
+      }
+    })
+
+    var notesarray= this.state.notes.map( (option, index) => {
+      // console.log("options---", option.Title);
+      // console.log("desxc--", option.Description);
+
+      return( <div className='displaycard'>
+     
+
+     <Card className='cardnotes'>
+  <div>
+  <InputBase
+  defaultValue={option.Title}
+  >
+  
+  
+  </InputBase>
+  </div>
+  <div>
+  <InputBase
+  defaultValue={option.Description}
+  
+  >
+    
+  </InputBase>
+  </div>
+  <toolbar>
+  < IconButton
+  onClick={event => this.handleReminder(event)}>
+  
+
+  
+  <img src = {
+    require('../../assets/reminderalarm.svg')
+  }
+  /> 
+   </IconButton>
+
+
+  < IconButton
+  onClick={event => this.addAccount(event)}> 
+ 
+  <
+  img src = {
+    require('../../assets/addaccount.svg')
+  }
+  /> 
+   </IconButton>
+
+  <IconButton 
+  onClick={event => this.handleColor(event)}>
+  
+  
+  
+  <img src = {
+    require('../../assets/colorplate.svg')
+  }
+  />
+  </IconButton>
+
+
+  <IconButton 
+  onClick={event => this.handleImage(event)}>
+  
+  <img src = {
+    require('../../assets/image.svg')
+  }
+  /> 
+  </IconButton>
+
+
+  <IconButton
+  onClick={event => this.handleArchive(event)}>
+  
+  
+ 
+  <img src = {
+    require('../../assets/archive.svg')
+  }
+
+  /> 
+  </IconButton>
+
+
+  <IconButton
+  onClick={event =>this.openMore(event)} >
+  
+  
+  <img src = {
+    require('../../assets/more.svg')
+  }
+  /> 
+  
+   </IconButton > <IconButton style = {
+    {
+      marginLeft: '100px'
+    }
+  } >
+  
+  
+  </IconButton>
+
+  </toolbar>
+  <More openmenu={this.state.more}/>
+ 
+  
+  </Card>
+  </div>
+  )
+  })
+
+
+ 
+    return(
+      
+            <div className='showcards'>
+            <h>pinned</h>
+            {tempPinnedNotesArray}
+            <h>Archived</h>
+            {tempArchivedArray}
+           
+<h>other</h>
+{notesarray}
             </div>
-
         )
       
     

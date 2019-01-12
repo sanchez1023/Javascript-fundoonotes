@@ -29,6 +29,7 @@ const theme = createMuiTheme({
     },
   }
 })
+
 /**
  * class side menu component declared in order to render the contents and declare global variable to be used
  */
@@ -36,11 +37,18 @@ class Sidemenu extends Component {
   constructor() {
     super()
     this.state = {
+      openArchive:false,
       open: false
     }
   }
 
 
+  openArchive()
+  {
+  this.setState({
+    openArchive:true,
+  })
+  }
   render() {
     console.log("drawer", this.props.parentProps);
 
@@ -64,13 +72,9 @@ class Sidemenu extends Component {
 
       >
 
-
       <List className = 'list' >
 
-
-
       <ListItem className = 'listitem' >
-
 
       <IconButton >
       <
@@ -80,10 +84,7 @@ class Sidemenu extends Component {
       />
       Notes
 
-
       </IconButton>
-
-
 
       </ListItem>  
       <ListItem className = 'listitem' >
@@ -98,8 +99,7 @@ class Sidemenu extends Component {
       </IconButton>
        </ListItem>
 
-      <
-      Divider / >
+      < Divider / >
 
 
       <label className = 'divide' >
@@ -123,7 +123,8 @@ class Sidemenu extends Component {
 
       <ListItem className = 'listitem' >
 
-      <IconButton >
+      <IconButton
+       onClick={event=>this.OpenArchive(event)} >
       <
       img src = {
         require('../../assets/archive.svg')

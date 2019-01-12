@@ -36,18 +36,12 @@ class Dashboard extends Component{
   openDailog()
   {
     console.log("in sign out function");
-    var user=firebase.firebase.auth().currentUser;
-      var name;
-      console.log(user)
-      if(user!=null)
-      {
-        name=user.email;
-      }
-      console.log(name);
+  
+      
 
 this.setState({
-  name:name,
-  menu:!this.state.menu,
+
+  menu:true,
 })
   }
   
@@ -148,7 +142,7 @@ onClick={event=>this.openDailog(event)}
 <Sidemenu parentProps={this.state.open}/>
 <div className='sign'>
 <Sign accountProps={this.state.menu}
-nameProps={this.state.name}
+
 
 />
 </div>

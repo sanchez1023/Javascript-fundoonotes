@@ -217,14 +217,18 @@ flex-flow: row;
 }
 .cardnotes{
   width: 300px;
-  margin-left: 300px;
+  margin-left: px;
+  margin-top: 10px;
   
 }
 .showcards{
   display: flex;
-  flex-direction: column;
-  align-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
   margin-top: 20px;
+  margin-left: 260px;
+  margin-right:300 px;
 
 }
 .area{
@@ -302,6 +306,12 @@ justify-content: flex-end;
   flex-direction: row;
   flex-flow: wrap;
   
+}
+.displaycard{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
 }
 .fun
 {

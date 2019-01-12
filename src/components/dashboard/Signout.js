@@ -34,7 +34,7 @@ onOutsideclick()
     {
      
         return(
-          !this.state.open ?
+        
           <div className =''>
           < ClickAwayListener onClickAway = {
             () => this.onOutsideclick()
@@ -63,9 +63,7 @@ Sign Out
 
 </div>
 
-:
-<card>
-</card>
+
 
         )
     }

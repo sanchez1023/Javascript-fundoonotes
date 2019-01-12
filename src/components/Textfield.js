@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react';
-import {user} from '../controller/usercontroller'
+
 import firebase from '../firebase' /**import fire base */
 import {
   TextField,
