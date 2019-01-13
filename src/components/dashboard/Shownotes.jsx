@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, IconButton,  InputBase } from '@material-ui/core';
+import { Card, IconButton,  InputBase, Divider } from '@material-ui/core';
 import More from './More';
 
 var userctr=require('../../controller/usercontroller')
@@ -149,119 +149,11 @@ class Showcards extends Component{
       }
     })
 
-    let tempArchivedArray = this.state.notes.map( (option, index) => {
-      if(option.Pinned === false && option.Trashed === false && option.Archived === true )
-      {
-        
-        return( 
-          
-          <div>
-        
-          <Card className='cardnotes'>
-        <div>
-        <InputBase
-        defaultValue={option.Title}
-        >
-        
-        
-        </InputBase>
-        </div>
-        <div>
-        <InputBase
-        defaultValue={option.Description}
-        
-        >
-          
-        </InputBase>
-        </div>
-        <toolbar>
-        < IconButton
-        onClick={event => this.handleReminder(event)}>
-        
-      
-        
-        <img src = {
-          require('../../assets/reminderalarm.svg')
-        }
-        /> 
-         </IconButton>
   
-  
-        < IconButton
-        onClick={event => this.addAccount(event)}> 
-       
-        <
-        img src = {
-          require('../../assets/addaccount.svg')
-        }
-        /> 
-         </IconButton>
-  
-        <IconButton 
-        onClick={event => this.handleColor(event)}>
-        
-        
-        
-        <img src = {
-          require('../../assets/colorplate.svg')
-        }
-        />
-        </IconButton>
-  
-  
-        <IconButton 
-        onClick={event => this.handleImage(event)}>
-        
-        <img src = {
-          require('../../assets/image.svg')
-        }
-        /> 
-        </IconButton>
-  
-  
-        <IconButton
-        onClick={event => this.handleArchive(event)}>
-        
-        
-       
-        <img src = {
-          require('../../assets/archive.svg')
-        }
-  
-        /> 
-        </IconButton>
-  
-  
-        <IconButton
-        onClick={event =>this.openMore(event)} >
-        
-        
-        <img src = {
-          require('../../assets/more.svg')
-        }
-        /> 
-        
-         </IconButton > <IconButton style = {
-          {
-            marginLeft: '100px'
-          }
-        } >
-        
-        
-        </IconButton>
-    
-        </toolbar>
-        <More openmenu={this.state.more}/>
-       
-        
-        </Card>
-        </div> )
-      }
-    })
 
     var notesarray= this.state.notes.map( (option, index) => {
-      // console.log("options---", option.Title);
-      // console.log("desxc--", option.Description);
+      if(option.Pinned === false && option.Trashed === false && option.Archived === false )
+      {
 
       return( <div className='displaycard'>
      
@@ -358,26 +250,147 @@ class Showcards extends Component{
   
   
   </IconButton>
+  <More openmenu={this.state.more}/>
 
   </toolbar>
-  <More openmenu={this.state.more}/>
+  
  
   
   </Card>
   </div>
   )
+}
   })
+
+
+
+  var thrashedarray= this.state.notes.map( (option, index) => {
+    if(option.Pinned === false && option.Trashed === true && option.Archived === false )
+    {
+
+    return( <div className='displaycard'>
+   
+
+   <Card className='cardnotes'>
+<div>
+<InputBase
+defaultValue={option.Title}
+>
+
+
+</InputBase>
+</div>
+<div>
+<InputBase
+defaultValue={option.Description}
+
+>
+  
+</InputBase>
+</div>
+<toolbar>
+< IconButton
+onClick={event => this.handleReminder(event)}>
+
+
+
+<img src = {
+  require('../../assets/reminderalarm.svg')
+}
+/> 
+ </IconButton>
+
+
+< IconButton
+onClick={event => this.addAccount(event)}> 
+
+<
+img src = {
+  require('../../assets/addaccount.svg')
+}
+/> 
+ </IconButton>
+
+<IconButton 
+onClick={event => this.handleColor(event)}>
+
+
+
+<img src = {
+  require('../../assets/colorplate.svg')
+}
+/>
+</IconButton>
+
+
+<IconButton 
+onClick={event => this.handleImage(event)}>
+
+<img src = {
+  require('../../assets/image.svg')
+}
+/> 
+</IconButton>
+
+
+<IconButton
+onClick={event => this.handleArchive(event)}>
+
+
+
+<img src = {
+  require('../../assets/archive.svg')
+}
+
+/> 
+</IconButton>
+
+
+<IconButton
+onClick={event =>this.openMore(event)} >
+
+
+<img src = {
+  require('../../assets/more.svg')
+}
+/> 
+
+ </IconButton > <IconButton style = {
+  {
+    marginLeft: '100px'
+  }
+} >
+
+
+</IconButton>
+
+</toolbar>
+<More openmenu={this.state.more}/>
+
+
+</Card>
+</div>
+)
+}
+})
 
 
  
     return(
       
-            <div className='showcards'>
-            <h>pinned</h>
-            {tempPinnedNotesArray}
-            <h>Archived</h>
-            {tempArchivedArray}
+      
            
+      <div className='showcards'>
+      <p>      
+      <h>pinned</h>
+           
+            {tempPinnedNotesArray}
+            </p>
+            <Divider/>
+         
+
+            <Divider/>
+                    
 <h>other</h>
 {notesarray}
             </div>

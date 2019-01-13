@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 
 import 
-Passwordreset from '../components/Passwordreset';
+Passwordreset from '../components/Passwordreset.jsx';
 
 class Resetpassword extends Component{
 

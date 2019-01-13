@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, MuiThemeProvider, InputBase, createMuiTheme } from '@material-ui/core';
-import Sidemenu from './Menu';
-import Sign from './Signout';
+import Sidemenu from './Menu.jsx';
+import Sign from './Signout.jsx';
 import firebase from '../../firebase' /**import fire base */
 
 
@@ -139,7 +139,10 @@ onClick={event=>this.openDailog(event)}
 
 </AppBar>
 </div>
-<Sidemenu parentProps={this.state.open}/>
+<Sidemenu parentProps={this.state.open}
+navigate={this.props.navigate}
+
+/>
 <div className='sign'>
 <Sign accountProps={this.state.menu}
 

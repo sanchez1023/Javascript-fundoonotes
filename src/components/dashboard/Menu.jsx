@@ -37,7 +37,7 @@ class Sidemenu extends Component {
   constructor() {
     super()
     this.state = {
-      openArchive:false,
+      openArchive:'',
       open: false
     }
   }
@@ -46,7 +46,7 @@ class Sidemenu extends Component {
   openArchive()
   {
   this.setState({
-    openArchive:true,
+    openArchive:'Archived',
   })
   }
   render() {

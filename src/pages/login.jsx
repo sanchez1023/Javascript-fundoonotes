@@ -1,7 +1,7 @@
 import React,  {Component } from 'react';
 import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import {Link} from 'react-router-dom'
-import Logininfo from '../components/Textfield';
+import Logininfo from '../components/Textfield.jsx';
 import { Card } from '@material-ui/core';
 // import  { Snackbar } from'@material-ui/core'
 

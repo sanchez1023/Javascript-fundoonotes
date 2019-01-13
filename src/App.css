@@ -103,6 +103,10 @@ margin-left: 550px;
   align-self: auto;
 
 }
+.dislpaymenu{
+
+  margin-left: 100px;
+}
 .text{
   display: flex;
   align-items: center;
@@ -222,6 +226,20 @@ flex-flow: row;
   
 }
 .showcards{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: 260px;
+  margin-right:300 px;
+
+}
+.cardMenu{
+  
+
+}
+.showcardslist{
   display: flex;
   flex-direction: row;
   justify-content: space-between;

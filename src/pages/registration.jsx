@@ -2,7 +2,7 @@ import React, {
     Component
 } from 'react';
 
-import Regesitrationinfo from '../components/RegistrationInfo';
+import Regesitrationinfo from '../components/RegistrationInfo.jsx';
 import {
     Card,
    

@@ -52,13 +52,9 @@ class Forgetpassword extends Component {
     }
   }
   render() {
-    return ( <
-      div >
-      <
-      h1 > forgot password < /h1> <
-      p >
-      <
-      TextField label = "Enter e-mail Id"
+    return ( <div>
+      <h1> forgot password </h1> <p>
+      < TextField label = "Enter e-mail Id"
       placeholder = 'Enter registerd e-mail id'
       onClick = {
         (event) => this.setState({
@@ -77,18 +73,14 @@ class Forgetpassword extends Component {
 
 
 
-      /> <
-      /p> <
-      p >
-      <
-      Fab variant = "extended"
+      /> 
+      </p>
+      <p>
+      < Fab variant = "extended"
       onClick = {
         event => this.onSubmit(event)
       } >
-      submit <
-      /Fab> <
-      /p> <
-      /div>
+      submit </Fab> </p> </div>
     )
   }
 

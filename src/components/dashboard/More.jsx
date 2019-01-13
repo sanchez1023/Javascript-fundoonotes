@@ -19,18 +19,29 @@ onOutsideclick() {
 render()
 {
     return(
-        <div className='displaycard'>   
+        <div className=' cardnotes'>   
         < ClickAwayListener onClickAway = {
             () => this.onOutsideclick()
           } >
-    <Card>
-        <Menu open={this.props.openmenu}>
+    <Card className='cardMenu'>
+        <Menu open={this.props.openmenu}
+        //  id='simple-menu'
+        >
 <MenuItem> Delete Notes</MenuItem>
 <MenuItem>Add Labels  </MenuItem>
 <MenuItem> Add drawing</MenuItem>
 </Menu>
 </Card>
 </ ClickAwayListener>
+<Popper id={id} open={open} anchorEl={anchorEl} transition>
+{({ TransitionProps }) => (
+  <Fade {...TransitionProps} timeout={350}>
+    <Paper>
+      <Typography className={classes.typography}>The content of the Popper.</Typography>
+    </Paper>
+  </Fade>
+)}
+</Popper>
 
 </div>
 

@@ -9,10 +9,9 @@ import {
 
   Fab
 } from '@material-ui/core';
+import {ToastContainer,toast} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.min.css'
 import database from '../firebase'
-import {
-  show
-} from 'js-snackbar';
 
 
 /*
@@ -173,7 +172,7 @@ condition for entering only number in  this text TextField
     event.preventDefault(); //to stop page from clearing the feilds and setting page to Default
     const error = this.validate();
     if (!error) {
-
+      //toast('test abc',{position:toast.POSITION.BOTTOM_RIGHT})
       /* array of input created in order to push  the data into database*/
       var data = {
         firstname: this.state.Firstname,
@@ -195,17 +194,17 @@ inbuilt method  of firebase called using var firebase
 
         user.sendEmailVerification().then(() => {
             // Email sent.
-            show({
-              text: "e-mail has been send to your email account for verification"
-
-            })
+            
+            toast("e-mail has been send to your email account for verification"
+            ,{position:toast.POSITION.BOTTOM_RIGHT})
+          
           })
           .catch(function(error) {
             // An error happened.
             if (error) {
-              show({
-                text: "some error occured email for verification is not send"
-              })
+              toast("some error occured email for verification is not send"
+              ,{position:toast.POSITION.BOTTOM_RIGHT}) 
+            
             }
           });
         database.database.ref('/users').push(data); //pushing data in firebase
@@ -236,10 +235,16 @@ if error is send by database then condition is set
 
       }).catch(err => {
         console.log("Error", err);
+        var errorCode = err.code;
+
+         var errorMessage = err.message;
+
+       //  toast(error.message,{position:toast.POSITION.BOTTOM_RIGHT})
         if (err) {
           /*
           changing value of gloabal variable
-          */
+          */console.log('erroe messgage',errorMessage)
+        // toast(errorMessage,{position:toast.POSITION.BOTTOM_CENTER})
           this.setState({
             verify: true
           })
@@ -249,16 +254,12 @@ if error is send by database then condition is set
 checking condition of global vaibale
           **/
           if (this.state.verify) {
-            console.log(this.state.verify)
+            console.log( 'after setting verify',this.state.verify)
             /*
             to display snackbar
             */
 
-            show({
-              backgroundColor: '	FF0000',
-              text: err,
-              pos: "bottom-left"
-            })
+           toast(errorMessage,{position:toast.POSITION.BOTTOM_RIGHT})
             /*
             setting same state
             */
@@ -449,9 +450,14 @@ checking condition of global vaibale
       Fab color = "primary"
       variant = 'extended'
       onClick = {
+
         event => this.onSubmit(event)
       } >
-      Submit </Fab> </ div > 
+      Submit </Fab>
+      
+      </ div > 
+      <ToastContainer/>
+      <ToastContainer/>
       </div>
 
 

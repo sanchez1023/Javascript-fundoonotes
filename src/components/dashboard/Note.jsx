@@ -13,6 +13,7 @@ import {
   
   ClickAwayListener
 } from '@material-ui/core';
+import More from './More';
 var userctr=require('../../controller/usercontroller')
 /*
 class declared to render and creaing gloabal values
@@ -31,9 +32,16 @@ class Note extends Component {
       imageOf:"",
       colaborator:"",
       isArchive:false,
+      menu:false,
 
 
     }
+  }
+  openMore()
+  {
+    this.setState({
+      more:true,
+    })
   }
   handleToogle() {
     console.log(this.state.open)
@@ -271,6 +279,7 @@ userctr.retriveData();
 
       </IconButton>
 
+      <More openmore={this.state.more}/>
       </toolbar>
 
 

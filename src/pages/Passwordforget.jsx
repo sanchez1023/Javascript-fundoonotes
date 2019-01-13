@@ -1,7 +1,7 @@
 import React,  {Component } from 'react';
 
 
-import Forgetpassword from "../components/RestPassword";
+import Forgetpassword from "../components/RestPassword.jsx";
 import { Card } from '@material-ui/core';
 
 

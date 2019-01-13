@@ -8,11 +8,9 @@ import {
 
   Fab,
 } from '@material-ui/core' /** in built material ui contains */
-
-import 'js-snackbar/snackbar.css';
-import {
-  show
-} from 'js-snackbar'; /**Snack bar require in js */
+import {ToastContainer,toast} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.min.css'
+ /**Snack bar require in js */
 var userctr=require('../controller/usercontroller')
   
 
@@ -140,11 +138,11 @@ class Logininfo extends Component {
               /**
                * show method of snack bar to display error
                */
-              show({
-                backgroundColor: '	FF0000',
-                text: errorMessage,
-                pos: "bottom-left"
-              });
+              toast(errorMessage,{position:toast.POSITION.BOTTOM_LEFT})
+             
+              var errorCode = error.code;
+
+              var errorMessage = error.message;
               /**
                * keeping the user in same state if error
                */
@@ -243,7 +241,7 @@ class Logininfo extends Component {
 
       </ Fab>
 
-
+<ToastContainer/>
 
 
 

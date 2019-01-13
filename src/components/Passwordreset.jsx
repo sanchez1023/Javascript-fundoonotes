@@ -1,6 +1,6 @@
 import React,  {Component } from 'react';
 import { Card, TextField, Fab } from '@material-ui/core';
-import { show } from 'js-snackbar';
+
 
 class Passwordreset extends Component{
     constructor()
@@ -60,12 +60,7 @@ class Passwordreset extends Component{
             confirmpassworderrtxt:"",
              } )
 
-             show({
-
-                backgroundColor: '	FF0000',
-                text : 'password has been succesfully changed check your mail for details',
-                pos : "bottom-left"
-            })
+             
          
          }
             
