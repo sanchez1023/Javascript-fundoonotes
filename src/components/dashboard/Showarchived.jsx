@@ -22,10 +22,11 @@ class Showarchived extends Component{
 }
 
 render ()
-{
+{ var archivedNotes=0;
     let tempArchivedArray = this.state.notes.map( (option, index) => {
         if(option.Pinned === false && option.Trashed === false && option.Archived === true )
         {
+          archivedNotes=archivedNotes+1;
           
           return( 
             
@@ -106,33 +107,19 @@ render ()
           </IconButton>
     
     
-          <IconButton
-          onClick={event =>this.openMore(event)} >
-          
-          
-          <img src = {
-            require('../../assets/more.svg')
-          }
-          /> 
-          
-           </IconButton > <IconButton style = {
-            {
-              marginLeft: '100px'
-            }
-          } >
-          
-          
-          </IconButton>
-      
+       <More/>
           </toolbar>
-          <More openmenu={this.state.more}/>
+     
          
           
           </Card>
           </div> )
         }
+        console.log('length of  archived array',archivedNotes)
       })
 
+      
+     
     return(
 <div className='showcards'> 
 <h>Archived</h>

@@ -12,7 +12,11 @@
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
 }
-
+.toolbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -89,6 +93,12 @@ margin-left: 550px;
 .register
 {
   margin-left: 50px;
+}
+.paper{
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column
+
 }
 .help
 {
@@ -220,9 +230,12 @@ flex-flow: row;
  
 }
 .cardnotes{
-  width: 300px;
+  width: 350px;
+  height: 150px;
   margin-left: px;
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
   
 }
 .showcards{
@@ -231,8 +244,10 @@ flex-flow: row;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 20px;
-  margin-left: 260px;
-  margin-right:300 px;
+
+  margin-left: 300px;
+  margin-right: 134px;
+ 
 
 }
 .cardMenu{
@@ -241,12 +256,12 @@ flex-flow: row;
 }
 .showcardslist{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 20px;
-  margin-left: 260px;
-  margin-right:300 px;
+  margin-left: 300px;
+  margin-right: 134px;
 
 }
 .area{

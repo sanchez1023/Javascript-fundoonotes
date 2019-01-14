@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Card, IconButton,  InputBase, Divider } from '@material-ui/core';
+import { Card, IconButton,  InputBase, Divider,Dialog } from '@material-ui/core';
 import More from './More';
+import Editnotes from './Editnote';
 
 var userctr=require('../../controller/usercontroller')
 
@@ -15,6 +16,7 @@ class Showcards extends Component{
           description:"",
           pinned:"",
           notes : [],
+          open:false,
         }
     }
     async componentDidMount() {
@@ -27,6 +29,18 @@ class Showcards extends Component{
 
 } 
 
+// handledialogClick()
+// {
+//   this.setState({
+//     open:true,
+//   })
+// }
+handleClose()
+{
+  this.setState({
+    open:false
+  })
+}
   openMore()
   {
     this.setState({
@@ -38,22 +52,23 @@ class Showcards extends Component{
     
 
     render()
-    {   
+    {   let changeCardsstyle=this.props.viewProps ?'showcardslist':'showcards'
     let tempPinnedNotesArray = this.state.notes.map( (option, index) => {
       if(option.Pinned === true && option.Trashed === false && option.Archived === false )
       {
         
         return( 
           
-          <div>
+          <div className={changeCardsstyle}>
         
           <Card className='cardnotes'>
         <div>
         <InputBase
         defaultValue={option.Title}
+       // onClick={(event)=>this.handledialogClick(event)}
         >
         
-        
+        <Dialog open={this.state.open}></Dialog>
         </InputBase>
         </div>
         <div>
@@ -64,6 +79,7 @@ class Showcards extends Component{
           
         </InputBase>
         </div>
+        <div>
         <toolbar>
         < IconButton
         onClick={event => this.handleReminder(event)}>
@@ -122,31 +138,18 @@ class Showcards extends Component{
         </IconButton>
   
   
-        <IconButton
-        onClick={event =>this.openMore(event)} >
         
         
-        <img src = {
-          require('../../assets/more.svg')
-        }
-        /> 
         
-         </IconButton > <IconButton style = {
-          {
-            marginLeft: '100px'
-          }
-        } >
-        
-        
-        </IconButton>
-    
-        </toolbar>
-        <More openmenu={this.state.more}/>
        
+       <More/>
+        </toolbar>
+        </div>
         
         </Card>
         </div> )
       }
+      
     })
 
   
@@ -154,16 +157,16 @@ class Showcards extends Component{
     var notesarray= this.state.notes.map( (option, index) => {
       if(option.Pinned === false && option.Trashed === false && option.Archived === false )
       {
-
-      return( <div className='displaycard'>
+      return( <div className={changeCardsstyle}>
      
 
      <Card className='cardnotes'>
   <div>
   <InputBase
   defaultValue={option.Title}
+  //onClick={this.handledialogClick()}
   >
-  
+  //<Dialog open={this.state.open}></Dialog>
   
   </InputBase>
   </div>
@@ -175,7 +178,7 @@ class Showcards extends Component{
     
   </InputBase>
   </div>
-  <toolbar>
+  <div>  <toolbar>
   < IconButton
   onClick={event => this.handleReminder(event)}>
   
@@ -233,37 +236,23 @@ class Showcards extends Component{
   </IconButton>
 
 
-  <IconButton
-  onClick={event =>this.openMore(event)} >
   
-  
-  <img src = {
-    require('../../assets/more.svg')
-  }
-  /> 
-  
-   </IconButton > <IconButton style = {
-    {
-      marginLeft: '100px'
-    }
-  } >
-  
-  
-  </IconButton>
-  <More openmenu={this.state.more}/>
+  <More/>
 
   </toolbar>
-  
+  </div>
+
  
   
   </Card>
   </div>
   )
 }
+
   })
 
 
-
+  
   var thrashedarray= this.state.notes.map( (option, index) => {
     if(option.Pinned === false && option.Trashed === true && option.Archived === false )
     {
@@ -282,9 +271,13 @@ defaultValue={option.Title}
 </div>
 <div>
 <InputBase
+ onClick={this.handledialogClick()}
+ 
 defaultValue={option.Description}
 
 >
+<Dialog open={this.state.open}></Dialog>
+
   
 </InputBase>
 </div>
@@ -366,7 +359,7 @@ onClick={event =>this.openMore(event)} >
 
 </toolbar>
 <More openmenu={this.state.more}/>
-
+<Editnotes/>
 
 </Card>
 </div>
@@ -380,19 +373,19 @@ onClick={event =>this.openMore(event)} >
       
       
            
-      <div className='showcards'>
-      <p>      
-      <h>pinned</h>
+      <div className={changeCardsstyle}>
+        
+      
+      {notesarray}
            
-            {tempPinnedNotesArray}
-            </p>
+            
+            
             <Divider/>
          
 
             <Divider/>
                     
-<h>other</h>
-{notesarray}
+
             </div>
         )
       

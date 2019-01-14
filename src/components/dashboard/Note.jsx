@@ -33,6 +33,7 @@ class Note extends Component {
       colaborator:"",
       isArchive:false,
       menu:false,
+      added:false,
 
 
     }
@@ -82,12 +83,13 @@ this.setState({
   open:!this.state.open,
   title:"",
   description:'',
+  added:true,
   
 })
 
 userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this.state.isArchive,this.state.reminder,this.state.colaborator,this.state.imageOf)
 
-userctr.retriveData();
+
 
 
       }
@@ -202,7 +204,7 @@ userctr.retriveData();
       >
       </InputBase>
 
-
+      <div className='toolbar'>
       < toolbar >
       < IconButton
       onClick={event => this.handleReminder(event)}>
@@ -259,16 +261,9 @@ userctr.retriveData();
 
       /> 
       </IconButton>
+<More/>
 
-
-      <IconButton >
-      
-      
-      <img src = {
-        require('../../assets/more.svg')
-      }
-      /> 
-       </IconButton > <IconButton style = {
+   <IconButton style = {
         {
           marginLeft: '100px'
         }
@@ -279,8 +274,9 @@ userctr.retriveData();
 
       </IconButton>
 
-      <More openmore={this.state.more}/>
+      
       </toolbar>
+      </div>
 
 
       </Card> </ClickAwayListener>

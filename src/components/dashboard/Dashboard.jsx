@@ -3,6 +3,7 @@ import { AppBar, Toolbar, IconButton, Typography, MuiThemeProvider, InputBase, c
 import Sidemenu from './Menu.jsx';
 import Sign from './Signout.jsx';
 import firebase from '../../firebase' /**import fire base */
+import Viewcards from './Viewcard.jsx';
 
 
 const theme=createMuiTheme({
@@ -31,6 +32,7 @@ class Dashboard extends Component{
 
 
     };
+    this.handleView=this.handleView.bind(this)
    
   }
   openDailog()
@@ -50,7 +52,9 @@ handleDrawer(){
     this.setState({open:!this.state.open });
     
   }
-  
+  handleView(){
+this.props.dashToAppbar();
+  }
 
   
 
@@ -106,9 +110,7 @@ Fundoo  Notes
 
 
 <div className='listview'>
-<IconButton className='fab' variant='round' size='small'aria-label="Search" role="button" color='inherit'>
-<img src={require('../../assets/list.svg')}/>
-</IconButton>
+<Viewcards appBartoviewprops={this.handleView}/>
 </div>
 
 <div className='setting'>
@@ -119,14 +121,7 @@ Fundoo  Notes
 
 
 <div className='account'>
-<IconButton size='medium' aria-label='account' role='button'
-onClick={event=>this.openDailog(event)}
-
-
->
-<img src={require('../../assets/account.svg')}/>
-</IconButton>
-
+<Sign/>
 
 </div>
 </div>
