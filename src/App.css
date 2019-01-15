@@ -95,10 +95,21 @@ margin-left: 550px;
   margin-left: 50px;
 }
 .paper{
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column
 
+}
+.tommorow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.reminder{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
 }
 .help
 {
@@ -230,12 +241,15 @@ flex-flow: row;
  
 }
 .cardnotes{
-  width: 350px;
-  height: 150px;
+  width: 300px;
+border: rgba(202, 202, 192, 0.561);
+border: thin;
+border-style: groove;
   margin-left: px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: stretch
   
 }
 .showcards{

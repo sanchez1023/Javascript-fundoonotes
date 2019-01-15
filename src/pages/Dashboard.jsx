@@ -18,6 +18,7 @@ class Dash extends Component{
         }
         this.navigate=this.navigate.bind(this)
         this.handleCardsview=this.handleCardsview.bind(this)
+        this.handleArchive=this.handleArchive.bind(this)
     }
    
     navigate(archived,reminder,trash)
@@ -29,6 +30,12 @@ class Dash extends Component{
         })
     }
 
+    handleArchive()
+    {
+        this.setState({
+            archived:!this.state.archived
+        })
+    }
     handleCardsview()
     {
         this.setState({
@@ -43,6 +50,7 @@ return(
 <Dashboard dashProps={this.props}
 navigate={this.navigate} 
 dashToAppbar={this.handleCardsview}
+archivedToappbar={this.handleArchive}
 
 //reminder={this.state.reminder}
 
@@ -50,7 +58,7 @@ dashToAppbar={this.handleCardsview}
 <Note/>
 <Showcards viewProps={this.state.Cardstyle}/>
 <Showarchived
-archive={this.state.archived}/>
+archiveProps={this.state.archived}/>
 <Showtrashed
 Trash={this.state.Trashed}/>
 </div>

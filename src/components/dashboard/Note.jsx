@@ -14,6 +14,7 @@ import {
   ClickAwayListener
 } from '@material-ui/core';
 import More from './More';
+import Reminder from './Reminder';
 var userctr=require('../../controller/usercontroller')
 /*
 class declared to render and creaing gloabal values
@@ -27,7 +28,7 @@ class Note extends Component {
       description:"",
       isPin:false,
       isTrash:false,
-      reminder:false,
+      reminder:'',
       userid:"",
       imageOf:"",
       colaborator:"",
@@ -37,6 +38,7 @@ class Note extends Component {
 
 
     }
+    this.handleReminder=this.handleReminder.bind(this)
   }
   openMore()
   {
@@ -70,11 +72,14 @@ class Note extends Component {
       isPin:true,
     })
   }
-  handleReminder()
+  async handleReminder(reminder)
   {
-    this.setState({
-      reminder:true
+    console.log('rem',reminder);
+    
+   await this.setState({
+      reminder:reminder
     })
+    console.log('reminder',this.state.reminder)
   }
   handleNotes = event =>{
 event.preventDefault();
@@ -87,7 +92,7 @@ this.setState({
   
 })
 
-userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this.state.isArchive,this.state.reminder,this.state.colaborator,this.state.imageOf)
+userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this.state.isArchive,this.state.isTrash,this.state.reminder,this.state.colaborator,this.state.imageOf)
 
 
 
@@ -155,10 +160,7 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
 
       :
       <div className = 'area' >
-      < ClickAwayListener onClickAway = {
-        () => this.onOutsideclick()
-      } >
-
+     
       <Card className = 'inputcard'
 
 
@@ -206,17 +208,8 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
 
       <div className='toolbar'>
       < toolbar >
-      < IconButton
-      onClick={event => this.handleReminder(event)}>
       
-    
-      
-      <img src = {
-        require('../../assets/reminderalarm.svg')
-      }
-      /> 
-       </IconButton>
-
+      <Reminder reminderProps={this.handleReminder}/>
 
       < IconButton
       onClick={event => this.addAccount(event)}> 
@@ -263,11 +256,7 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       </IconButton>
 <More/>
 
-   <IconButton style = {
-        {
-          marginLeft: '100px'
-        }
-      } 
+   <IconButton 
       
       onClick={event => this.handleNotes(event)}>
       Close
@@ -279,7 +268,7 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       </div>
 
 
-      </Card> </ClickAwayListener>
+      </Card>
 
       </div>
 

@@ -58,9 +58,9 @@ export function arraynotes(title, description, isPin, isArchived, isTrash, remin
 
 }
 export function retriveData() {
-    const arrayvalue = new Promise((resolve, reject) => {
+    const arrayvalue =  new Promise(async function(resolve, reject)  {
 
-        database.database.ref('notes').orderByChild("userid").equalTo(localStorage.getItem('userKey')).on('value', snap => {
+      await  database.database.ref('notes').orderByChild("userid").equalTo(localStorage.getItem('userKey')).on('value', snap => {
             var value = [];
             snap.forEach(function (snap) {
 
@@ -81,9 +81,10 @@ export function retriveData() {
        // console.log("final ---", value);
         return value;
     })
-
-   // console.log('value of a', arrayvalue)
+console.log('a--',a)
+   console.log('value of a', arrayvalue)
     return a;
+
 
 }
 

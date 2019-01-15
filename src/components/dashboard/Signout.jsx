@@ -4,6 +4,7 @@ import React, {
 import { Popper,ClickAwayListener, IconButton, Paper, Card,DialogActions } from '@material-ui/core';
 import database from '../../firebase'
 import firebase from '../../firebase'
+
 var userctr=require('../../controller/usercontroller')
 
 
@@ -31,6 +32,7 @@ var userctr=require('../../controller/usercontroller')
     };
 handleSignout=event=>{
 {
+  event.preventDefault();
 console.log("insignout")
 firebase.firebase.auth().signOut()
 localStorage.clear();
@@ -57,8 +59,10 @@ onOutsideclick()
     if(option.Pinned === true && option.Trashed === false && option.Archived === false )
     {
       pinnedNotes=pinnedNotes+1;
-      localStorage.setItem('Pinned',pinnedNotes)
+      console.log('index--',index)
+     
 }
+localStorage.setItem('Pinned',pinnedNotes)
 console.log('sign out pinned',pinnedNotes);
   });
   var archivedNotes=0;

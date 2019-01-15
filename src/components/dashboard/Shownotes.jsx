@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Card, IconButton,  InputBase, Divider,Dialog } from '@material-ui/core';
+import { Card, IconButton,  InputBase, Divider,Dialog, Chip } from '@material-ui/core';
 import More from './More';
 import Editnotes from './Editnote';
+import CardComponent from '../dashboard/CardComponent';
 
 var userctr=require('../../controller/usercontroller')
 
@@ -24,7 +25,8 @@ class Showcards extends Component{
      var notesValue =await userctr.add();
      console.log('notes--',notesValue)
      this.setState({
-       notes : notesValue
+       notes : notesValue,
+       open:true
      }) 
 
 } 
@@ -47,6 +49,28 @@ handleClose()
       more:true,
     })
   }
+
+  handleReminderDelete = ( index ) => {
+
+    let tempArray = this.state.notes;
+
+    console.log("tempArray---before", tempArray);
+    
+    for( let i=0; i<tempArray.length; i++)
+    {
+      if(i === index)
+      {
+        tempArray[i].Reminder = ""
+      }
+    }
+
+    console.log("tempArray---after", tempArray);
+
+    this.setState({
+      notes: tempArray
+    })
+
+  }
  
     
     
@@ -65,19 +89,27 @@ handleClose()
         <div>
         <InputBase
         defaultValue={option.Title}
-       // onClick={(event)=>this.handledialogClick(event)}
+      
         >
         
-        <Dialog open={this.state.open}></Dialog>
-        </InputBase>
-        </div>
-        <div>
-        <InputBase
-        defaultValue={option.Description}
-        
+        // 
         >
           
         </InputBase>
+
+        {option.Reminder === "" ? (
+          <div>
+          </div>
+        ) : ( 
+          <div>
+            <Chip
+            label={option.Reminder}
+            onDelete={ () => this.handleReminderDelete(index) } 
+          />
+          </div>
+        )}
+        
+
         </div>
         <div>
         <toolbar>
@@ -160,91 +192,8 @@ handleClose()
       return( <div className={changeCardsstyle}>
      
 
-     <Card className='cardnotes'>
-  <div>
-  <InputBase
-  defaultValue={option.Title}
-  //onClick={this.handledialogClick()}
-  >
-  //<Dialog open={this.state.open}></Dialog>
-  
-  </InputBase>
-  </div>
-  <div>
-  <InputBase
-  defaultValue={option.Description}
-  
-  >
-    
-  </InputBase>
-  </div>
-  <div>  <toolbar>
-  < IconButton
-  onClick={event => this.handleReminder(event)}>
-  
-
-  
-  <img src = {
-    require('../../assets/reminderalarm.svg')
-  }
-  /> 
-   </IconButton>
-
-
-  < IconButton
-  onClick={event => this.addAccount(event)}> 
- 
-  <
-  img src = {
-    require('../../assets/addaccount.svg')
-  }
-  /> 
-   </IconButton>
-
-  <IconButton 
-  onClick={event => this.handleColor(event)}>
-  
-  
-  
-  <img src = {
-    require('../../assets/colorplate.svg')
-  }
-  />
-  </IconButton>
-
-
-  <IconButton 
-  onClick={event => this.handleImage(event)}>
-  
-  <img src = {
-    require('../../assets/image.svg')
-  }
-  /> 
-  </IconButton>
-
-
-  <IconButton
-  onClick={event => this.handleArchive(event)}>
-  
-  
- 
-  <img src = {
-    require('../../assets/archive.svg')
-  }
-
-  /> 
-  </IconButton>
-
-
-  
-  <More/>
-
-  </toolbar>
-  </div>
-
- 
-  
-  </Card>
+     
+     <CardComponent Display={ option } />
   </div>
   )
 }
@@ -254,114 +203,12 @@ handleClose()
 
   
   var thrashedarray= this.state.notes.map( (option, index) => {
-    if(option.Pinned === false && option.Trashed === true && option.Archived === false )
+    if(option.Pinned === false && option.Archived === false )
     {
 
     return( <div className='displaycard'>
    
-
-   <Card className='cardnotes'>
-<div>
-<InputBase
-defaultValue={option.Title}
->
-
-
-</InputBase>
-</div>
-<div>
-<InputBase
- onClick={this.handledialogClick()}
- 
-defaultValue={option.Description}
-
->
-<Dialog open={this.state.open}></Dialog>
-
-  
-</InputBase>
-</div>
-<toolbar>
-< IconButton
-onClick={event => this.handleReminder(event)}>
-
-
-
-<img src = {
-  require('../../assets/reminderalarm.svg')
-}
-/> 
- </IconButton>
-
-
-< IconButton
-onClick={event => this.addAccount(event)}> 
-
-<
-img src = {
-  require('../../assets/addaccount.svg')
-}
-/> 
- </IconButton>
-
-<IconButton 
-onClick={event => this.handleColor(event)}>
-
-
-
-<img src = {
-  require('../../assets/colorplate.svg')
-}
-/>
-</IconButton>
-
-
-<IconButton 
-onClick={event => this.handleImage(event)}>
-
-<img src = {
-  require('../../assets/image.svg')
-}
-/> 
-</IconButton>
-
-
-<IconButton
-onClick={event => this.handleArchive(event)}>
-
-
-
-<img src = {
-  require('../../assets/archive.svg')
-}
-
-/> 
-</IconButton>
-
-
-<IconButton
-onClick={event =>this.openMore(event)} >
-
-
-<img src = {
-  require('../../assets/more.svg')
-}
-/> 
-
- </IconButton > <IconButton style = {
-  {
-    marginLeft: '100px'
-  }
-} >
-
-
-</IconButton>
-
-</toolbar>
-<More openmenu={this.state.more}/>
-<Editnotes/>
-
-</Card>
+      <CardComponent Display={option}/>
 </div>
 )
 }
@@ -375,7 +222,7 @@ onClick={event =>this.openMore(event)} >
            
       <div className={changeCardsstyle}>
         
-      
+      {tempPinnedNotesArray}
       {notesarray}
            
             

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, IconButton,  InputBase, Divider } from '@material-ui/core';
+import { Card, IconButton,  InputBase } from '@material-ui/core';
 import More from './More';
 var userctr=require('../../controller/usercontroller')
 
@@ -9,6 +9,7 @@ class Showarchived extends Component{
     {   super()
         this.state={
             notes:[],
+            open:false,
         }
     }
 
@@ -122,9 +123,10 @@ render ()
      
     return(
 <div className='showcards'> 
-<h>Archived</h>
-            {tempArchivedArray}
-            </div>
+<Card>            
+{tempArchivedArray}
+</Card>
+</div>
     )
 }
 }
