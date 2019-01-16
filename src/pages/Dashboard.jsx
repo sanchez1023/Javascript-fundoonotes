@@ -57,10 +57,8 @@ archivedToappbar={this.handleArchive}
 />
 <Note/>
 <Showcards viewProps={this.state.Cardstyle}/>
-<Showarchived
-archiveProps={this.state.archived}/>
-<Showtrashed
-Trash={this.state.Trashed}/>
+
+
 </div>
 
     

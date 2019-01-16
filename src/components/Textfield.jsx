@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core' /** in built material ui contains */
 import {ToastContainer,toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.min.css'
+import {withRouter} from 'react-router-dom'
  /**Snack bar require in js */
 var userctr=require('../controller/usercontroller')
   
@@ -94,6 +95,39 @@ class Logininfo extends Component {
   /***
    * this event is triggred when submit buuton on the page is clicked given by onClick event
    */
+  googleSignIn=event=>{
+
+var provider=new  firebase.firebase.auth.GoogleAuthProvider;
+firebase.firebase.auth().signInWithPopup(provider).then(function(result)
+{
+  if (result.credential) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.user.uid;
+    var email=result.user.email
+    var contact=result.user.phoneNumber;
+  var password='';
+    var display=result.user.displayName.split(' ');
+    var fname=display[0];
+    var lname=display[1];
+    userctr.registerUser(fname,lname,email,password,contact,token)
+  toast('sign in succesful',{position:toast.POSITION.TOP_CENTER})
+  window.location='http://localhost:3000/dashboard'
+   //this.props.props.history.push('/dashboard');
+
+  console.log('after dashboard',token)
+  console.log('after dashboard',fname)
+  console.log('after dashboard',contact)
+  console.log('after dashboard',lname)
+  
+
+  }
+})
+.catch(function(err){
+  toast(err,{position:toast.POSITION.TOP_CENTER})
+})
+  }
+
+
 
   onSubmit = event => {
   userctr.getData(this.state.username)
@@ -241,6 +275,8 @@ class Logininfo extends Component {
 
       </ Fab>
 
+      <img src={require('../assets/google.png')} onClick={(event)=>this.googleSignIn(event)}/>
+
 <ToastContainer/>
 
 
@@ -254,4 +290,4 @@ class Logininfo extends Component {
 
 
 
-export default Logininfo
+export default  withRouter(Logininfo);

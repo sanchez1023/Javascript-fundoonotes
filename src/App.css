@@ -15,6 +15,12 @@
 .toolbar{
   display: flex;
   flex-direction: row;
+  
+}
+
+.toolbarandclose{
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 .App-header {
@@ -174,7 +180,21 @@ flex-direction: row;
 
 
 }
+.menuitem{
+  margin-top: 100px;
+}
+.menunote{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-left: 10px;
+  margin-bottom: 25px;
 
+}
+.menuname{
+  margin-left: 20px;
+}
 .header{
   display: flex;
   flex-direction: row;
@@ -224,7 +244,7 @@ flex-flow: row;
  }
  .inputcard{
   display: flex;
-  justify-content: space-between;
+  
   flex-wrap: nowrap;
   flex-direction: column;
  
@@ -240,12 +260,18 @@ flex-flow: row;
 
  
 }
+.displaydiv{
+  margin-left: 274px;
+  margin-right: 250px;
+  display: flex;
+  flex-wrap: wrap
+}
 .cardnotes{
-  width: 300px;
+ 
 border: rgba(202, 202, 192, 0.561);
 border: thin;
 border-style: groove;
-  margin-left: px;
+  margin-left: 6px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -253,14 +279,16 @@ border-style: groove;
   
 }
 .showcards{
+  width: 240px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  margin-left: 20px;
   flex-wrap: wrap;
   margin-top: 20px;
+  margin-left: 10px;
+  border-color: rgba(202, 202, 192, 0.561);
+  border-style: thin;border-radius: 5px;
 
-  margin-left: 300px;
-  margin-right: 134px;
  
 
 }
@@ -274,8 +302,11 @@ border-style: groove;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 20px;
-  margin-left: 300px;
+  margin-left: 150px;
   margin-right: 134px;
+  width:600px;
+  border-color: rgba(202, 202, 192, 0.561);
+border-style: thin;border-radius: 10px;
 
 }
 .area{
@@ -368,6 +399,9 @@ justify-content: flex-end;
 {
   width: 250px;
   margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
 
 }
 

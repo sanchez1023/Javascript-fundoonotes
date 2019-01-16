@@ -76,112 +76,20 @@ handleClose()
     
 
     render()
-    {   let changeCardsstyle=this.props.viewProps ?'showcardslist':'showcards'
+    {   
     let tempPinnedNotesArray = this.state.notes.map( (option, index) => {
       if(option.Pinned === true && option.Trashed === false && option.Archived === false )
       {
+        return(
         
-        return( 
-          
-          <div className={changeCardsstyle}>
-        
-          <Card className='cardnotes'>
-        <div>
-        <InputBase
-        defaultValue={option.Title}
-      
-        >
-        
-        // 
-        >
-          
-        </InputBase>
-
-        {option.Reminder === "" ? (
-          <div>
-          </div>
-        ) : ( 
-          <div>
-            <Chip
-            label={option.Reminder}
-            onDelete={ () => this.handleReminderDelete(index) } 
-          />
-          </div>
-        )}
-        
-
-        </div>
-        <div>
-        <toolbar>
-        < IconButton
-        onClick={event => this.handleReminder(event)}>
-        
-      
-        
-        <img src = {
-          require('../../assets/reminderalarm.svg')
-        }
-        /> 
-         </IconButton>
-  
-  
-        < IconButton
-        onClick={event => this.addAccount(event)}> 
-       
-        <
-        img src = {
-          require('../../assets/addaccount.svg')
-        }
-        /> 
-         </IconButton>
-  
-        <IconButton 
-        onClick={event => this.handleColor(event)}>
-        
-        
-        
-        <img src = {
-          require('../../assets/colorplate.svg')
-        }
-        />
-        </IconButton>
-  
-  
-        <IconButton 
-        onClick={event => this.handleImage(event)}>
-        
-        <img src = {
-          require('../../assets/image.svg')
-        }
-        /> 
-        </IconButton>
-  
-  
-        <IconButton
-        onClick={event => this.handleArchive(event)}>
-        
-        
-       
-        <img src = {
-          require('../../assets/archive.svg')
-        }
-  
-        /> 
-        </IconButton>
-  
-  
-        
-        
-        
-       
-       <More/>
-        </toolbar>
-        </div>
-        
-        </Card>
-        </div> )
+         <CardComponent Display={option}
+         index={index}
+         status={this.props.viewProps}
+         
+         />    
+        ) 
       }
-      
+  
     })
 
   
@@ -189,12 +97,16 @@ handleClose()
     var notesarray= this.state.notes.map( (option, index) => {
       if(option.Pinned === false && option.Trashed === false && option.Archived === false )
       {
-      return( <div className={changeCardsstyle}>
+      return( 
      
 
      
-     <CardComponent Display={ option } />
-  </div>
+     <CardComponent Display={ option }
+     index={index}
+     status={this.props.viewProps }
+     
+     />
+  
   )
 }
 
@@ -206,12 +118,28 @@ handleClose()
     if(option.Pinned === false && option.Archived === false )
     {
 
-    return( <div className='displaycard'>
+    return( 
    
-      <CardComponent Display={option}/>
-</div>
+      <CardComponent Display={ option }
+      index={index}
+      status={this.props.viewProps }/>
+
 )
 }
+})
+
+let tempArchivedArray = this.state.notes.map( (option, index) => {
+  if(option.Pinned === false && option.Trashed === false && option.Archived === true )
+  {return(
+    
+
+    <CardComponent Display={ option }
+    index={index}
+    status={this.props.viewProps }
+    />
+    
+  )
+  }
 })
 
 
@@ -220,17 +148,15 @@ handleClose()
       
       
            
-      <div className={changeCardsstyle}>
-        
+      <div className='displaydiv'>
+      
       {tempPinnedNotesArray}
+     
       {notesarray}
            
             
-            
-            <Divider/>
-         
-
-            <Divider/>
+            {tempArchivedArray}
+           
                     
 
             </div>

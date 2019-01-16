@@ -3,6 +3,8 @@ import React, {
   } from 'react';
 import { IconButton, Popper ,Paper,Card, MenuItem,ClickAwayListener} from '@material-ui/core';
 import DatePicker from 'react-date-picker'
+import DATE from'react-datepicker'
+import Calnder from 'react-calendar'
 
   class Reminder extends Component{
       constructor()
@@ -24,11 +26,11 @@ date: new Date(),
     
     }
 
-    async handleToday(event){
+    async  handleToday(event){
       event.preventDefault();
-        console.log('in handle today')
+        console.log('in handle today');
 
-     await this.setState=({
+      await this.setState({
     reminder:'Today,20:00'
     
 })  
@@ -60,6 +62,7 @@ this.props.reminderProps(this.state.date)
       render(  )
           {
               return(
+                
                 <div>
 
         <IconButton  onClick={(event)=>this.handleClick(event)}>
@@ -87,14 +90,16 @@ this.props.reminderProps(this.state.date)
                         </div>
                         </div>
                         <DatePicker
+                         minDetail
                         onChange={this.onChange}
           value={this.state.date}
                         
                         
                         
                         />
+                        <DATE/>
 
-
+<Calnder/>
                       
                         
                         
@@ -105,7 +110,7 @@ this.props.reminderProps(this.state.date)
                 </Popper>
                 </Card>
                 </div>
-  
+             
 
 
               )

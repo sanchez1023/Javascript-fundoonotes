@@ -15,6 +15,8 @@ import {
 } from '@material-ui/core';
 import More from './More';
 import Reminder from './Reminder';
+import Colorpallate from './Colorpallate';
+import Addimage from './Addimage';
 var userctr=require('../../controller/usercontroller')
 /*
 class declared to render and creaing gloabal values
@@ -35,7 +37,7 @@ class Note extends Component {
       isArchive:false,
       menu:false,
       added:false,
-
+      
 
     }
     this.handleReminder=this.handleReminder.bind(this)
@@ -103,6 +105,7 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
   
 
   render() {
+    
     return (!this.state.open ?
 
       <
@@ -159,6 +162,7 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       </div>
 
       :
+    
       <div className = 'area' >
      
       <Card className = 'inputcard'
@@ -206,8 +210,8 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       >
       </InputBase>
 
-      <div className='toolbar'>
-      < toolbar >
+      <div  className ='toolbarandclose'>
+      < toolbar  className='toolbar'>
       
       <Reminder reminderProps={this.handleReminder}/>
 
@@ -221,26 +225,9 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       /> 
        </IconButton>
 
-      <IconButton 
-      onClick={event => this.handleColor(event)}>
-      
-      
-      
-      <img src = {
-        require('../../assets/colorplate.svg')
-      }
-      />
-      </IconButton>
+      <Colorpallate/>
 
-
-      <IconButton 
-      onClick={event => this.handleImage(event)}>
-      
-      <img src = {
-        require('../../assets/image.svg')
-      }
-      /> 
-      </IconButton>
+    <Addimage/>
 
 
       <IconButton
@@ -255,22 +242,24 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       /> 
       </IconButton>
 <More/>
-
+<div>
    <IconButton 
       
       onClick={event => this.handleNotes(event)}>
       Close
 
       </IconButton>
-
+      </div>
       
       </toolbar>
+
       </div>
 
 
       </Card>
 
       </div>
+    
 
 
 

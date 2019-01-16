@@ -8,7 +8,18 @@ import {
     resolve
 } from 'url';
 
-
+export function registerUser(fname,lname,email,password,contact,token)
+{
+    var data = {
+        firstname: fname,
+        lastname: lname,
+        email: email,
+        password: password,
+        contact: contact,
+        userid:token,
+      }
+      database.database.ref('/users').push(data); //pushing data in firebase
+}
 
 
 

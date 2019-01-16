@@ -1,7 +1,7 @@
 import React, {
     Component
   } from 'react';
-import { Popper,ClickAwayListener, IconButton, Paper, Card,DialogActions } from '@material-ui/core';
+import { Popper,ClickAwayListener, IconButton, Paper, Card,DialogActions, Fab } from '@material-ui/core';
 import database from '../../firebase'
 import firebase from '../../firebase'
 
@@ -94,9 +94,7 @@ console.log('sign out notes--',Notes);
         return(
         
           <div className =''>
-          < ClickAwayListener onClickAway = {
-            () => this.onOutsideclick()
-          } >
+        
          <IconButton onClick={(event)=>this.handleClick(event)}>
           <img src={require('../../assets/account.svg')}/>
       
@@ -118,8 +116,8 @@ Welcome:   {localStorage.getItem('email')}
  Number of Pinned Notes:{localStorage.getItem('Pinned')}
 </div>
 
-<DialogActions>
-<button
+<div>
+<Fab variant='extended'
 
 onClick={event=>this.handleSignout(event)}
 
@@ -127,16 +125,15 @@ onClick={event=>this.handleSignout(event)}
 
 Sign Out
 
-</button>
-</DialogActions>
+</Fab>
 
+</div>
 
 </Paper>
 
 </Popper>
 
 </Card>
-</ ClickAwayListener>
 
 </div>
 

@@ -27,6 +27,8 @@ class Login extends Component {
          
     
       <Logininfo props={this.props}/>
+
+      
 <p>
       <Link to="/forgetpassword">Forgot Password</Link>
       </p>
@@ -37,21 +39,7 @@ class Login extends Component {
             </Card>
       </ThemeProvider>
            
-    //   <Snackbar
-    //   anchorOrigin={{
-    //     vertical: 'bottom',
-    //     horizontal: 'left',
-    //   }}
-    //   open={true}
-    //   autoHideDuration={6000}
-    //   // onClose={handleClose}
-    //   ContentProps={{
-    //     'aria-describedby': 'message-id',
-    //   }}
-    //   message="test"
-    // />
-
-    //  </div>
+   
         );
     }
 }

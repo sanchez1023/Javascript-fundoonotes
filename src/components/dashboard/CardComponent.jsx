@@ -1,8 +1,11 @@
 
    import React, { Component } from 'react';
-   import { InputBase ,Card,Dialog,IconButton} from '@material-ui/core';
+   import { InputBase ,Card,Dialog,Chip,IconButton} from '@material-ui/core';
 import Reminder from './Reminder';
 import More from './More';
+import Colorpallate from './Colorpallate';
+import Addimage from './Addimage';
+import Archive from './Showarchived';
 
 
 
@@ -18,12 +21,12 @@ import More from './More';
            }
        }
        render()
-       {
+       { let cardstyle=this.props.status ? 'showcards':'showcardslist'
            console.log('Display', this.props.Display);
            
            return(
-             <div>
-               <Card className='cardnotes'>
+             
+               <Card className={cardstyle}>
                <div>
                <InputBase
                defaultValue={this.props.Display.Title}
@@ -40,12 +43,23 @@ import More from './More';
    
                
                >
-               <Dialog open={this.state.open}></Dialog>
+               </InputBase>
+               {this.props.Display.Reminder === "" ? (
+                <div>
+                </div>
+              ) : ( 
+                <div>
+                  <Chip
+                  label={this.props.Display.Reminder}
+                  onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                />
+                </div>
+              )}
                
                  
-               </InputBase>
+             
                </div>
-               <toolbar>
+               <toolbar className='toolbar'>
               <Reminder/>
                
                <IconButton
@@ -58,28 +72,12 @@ import More from './More';
                /> 
                 </IconButton>
                
-               <IconButton 
-               onClick={event => this.handleColor(event)}>
+               <Colorpallate/>
                
                
+             <Addimage/>
                
-            
-               </IconButton>
-               
-               
-               <IconButton 
-               onClick={event => this.handleImage(event)}>
-               
-             
-               </IconButton>
-               
-               
-               <IconButton
-               onClick={event => this.handleArchive(event)}>
-               
-               
-               
-               </IconButton>
+             <Archive/>
                
             <More/>
                <IconButton style = {
@@ -97,7 +95,7 @@ import More from './More';
                
                </Card>
    
-   </div>
+   
    
            )
        }

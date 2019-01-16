@@ -11,6 +11,7 @@ import {
   Divider,
   MuiThemeProvider,
   createMuiTheme,
+  MenuItem,
 
 } from '@material-ui/core';
 /**
@@ -73,31 +74,39 @@ class Sidemenu extends Component {
       >
 
       <List className = 'list' >
-
-      <ListItem className = 'listitem' >
-
-      <IconButton >
+<MenuItem className='menuItem'>
+<div className='menunote'>
+      <div>
       <
       img src = {
         require('../../assets/lightbulb.svg')
       }
       />
-      Notes
+      </div>
+      <div className='menuname'>
+          Notes
 
-      </IconButton>
-
-      </ListItem>  
-      <ListItem className = 'listitem' >
-
-      <IconButton >
+      </div>
+      </div>
+      </MenuItem>
+      <MenuItem className='menuItem'>
+      <div className='menunote'>
+      <div>
+     
       <
       img src = {
         require('../../assets/remainder.svg')
       }
       />
+      </div>
+      <div className='menuname'>
       Reminder 
-      </IconButton>
-       </ListItem>
+      
+      </div>
+       </div>
+    
+       </MenuItem>
+
 
       < Divider / >
 
@@ -105,48 +114,56 @@ class Sidemenu extends Component {
       <label className = 'divide' >
       LABLES  
       </label> 
-       <ListItem className = 'listitem' >
-
-      <IconButton className = 'icon' >
+      <MenuItem className='menuItem'>
+      <div className='menunote'>
+      <div>
       <
       img src = {
         require('../../assets/pencil.svg')
       }
       />
+      </div>
+      <div className='menuname'>
       Edit Label
-       </IconButton>
-        </ListItem>
-
+      </div>
+    
+      </div>
+      </MenuItem>
       <
       Divider / >
-
-
-      <ListItem className = 'listitem' >
-
-      <IconButton
-       onClick={event=>this.OpenArchive(event)} >
+      <MenuItem className='menuItem'>
+ <div className='menunote'>
+    <div>
       <
       img src = {
         require('../../assets/archive.svg')
       }
       />
-      Archive </IconButton> 
-       </ListItem>
+      </div>
+      <div className='menuname'>
+      Archive
+      
+      </div>
+      </div>
+      </MenuItem>
 
-
-
-      < ListItem className = 'listitem' >
-
-      <IconButton >
+      <MenuItem className='menuItem'>
+      <div className='menunote'>
+      <div>
+      
       <
       img src = {
         require('../../assets/bin.svg')
       }
       />
-      Bin </IconButton>  
-      </ListItem>
+      </div>
+      <div className='menuname'>
+      Bin 
+   
 
-
+      </div>
+      </div>
+      </MenuItem>
 
 
       </List>
