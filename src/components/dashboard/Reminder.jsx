@@ -1,10 +1,12 @@
 import React, {
     Component
   } from 'react';
-import { IconButton, Popper ,Paper,Card, MenuItem,ClickAwayListener} from '@material-ui/core';
+import { IconButton, Popper ,Paper,Card, MenuItem,ClickAwayListener, TextField} from '@material-ui/core';
 import DatePicker from 'react-date-picker'
+import TimePicker from 'react-time-picker'
 import DATE from'react-datepicker'
 import Calnder from 'react-calendar'
+import Calendar from 'react-calendar';
 
   class Reminder extends Component{
       constructor()
@@ -14,7 +16,8 @@ import Calnder from 'react-calendar'
 open:false,
 anchorEl: null,
 reminder:'',
-date: new Date(),
+date:'',
+time:'',
           }
       }
       handleClick=event=>{
@@ -50,17 +53,48 @@ async handleTomorow(event){
     this.props.reminderProps(this.state.reminder)
     
 }
-onChange = date =>{this.setState({ date })
-this.props.reminderProps(this.state.date)
-}
+    handleDate(event)
+    {
+      this.setState({
+        date: event.target.value,
+      });
+       console.log('date--', event.target.value );
+    }
+
+    handleTime = (event) =>
+    {
+      this.setState({
+        time:event.target.value
+      });
+      console.log('time--', event.target.value );
+      a.displaydate();
+    }
+    
+      
+    displaydate()
+    {
+      var result=this.state.date +","+this.state.time;
+      console.log('date and time-- ',result);
+      this.setState({
+        reminder:result
+      })
+      this.props.reminderProps(this.state.reminder);
+    }
+  
+
+
+
 
     onOutsideclick() {
         this.setState({
           open: false
         })
       }
-      render(  )
+      render( )
           {
+
+          
+            
               return(
                 
                 <div>
@@ -89,17 +123,21 @@ this.props.reminderProps(this.state.date)
                         <MenuItem onClick={(event)=>this.handleTomorow(event)}>Tommorow :   8:00</MenuItem>
                         </div>
                         </div>
-                        <DatePicker
-                         minDetail
-                        onChange={this.onChange}
-          value={this.state.date}
-                        
-                        
-                        
-                        />
-                        <DATE/>
+     
+                       
+                     <TextField
+                     type='date'
+                     onChange={this.handleDate.bind(this)}
+                     />
+                     <TextField
+                     type='time'
+                     onChange={this.handleTime}
+                    
+                     />
+                     <TextField></TextField>
+                     
+                     
 
-<Calnder/>
                       
                         
                         
@@ -117,4 +155,5 @@ this.props.reminderProps(this.state.date)
           }
     
   }
+  var a=new Reminder();
   export default Reminder

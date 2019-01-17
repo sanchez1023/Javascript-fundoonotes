@@ -51,6 +51,7 @@ handleDrawer(){
   console.log('in hadle drawer')
     this.setState({open:!this.state.open });
     
+    
   }
   handleView(){
 this.props.dashToAppbar();

@@ -76,59 +76,51 @@ handleClose()
     
 
     render()
-    {   
-    let tempPinnedNotesArray = this.state.notes.map( (option, index) => {
-      if(option.Pinned === true && option.Trashed === false && option.Archived === false )
-      {
-        return(
-        
-         <CardComponent Display={option}
-         index={index}
-         status={this.props.viewProps}
-         
-         />    
-        ) 
-      }
-  
-    })
+    {   var array=[];
 
   
 
-    var notesarray= this.state.notes.map( (option, index) => {
-      if(option.Pinned === false && option.Trashed === false && option.Archived === false )
-      {
-      return( 
-     
-
-     
-     <CardComponent Display={ option }
-     index={index}
-     status={this.props.viewProps }
-     
-     />
   
-  )
+ if(this.props.notes){
+                    array= this.state.notes.map( (option, index) => {
+                        if(option.Pinned === false && option.Trashed === false && option.Archived === false )
+                        {
+                        return( 
+                      
+
+                      
+                      <CardComponent Display={ option }
+                      index={index}
+                      status={this.props.viewProps }
+                      
+                      />
+                    
+                    )
+                  }
+
+                    })
 }
 
-  })
 
-
+else if(this.props.reminder){
   
-  var thrashedarray= this.state.notes.map( (option, index) => {
-    if(option.Pinned === false && option.Archived === false )
-    {
+                array= this.state.notes.map( (option, index) => {
+                  if(option.Reminder!=='')
+                  {
 
-    return( 
-   
-      <CardComponent Display={ option }
-      index={index}
-      status={this.props.viewProps }/>
+                  return( 
+                
+                    <CardComponent Display={ option }
+                    index={index}
+                    status={this.props.viewProps }/>
 
-)
-}
-})
+              )
+              }
+              })
+              }
 
-let tempArchivedArray = this.state.notes.map( (option, index) => {
+else if(this.props.archive){
+array = this.state.notes.map( (option, index) => {
   if(option.Pinned === false && option.Trashed === false && option.Archived === true )
   {return(
     
@@ -141,6 +133,65 @@ let tempArchivedArray = this.state.notes.map( (option, index) => {
   )
   }
 })
+}
+else if(this.props.bin)
+{
+  array = this.state.notes.map( (option, index) => {
+    if(option.Pinned === false && option.Trashed === true && option.Archived === false )
+    {return(
+      
+  
+      <CardComponent Display={ option }
+      index={index}
+      status={this.props.viewProps }
+      />
+      
+    )
+    }
+  })
+
+}
+else{
+  array = this.state.notes.map( (option, index) => {
+    if(option.Pinned === true && option.Trashed === false && option.Archived === false )
+    {
+      return(
+      
+       <CardComponent Display={option}
+       index={index}
+       status={this.props.viewProps}
+       
+       />    
+      ) 
+    }
+
+  })
+
+
+
+
+
+
+  array= this.state.notes.map( (option, index) => {
+    if(option.Pinned === false && option.Trashed === false && option.Archived === false )
+    {
+    return( 
+  
+
+  
+  <CardComponent Display={ option }
+  index={index}
+  status={this.props.viewProps }
+  
+  />
+
+)
+}
+
+})
+
+
+}
 
 
  
@@ -150,12 +201,7 @@ let tempArchivedArray = this.state.notes.map( (option, index) => {
            
       <div className='displaydiv'>
       
-      {tempPinnedNotesArray}
-     
-      {notesarray}
-           
-            
-            {tempArchivedArray}
+     {array}
            
                     
 

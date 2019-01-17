@@ -38,18 +38,58 @@ class Sidemenu extends Component {
   constructor() {
     super()
     this.state = {
-      openArchive:'',
+      Archive:false,
+      bin:false,
+      reminder:false,
+      notes:false,
       open: false
     }
   }
 
 
-  openArchive()
+  openArchive=event=>
   {
   this.setState({
-    openArchive:'Archived',
+    Archive:true,
+    bin:false,
+      reminder:false,
+      notes:false,
   })
+  this.props.navigate(this.state.Archive,this.state.reminder,this.state.bin,this.state.notes)
   }
+
+  openReminder()
+  {
+    this.setState({
+      Archive:false,
+      bin:false,
+        reminder:true,
+        notes:false,
+    })
+    this.props.navigate(this.state.Archive,this.state.reminder,this.state.bin,this.state.notes)
+  }
+openBin()
+{
+  this.setState({
+    Archive:false,
+    bin:true,
+      reminder:false,
+      notes:false,
+  })
+  this.props.navigate(this.state.Archive,this.state.reminder,this.state.bin,this.state.notes)
+}
+openNotes()
+{
+  this.setState({
+    Archive:false,
+    bin:false,
+      reminder:false,
+      notes:true,
+  })
+  this.props.navigate(this.state.Archive,this.state.reminder,this.state.bin,this.state.notes)
+
+}
+
   render() {
     console.log("drawer", this.props.parentProps);
 
@@ -74,7 +114,7 @@ class Sidemenu extends Component {
       >
 
       <List className = 'list' >
-<MenuItem className='menuItem'>
+<MenuItem className='menuItem' onClick={(event)=>this.openNotes(event)}>
 <div className='menunote'>
       <div>
       <
@@ -89,7 +129,7 @@ class Sidemenu extends Component {
       </div>
       </div>
       </MenuItem>
-      <MenuItem className='menuItem'>
+      <MenuItem className='menuItem' onClick={(event)=>this.openReminder(event)}>
       <div className='menunote'>
       <div>
      
@@ -131,7 +171,7 @@ class Sidemenu extends Component {
       </MenuItem>
       <
       Divider / >
-      <MenuItem className='menuItem'>
+      <MenuItem className='menuItem' onClick={(event)=>this.openArchive(event)}>
  <div className='menunote'>
     <div>
       <
@@ -147,7 +187,7 @@ class Sidemenu extends Component {
       </div>
       </MenuItem>
 
-      <MenuItem className='menuItem'>
+      <MenuItem className='menuItem' onClick={(event)=>this.openBin(event)}>
       <div className='menunote'>
       <div>
       

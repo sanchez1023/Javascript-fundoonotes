@@ -109,7 +109,8 @@ firebase.firebase.auth().signInWithPopup(provider).then(function(result)
     var display=result.user.displayName.split(' ');
     var fname=display[0];
     var lname=display[1];
-    userctr.registerUser(fname,lname,email,password,contact,token)
+        localStorage.setItem('userKey',token)
+        localStorage.setItem('email',email)
   toast('sign in succesful',{position:toast.POSITION.TOP_CENTER})
   window.location='http://localhost:3000/dashboard'
    //this.props.props.history.push('/dashboard');

@@ -4,8 +4,7 @@ import React,  {Component } from 'react';
 import Dashboard from '../components/dashboard/Dashboard.jsx';
 import Note from '../components/dashboard/Note.jsx';
 import Showcards from '../components/dashboard/Shownotes';
-import Showarchived from '../components/dashboard/Showarchived';
-import Showtrashed from '../components/dashboard/Showtrashed';
+
 
 class Dash extends Component{
     constructor()
@@ -15,25 +14,28 @@ class Dash extends Component{
             reminder:false,
             Trashed:false,
             Cardstyle:false,
+            note:false,
         }
         this.navigate=this.navigate.bind(this)
         this.handleCardsview=this.handleCardsview.bind(this)
-        this.handleArchive=this.handleArchive.bind(this)
+      
     }
    
-    navigate(archived,reminder,trash)
+    navigate(archived,reminder,trash,note)
     {
         this.setState({
             archived:archived,
             reminder:reminder,
             Trashed:trash,
+            note:note,
         })
     }
 
-    handleArchive()
+    handleOnclick()
     {
         this.setState({
             archived:!this.state.archived
+
         })
     }
     handleCardsview()
@@ -56,7 +58,13 @@ archivedToappbar={this.handleArchive}
 
 />
 <Note/>
-<Showcards viewProps={this.state.Cardstyle}/>
+<Showcards viewProps={this.state.Cardstyle}
+reminder={this.state.reminder}
+archive={this.state.archived}
+bin={this.state.Trashed}
+notes={this.state.note}
+
+/>
 
 
 </div>

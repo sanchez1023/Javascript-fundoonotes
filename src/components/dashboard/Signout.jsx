@@ -1,7 +1,7 @@
 import React, {
     Component
   } from 'react';
-import { Popper,ClickAwayListener, IconButton, Paper, Card,DialogActions, Fab } from '@material-ui/core';
+import { Popper,ClickAwayListener, IconButton, Paper, Card,DialogActions, Fab, Divider } from '@material-ui/core';
 import database from '../../firebase'
 import firebase from '../../firebase'
 
@@ -83,6 +83,17 @@ localStorage.setItem('Archived',archivedNotes)
 localStorage.setItem('Notes',Notes)
 console.log('sign out notes--',Notes);
   });
+
+  var reminder=0;
+  this.state.notes.map( (option, index) => {
+    if(option.Reminder !=='' )
+    {
+    reminder=reminder+1;
+}
+localStorage.setItem('Reminder',reminder)
+console.log('sign out Rnotes--',reminder);
+  });
+
 }
 
     render()
@@ -106,6 +117,7 @@ console.log('sign out notes--',Notes);
 <div>
 Welcome:   {localStorage.getItem('email')}
 </div>
+<Divider/>
 <div>
  Number of notes:{localStorage.getItem('Notes')}
  </div>
@@ -115,7 +127,11 @@ Welcome:   {localStorage.getItem('email')}
 <div>
  Number of Pinned Notes:{localStorage.getItem('Pinned')}
 </div>
+<div>
+Number of notes with reminder:{localStorage.getItem('Reminder')}
 
+</div>
+<Divider/>
 <div>
 <Fab variant='extended'
 

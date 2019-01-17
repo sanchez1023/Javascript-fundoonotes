@@ -29,7 +29,7 @@ class Note extends Component {
       title:"",
       description:"",
       isPin:false,
-      isTrash:false,
+      isTrash:'',
       reminder:'',
       userid:"",
       imageOf:"",
@@ -41,6 +41,7 @@ class Note extends Component {
 
     }
     this.handleReminder=this.handleReminder.bind(this)
+    this.handleTrash=this.handleTrash.bind(this)
   }
   openMore()
   {
@@ -74,6 +75,21 @@ class Note extends Component {
       isPin:true,
     })
   }
+
+   handleTrash(Trash)
+  {
+    console.log('rem',Trash);
+   
+this.setState({
+
+  isTrash:Trash
+})
+
+
+    console.log('reminder',this.state.isTrash)
+  }
+
+
   async handleReminder(reminder)
   {
     console.log('rem',reminder);
@@ -241,7 +257,7 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
 
       /> 
       </IconButton>
-<More/>
+<More trash={this.handleTrash}/>
 <div>
    <IconButton 
       
