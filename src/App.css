@@ -15,10 +15,51 @@
 .toolbar{
   display: flex;
   flex-direction: row;
+  justify-content: flex-start
   
   
 }
+.colorpaper{
+  width: 110px;
+  height: 80px;
+}
+.colorpalate{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
 
+ 
+
+}
+.avatar{
+
+    margin: 10;
+    color: '#fff';
+  background-color: aqua;
+}
+.cardcom{
+  display: flex;
+  flex-direction: row  ;
+  justify-content: space-between;
+
+}
+.signoutbutton{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.incard{
+  width:600;
+  display: flex;
+  flex-direction: column  ;
+  justify-content: space-between;
+}
+.pinbase{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
 .toolbarandclose{
   display: flex;
   flex-direction: row;
@@ -283,9 +324,9 @@ border-style: groove;
   display: flex;
   flex-direction: column;
   margin-left: 20px;
-  flex-wrap: wrap;
+ 
   margin-top: 20px;
-  margin-left: 10px;
+  
   border-color: rgba(202, 202, 192, 0.561);
   border-style: thin;border-radius: 5px;
 
@@ -302,7 +343,7 @@ border-style: groove;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 20px;
-  margin-left: 150px;
+  
   margin-right: 134px;
   width:600px;
   border-color: rgba(202, 202, 192, 0.561);
@@ -446,6 +487,10 @@ flex-shrink: inherit;
     top: 56px;
 }
 
-
+.inputpin{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
 
 

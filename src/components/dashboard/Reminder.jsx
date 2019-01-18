@@ -1,7 +1,7 @@
 import React, {
     Component
   } from 'react';
-import { IconButton, Popper ,Paper,Card, MenuItem,ClickAwayListener, TextField} from '@material-ui/core';
+import { IconButton, Popper ,Paper,Card, MenuItem,ClickAwayListener, TextField, Fab} from '@material-ui/core';
 import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
 import DATE from'react-datepicker'
@@ -67,11 +67,11 @@ async handleTomorow(event){
         time:event.target.value
       });
       console.log('time--', event.target.value );
-      a.displaydate();
+    
     }
     
       
-    displaydate()
+    displaydate=(event)=>
     {
       var result=this.state.date +","+this.state.time;
       console.log('date and time-- ',result);
@@ -134,8 +134,13 @@ async handleTomorow(event){
                      onChange={this.handleTime}
                     
                      />
-                     <TextField></TextField>
+                     <button
+                     color='inherit' onClick={this.displaydate}
+                     >
                      
+                     save
+                     </button>
+                    
                      
 
                       

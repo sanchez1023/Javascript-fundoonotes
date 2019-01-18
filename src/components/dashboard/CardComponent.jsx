@@ -1,11 +1,12 @@
 
    import React, { Component } from 'react';
-   import { InputBase ,Card,Dialog,Chip,IconButton} from '@material-ui/core';
+   import { InputBase ,Card,Dialog,Chip,IconButton, FormLabel} from '@material-ui/core';
 import Reminder from './Reminder';
 import More from './More';
 import Colorpallate from './Colorpallate';
 import Addimage from './Addimage';
 import Archive from './Showarchived';
+import Editnotes from './Editnote';
 
 
 
@@ -16,10 +17,37 @@ import Archive from './Showarchived';
        {
            super()
            this.state={
-               
+               notes:[],
+               openDailog:false,
    
            }
        }
+
+       handleEdit=event=>{
+         this.setState({ openDailog:!this.state.openDailog,})
+        
+
+       }
+       handleReminderDelete = ( index ) => {
+
+        let tempArray = this.state.notes;
+    
+        console.log("tempArray---before", tempArray);
+        
+        for( let i=0; i<tempArray.length; i++)
+        {
+          if(i === index)
+          {
+            tempArray[i].Reminder = "";
+          }
+        }
+    
+        console.log("tempArray---after", tempArray);
+    
+        this.setState({
+          notes: tempArray
+        })
+      }
        render()
        { let cardstyle=this.props.status ? 'showcards':'showcardslist'
            console.log('Display', this.props.Display);
@@ -27,20 +55,26 @@ import Archive from './Showarchived';
            return(
              
                <Card className={cardstyle}>
-               <div>
+               <div className='cardcom'>
+
                <InputBase
                defaultValue={this.props.Display.Title}
+               readOnly={this.props.Display.Title}
+               onClick={this.handleEdit}
                >
-               
-               
                </InputBase>
+               <div>          <img src={require('../../assets/pin.svg')}/>
+             
+               </div>
+
+              
                </div>
                <div>
                <InputBase
                
                 
                defaultValue={this.props.Display.Description}
-   
+   readOnly={this.props.Display.Description}
                
                >
                </InputBase>
@@ -91,8 +125,12 @@ import Archive from './Showarchived';
                
                </toolbar>
              
-          
-               
+        <Editnotes open={this.state.openDailog}
+        
+        close={this.handleEdit}
+        
+        />
+                
                </Card>
    
    

@@ -25,7 +25,7 @@ const theme = createMuiTheme({
 
         left: 0,
         right: 'auto',
-        top: '62px',
+        top: '65px',
       }
     },
   }

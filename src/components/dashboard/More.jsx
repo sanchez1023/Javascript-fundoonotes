@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react';
-import { IconButton, Popper ,Paper,Card, MenuItem,ClickAwayListener, InputBase} from '@material-ui/core';
+import { IconButton, Popper ,Paper, MenuItem,ClickAwayListener, InputBase, Menu} from '@material-ui/core';
 
 
 class More extends Component{
@@ -63,24 +63,30 @@ trashed:false
       </IconButton>
       
       <div>
-              <Popper open={this.state.open} anchorEl={this.state.anchorEl}>
+              <Popper open={this.state.open} anchorEl={this.state.anchorEl} style={{
+                zIndex:"10"
+              }}>
                       <Paper className='reminder'>
-                    
+                   
             
                       <div className='tommorow'>
-                      
+                     
                       <div>
                       <MenuItem onClick={(event)=>this.handleTrashnote(event)} >Delete Note</MenuItem>
                       </div>
-                      </div>
+                    
                       <div className='tommorow'>
                       
                       <div>
                       <MenuItem onClick={(event)=>this.handlelable(event)}>Add Label</MenuItem>
-                      </div>
-                      </div>
-               
                       
+                      </div>
+                 
+                      </div>
+                      </div>
+                    
+               
+                  
                       
                       
                       </Paper>

@@ -105,7 +105,7 @@ firebase.firebase.auth().signInWithPopup(provider).then(function(result)
     var token = result.user.uid;
     var email=result.user.email
     var contact=result.user.phoneNumber;
-  var password='';
+  
     var display=result.user.displayName.split(' ');
     var fname=display[0];
     var lname=display[1];

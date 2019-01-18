@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { IconButton ,Paper,Popper,Card,ClickAwayListener} from '@material-ui/core';
+import { IconButton ,Paper,Popper,Card,ClickAwayListener, Tooltip} from '@material-ui/core';
+import { black } from 'material-ui/styles/colors';
 
 
 const colorPaletteClassName = [
@@ -71,6 +72,11 @@ class  Colorpallate extends Component{
         open: false
       })
     }
+
+    handlecolor(event)
+    {
+        this.props.notetocolor(event.target.value)
+    }
     handleClick=event=>{
         const { currentTarget } = event;
       this.setState(state => ({
@@ -79,7 +85,27 @@ class  Colorpallate extends Component{
       }));
     }
 render()
-{
+
+{ 
+    
+    var array = colorPaletteClassName .map((option,index)=>{
+
+return(
+    <Tooltip title={option.colorName}>
+        <IconButton style ={{backgroundColor:option.colorCode,
+            borderColor:black
+        
+        
+        }}
+        
+        onClick={this.hadleColor}
+        >
+        
+        </IconButton>
+        </Tooltip>)
+    
+    })
+    
     return(
         < ClickAwayListener onClickAway = {
             () => this.onOutsideclick()
@@ -90,9 +116,10 @@ render()
 </IconButton>
 <Card>
 <Popper open={this.state.open} anchorEl={this.state.anchorEl}>
-        <Paper className='reminder'>
-<h>color pallate</h>
-
+        <Paper className='colorpaper'>
+<div className='colorpalate'>
+{array}
+</div>
         </Paper>
         </Popper></Card>
 </div>

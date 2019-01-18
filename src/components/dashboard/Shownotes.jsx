@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card, IconButton,  InputBase, Divider,Dialog, Chip } from '@material-ui/core';
-import More from './More';
+
+
 import Editnotes from './Editnote';
 import CardComponent from '../dashboard/CardComponent';
 

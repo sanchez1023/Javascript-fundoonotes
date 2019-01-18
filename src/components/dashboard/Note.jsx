@@ -3,8 +3,7 @@ React, {
   Component
 } from 'react'
 
-import database from '../../firebase'
-import firebase from '../../firebase'
+
 import {
   Card,
   IconButton,
@@ -36,12 +35,13 @@ class Note extends Component {
       colaborator:"",
       isArchive:false,
       menu:false,
-      added:false,
+    color:'',
       
 
     }
     this.handleReminder=this.handleReminder.bind(this)
     this.handleTrash=this.handleTrash.bind(this)
+    this.handleColor=this.handleColor.bind(this)
   }
   openMore()
   {
@@ -57,6 +57,13 @@ class Note extends Component {
     })
     //console.log(this.state.open)
 
+  }
+
+  handleColor(Color)
+  {
+    this.setState({
+      color:Color
+    })
   }
   onOutsideclick() {
     this.setState({
@@ -241,7 +248,7 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       /> 
        </IconButton>
 
-      <Colorpallate/>
+      <Colorpallate notetocolor={this.handleColor}/>
 
     <Addimage/>
 

@@ -51,7 +51,7 @@ export function getData(username, abc) {
 }
 
 
-export function arraynotes(title, description, isPin, isArchived, isTrash, reminder, colaborator) {
+export function arraynotes(title, description, isPin, isArchived, isTrash, reminder, colaborator,color) {
     var notes = {
         Title: title,
         Description: description,
@@ -61,6 +61,7 @@ export function arraynotes(title, description, isPin, isArchived, isTrash, remin
         Reminder: reminder,
         Colaborator: colaborator,
         userid: localStorage.getItem('userKey'),
+        Color:color
 
 
     }
