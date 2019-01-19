@@ -15,8 +15,19 @@
 .toolbar{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start
   
+  
+  
+}
+.labelpaper{
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.more {
+  display: flex;
+  flex-direction: row;
   
 }
 .colorpaper{
@@ -28,7 +39,7 @@
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-
+border-color: black
  
 
 }
@@ -303,7 +314,7 @@ flex-flow: row;
 }
 .displaydiv{
   margin-left: 274px;
-  margin-right: 250px;
+  margin-right: 155px;
   display: flex;
   flex-wrap: wrap
 }
@@ -324,26 +335,23 @@ border-style: groove;
   display: flex;
   flex-direction: column;
   margin-left: 20px;
- 
+ background-color: chartreuse;
   margin-top: 20px;
   
   border-color: rgba(202, 202, 192, 0.561);
-  border-style: thin;border-radius: 5px;
+  border-style: thin;border-radius: 15px;
 
  
 
 }
-.cardMenu{
-  
 
-}
 .showcardslist{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 20px;
-  
+  margin-left: 5px;
   margin-right: 134px;
   width:600px;
   border-color: rgba(202, 202, 192, 0.561);

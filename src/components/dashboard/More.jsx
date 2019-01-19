@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react';
-import { IconButton, Popper ,Paper, MenuItem,ClickAwayListener, InputBase, Menu} from '@material-ui/core';
+import { IconButton, Popper ,Paper, MenuItem,ClickAwayListener, InputBase, Menu, Popover} from '@material-ui/core';
 
 
 class More extends Component{
@@ -12,8 +12,11 @@ class More extends Component{
 open:false,
 anchorEl: null,
 label:false,
-trashed:false
+trashed:false,
+arraylabel:[],
+labelvalue:'',
         }
+        this.handlelable=this.handlelable.bind(this)
     }
     handleClick=event=>{
       const { currentTarget } = event;
@@ -29,8 +32,10 @@ trashed:false
     this.setState(state=>({
 
       anchorEl:currentTarget,
-      label:!this.state.label,
+      label:!this.state.label
     }))
+    console.log("anchorEl  --" , this.state.anchorEl)
+    console.log("label   --" , this.state.label)
   }
 
  async  handleTrashnote(event){
@@ -41,7 +46,17 @@ trashed:false
       })
       this.props.trash(this.state.trashed)
   }
+setlabel(event){
+  var array=[];
+  event.preventDefault();
+  array.push(this.state.labelvalue)
+  this.setState({
+    arraylabel:array
+  })
+  console.log('array label--',this.state.arraylabel)
+  this.props.notetolabel(this.state.arraylabel)
 
+}
 
 
   onOutsideclick() {
@@ -50,8 +65,12 @@ trashed:false
     })
   }
 
-    render(  )
+    render( )
         {
+
+
+          
+          if(this.state.label===false){
             return(
               // <ClickAwayListener onClickAway = {
               //   () => this.onOutsideclick()
@@ -66,10 +85,10 @@ trashed:false
               <Popper open={this.state.open} anchorEl={this.state.anchorEl} style={{
                 zIndex:"10"
               }}>
-                      <Paper className='reminder'>
+                      <Paper className='more'>
                    
             
-                      <div className='tommorow'>
+                      <div className='t'>
                      
                       <div>
                       <MenuItem onClick={(event)=>this.handleTrashnote(event)} >Delete Note</MenuItem>
@@ -97,29 +116,50 @@ trashed:false
 
               </Popper>
               </div>
-              <div>              <Popper open={this.state.label} anchorEl={this.state.anchorEl} >
-              <Paper>
+              </div>
+            );
+            }
+            else if(this.state.label===true) {
+
+              return(
+
+
+              <div className='popper'>             
+              
+              <Popover  open={this.state.label} anchorEl={this.state.anchorEl} >
+              <Paper className='more'>
+              <div>
               <InputBase
               placeholder='Enter label here'
+              value={this.state.arraylabel}
+              onChange = {
+                (event) => this.setState({
+                  labelvalue: event.target.value
+                })
+              }
               
               >
               
               
               </InputBase>
+              </div>
+              <button onClick={this.setLabel}>
+              Create label
               
+              </button>
               
               </Paper>
               
-              </Popper>
+             </Popover>
               </div>
 
               
-   </div>
+   
 
 // </ClickAwayListener>
 
-            )
+            );
         }
-  
+      }
 }
 export default More

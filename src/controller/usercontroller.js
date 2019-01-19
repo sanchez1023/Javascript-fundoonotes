@@ -52,6 +52,8 @@ export function getData(username, abc) {
 
 
 export function arraynotes(title, description, isPin, isArchived, isTrash, reminder, colaborator,color) {
+   
+   console.log('in constroller',color)
     var notes = {
         Title: title,
         Description: description,
@@ -65,6 +67,9 @@ export function arraynotes(title, description, isPin, isArchived, isTrash, remin
 
 
     }
+
+
+    console.log('array',notes.Color);
     database.database.ref('/notes').push(notes);
 
 

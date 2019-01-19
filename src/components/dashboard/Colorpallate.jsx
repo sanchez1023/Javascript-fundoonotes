@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { IconButton ,Paper,Popper,Card,ClickAwayListener, Tooltip} from '@material-ui/core';
 import { black } from 'material-ui/styles/colors';
+import { darkBlack } from 'material-ui/styles/colors';
 
 
 const colorPaletteClassName = [
@@ -63,8 +64,10 @@ class  Colorpallate extends Component{
     super()
     this.state={
         open:false,
-        anchorEl:null
+        anchorEl:null,
+        cardName:'',
     }
+    this.handlecolor=this.handlecolor.bind(this)
     }
     onOutsideclick()
     {
@@ -73,8 +76,9 @@ class  Colorpallate extends Component{
       })
     }
 
-    handlecolor(event)
+    handlecolor=event=>
     {
+        console.log('in handlecolor--',event.target.value)
         this.props.notetocolor(event.target.value)
     }
     handleClick=event=>{
@@ -88,17 +92,18 @@ render()
 
 { 
     
-    var array = colorPaletteClassName .map((option,index)=>{
+    var array = colorPaletteClassName .map((option)=>{
 
 return(
     <Tooltip title={option.colorName}>
         <IconButton style ={{backgroundColor:option.colorCode,
-            borderColor:black
+            borderColor:darkBlack
         
         
         }}
+        value={option.colorCode}
+        onClick={(event)=>this.handlecolor(event)}
         
-        onClick={this.hadleColor}
         >
         
         </IconButton>
@@ -107,9 +112,7 @@ return(
     })
     
     return(
-        < ClickAwayListener onClickAway = {
-            () => this.onOutsideclick()
-          } >
+      
 <div>
 <IconButton onClick={(event)=>this.handleClick(event)}>
 <img src={require('../../assets/colorplate.svg')}/>
@@ -123,7 +126,7 @@ return(
         </Paper>
         </Popper></Card>
 </div>
-</ ClickAwayListener>
+
     )
 }
 }

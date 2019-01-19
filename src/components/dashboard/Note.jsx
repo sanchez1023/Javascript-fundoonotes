@@ -36,6 +36,7 @@ class Note extends Component {
       isArchive:false,
       menu:false,
     color:'',
+    label:'',
       
 
     }
@@ -59,10 +60,20 @@ class Note extends Component {
 
   }
 
-  handleColor(Color)
+ async  handleColor(Color)
+  {
+     console.log('color--',this.state.color)     
+    await this.setState({
+      color:Color
+    })
+
+  console.log('state color',this.state.color)
+  }
+
+  handleLabel(Label)
   {
     this.setState({
-      color:Color
+      label:Label
     })
   }
   onOutsideclick() {
@@ -117,7 +128,7 @@ this.setState({
   
 })
 
-userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this.state.isArchive,this.state.isTrash,this.state.reminder,this.state.colaborator,this.state.imageOf)
+userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this.state.isArchive,this.state.isTrash,this.state.reminder,this.state.colaborator,this.state.color);
 
 
 
@@ -264,7 +275,9 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
 
       /> 
       </IconButton>
-<More trash={this.handleTrash}/>
+<More trash={this.handleTrash}
+      notetolabel={this.handleLabel}
+/>
 <div>
    <IconButton 
       
@@ -289,4 +302,4 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
     )
   }
 }
-export default Note
+export default Note;

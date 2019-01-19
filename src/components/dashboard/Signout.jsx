@@ -99,7 +99,7 @@ console.log('sign out pinned',pinnedNotes);
                     });
                           var Notes=0;
                           this.state.notes.map( (option, index) => {
-                            if(option.Pinned === false && option.Trashed === false && option.Archived === false )
+                            if((option.Title!=='' ||option.Title==='' ) && (option.Trashed=== false && option.Archived === false && option.Pinned===false))
                             {
                             Notes=Notes+1;
                         }

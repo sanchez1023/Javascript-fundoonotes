@@ -1,6 +1,6 @@
 
    import React, { Component } from 'react';
-   import { InputBase ,Card,Dialog,Chip,IconButton, FormLabel} from '@material-ui/core';
+   import { InputBase ,Card,Chip,IconButton, } from '@material-ui/core';
 import Reminder from './Reminder';
 import More from './More';
 import Colorpallate from './Colorpallate';
@@ -54,8 +54,13 @@ import Editnotes from './Editnote';
            
            return(
              
-               <Card className={cardstyle}>
-               <div className='cardcom'>
+               <Card className={cardstyle}
+               style={{backgroundColor:this.props.Display.Color}}
+                >
+                
+               <div className='cardcom' 
+              
+               >
 
                <InputBase
                defaultValue={this.props.Display.Title}
@@ -63,7 +68,8 @@ import Editnotes from './Editnote';
                onClick={this.handleEdit}
                >
                </InputBase>
-               <div>          <img src={require('../../assets/pin.svg')}/>
+               <div>          <img src={require('../../assets/pin.svg') }
+               alt=''/>
              
                </div>
 
