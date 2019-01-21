@@ -5,6 +5,7 @@ import Colorpallate from './Colorpallate';
 import Addimage from './Addimage';
 import Archive from './Showarchived';
 import More from './More';
+import Pinned from './Pinned';
 
 
 class Editnotes extends Component{
@@ -16,21 +17,31 @@ class Editnotes extends Component{
     
       title:'',
       Description:'',
-      pinned:'',
-      archived:'',
+      pinned:false,
+      archived:false,
       reminder:'',
-      trashed:'',
+      trashed:false,
 
     }
 
   }
+
+  editArchive(archiveValue)
+  {
+    if(archiveValue)
+    this.setState({
+        archived:archiveValue,
+        pinned:false,
+        trashed:false
+    })
+  }
   
   onClose=()=>{
-console.log('in close');
-this.props.close()
-    
-    console.log('open--',this.state.open);
-    
+      console.log('in close');
+      this.props.close()
+          
+          console.log('open--',this.state.open);
+          
   }
 render()
 {
@@ -40,36 +51,40 @@ render()
     } >
     <Dialog  open={this.props.open} fullWidth  >
     
-    <Card className='incard'>
+    <Card className='incard'
+    style={{backgroundColor:this.props.note.Color}}
+    >
 
     <div className='pinbase'>
     <InputBase
-  placeholder='title here'
+  defaultValue={this.props.note.Title}
     onClick={this.handleEdit}
     >
     </InputBase>
-    <div>          <img src={require('../../assets/pin.svg')}/>
-  
-    </div>
+   <Pinned/>
     </div>
    
     
     <div>
-    <InputBase
-    placeholder='description'
-     
-   
-    
-    >
-    </InputBase>
-    <div>
-       <Chip
-       label='hello'
-       onDelete={ () => this.handleReminderDelete(this.props.index) } 
-     />
-     </div>
+            <InputBase
+            defaultValue={this.props.note.Description}
+            >
+            </InputBase>
+            {this.props.note.Reminder===''?(
+              <div>
+              </div>
+            ) : ( 
+              <div>
+             <Chip
+                        label={this.props.note.Reminder}
+                        onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                      />
   
      </div>
+     )}
+    </div>
+  
+    
       
   
   

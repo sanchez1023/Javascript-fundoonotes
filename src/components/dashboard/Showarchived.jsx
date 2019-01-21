@@ -11,10 +11,10 @@ constructor()
 
   }
 }
-handleClick=event=>{
+ async handleClick(){
 
-  this.setState({
-    archive:true,
+  await this.setState({
+    archive:!this.props.valueofarchive
   })
 }
 

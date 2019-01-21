@@ -84,11 +84,12 @@ handleClose()
  if(this.props.notes){
 
                     array= this.state.notes.map( (option, index) => {
-                      if((option.Title!=='' ||option.Title=='')&&(option.Reminder!=='') && option.Archived === false && option.Trashed === false  &&  option.Pinned ===false)
+                      // if((option.Title!=='' ||option.Title=='')&&(option.Reminder!=='') && option.Archived === false && option.Trashed === false  &&  option.Pinned ===false)
+                      if((option.Trashed !== true && option.Archived !== true && option.Pinned !==true ))
                       {
                         return( 
                           <div>
-                          <h>notes</h>
+                       
 
                       
                       <CardComponent Display={ option }
@@ -176,7 +177,7 @@ else{
 
 
   array= this.state.notes.map( (option, index) => {
-   
+    if((option.Trashed !== true && option.Archived !== true && option.Pinned !==true ))
     {
     return( 
   

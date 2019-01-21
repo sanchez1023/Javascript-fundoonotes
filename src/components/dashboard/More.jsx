@@ -1,24 +1,26 @@
 import React, {
   Component
 } from 'react';
-import { IconButton, Popper ,Paper, MenuItem,ClickAwayListener, InputBase, Menu, Popover} from '@material-ui/core';
+import { IconButton, Popper ,Paper, MenuItem,ClickAwayListener, InputBase, Menu, Popover, TextField} from '@material-ui/core';
 
 
 class More extends Component{
     constructor()
     {
-        super()
-        this.state={
-open:false,
-anchorEl: null,
-label:false,
-trashed:false,
-arraylabel:[],
-labelvalue:'',
-        }
-        this.handlelable=this.handlelable.bind(this)
+      super()
+      this.state={
+        open:false,
+        anchorEl: null,
+        label:false,
+        trashed:false,
+        
+        labelvalue:'',
+      }
+      this.handlelabel=this.handlelabel.bind(this)
+      this.setLabel=this.setLabel.bind(this)
     }
-    handleClick=event=>{
+    
+handleClick=event=>{
       const { currentTarget } = event;
     this.setState(state => ({
       anchorEl: currentTarget,
@@ -27,15 +29,18 @@ labelvalue:'',
     }));
   
   }
-  handlelable=event=>{
-    const{currentTarget}=event;
-    this.setState(state=>({
 
-      anchorEl:currentTarget,
+async handlelabel(){
+
+  console.log("anchorEl be --" , this.state.anchorEl)
+  console.log("label be  --" , this.state.label, this.state.open)
+    await  this.setState(state=>({
+      open:!this.state.open,
+      anchorEl:this.state.anchorEl,
       label:!this.state.label
     }))
     console.log("anchorEl  --" , this.state.anchorEl)
-    console.log("label   --" , this.state.label)
+    console.log("label   --" , this.state.label, this.state.open)
   }
 
  async  handleTrashnote(event){
@@ -46,18 +51,18 @@ labelvalue:'',
       })
       this.props.trash(this.state.trashed)
   }
-setlabel(event){
-  var array=[];
-  event.preventDefault();
-  array.push(this.state.labelvalue)
-  this.setState({
-    arraylabel:array
-  })
-  console.log('array label--',this.state.arraylabel)
-  this.props.notetolabel(this.state.arraylabel)
+async setLabel(event){
+          
+          console.log('in ste label--',this.state.labelvalue)
+          event.preventDefault();
+        
+         await this.setState({
+            arraylabel:this.state.labelvalue
+          })
+          console.log('array label--',this.state.arraylabel)
+          this.props.notetolabel(this.state.arraylabel)
 
 }
-
 
   onOutsideclick() {
     this.setState({
@@ -67,9 +72,6 @@ setlabel(event){
 
     render( )
         {
-
-
-          
           if(this.state.label===false){
             return(
               // <ClickAwayListener onClickAway = {
@@ -86,8 +88,6 @@ setlabel(event){
                 zIndex:"10"
               }}>
                       <Paper className='more'>
-                   
-            
                       <div className='t'>
                      
                       <div>
@@ -97,23 +97,11 @@ setlabel(event){
                       <div className='tommorow'>
                       
                       <div>
-                      <MenuItem onClick={(event)=>this.handlelable(event)}>Add Label</MenuItem>
-                      
-                      </div>
-                 
+                      <MenuItem onClick={(event)=>this.handlelabel(event)}>Add Label</MenuItem>
                       </div>
                       </div>
-                    
-               
-                  
-                      
-                      
+                      </div>
                       </Paper>
-
-
-
-
-
               </Popper>
               </div>
               </div>
@@ -122,43 +110,56 @@ setlabel(event){
             else if(this.state.label===true) {
 
               return(
+                
+          <div className='labelpopper'>
+          <div>
+            <IconButton  onClick={(event)=>this.handleClick(event)}>
+            <img src={require('../../assets/more.svg')}/>
+            </IconButton>
+            </div> 
 
-
-              <div className='popper'>             
+              <div>             
               
-              <Popover  open={this.state.label} anchorEl={this.state.anchorEl} >
+              <Popper open={this.state.label} anchorEl={this.state.anchorEl} >
               <Paper className='more'>
               <div>
-              <InputBase
-              placeholder='Enter label here'
-              value={this.state.arraylabel}
-              onChange = {
-                (event) => this.setState({
-                  labelvalue: event.target.value
-                })
-              }
-              
-              >
-              
-              
-              </InputBase>
+            <TextField 
+            placeholder='enter label here'
+            value = {
+              this.state.labelvalue
+            }
+            onChange = {
+              (event) => this.setState({
+                labelvalue: event.target.value
+              })
+            }
+            
+            ></TextField>
               </div>
-              <button onClick={this.setLabel}>
+              <button onClick={(event)=>this.setLabel(event)}>
               Create label
               
               </button>
               
               </Paper>
               
-             </Popover>
+             </Popper>
               </div>
-
+</div>
               
    
 
 // </ClickAwayListener>
 
             );
+        }
+        else
+        {
+          return ( <div>
+          <IconButton  onClick={(event)=>this.handleClick(event)}>
+          <img src={require('../../assets/more.svg')}/>
+          </IconButton>
+          </div> )
         }
       }
 }

@@ -7,6 +7,7 @@ import Colorpallate from './Colorpallate';
 import Addimage from './Addimage';
 import Archive from './Showarchived';
 import Editnotes from './Editnote';
+import Pinned from './Pinned';
 
 
 
@@ -25,7 +26,7 @@ import Editnotes from './Editnote';
 
        handleEdit=event=>{
          this.setState({ openDailog:!this.state.openDailog,})
-        
+        console.log("ref title",this.refs.Title.value)
 
        }
        handleReminderDelete = ( index ) => {
@@ -49,8 +50,19 @@ import Editnotes from './Editnote';
         })
       }
        render()
-       { let cardstyle=this.props.status ? 'showcards':'showcardslist'
-           console.log('Display', this.props.Display);
+       { 
+        //  this.props.Display.map((opti,index)=>{
+           
+        //   opti.Label.map((optio,index)=>{
+        //     console.log('option',optio[0])
+        //   })
+        //  })
+         
+        
+        
+        let cardstyle=this.props.status ? 'showcards':'showcardslist'
+         
+       console.log('Display', this.props.Display);
            
            return(
              
@@ -66,12 +78,11 @@ import Editnotes from './Editnote';
                defaultValue={this.props.Display.Title}
                readOnly={this.props.Display.Title}
                onClick={this.handleEdit}
+               value={this.props.Display.Title}
+               ref ='Title'
                >
                </InputBase>
-               <div>          <img src={require('../../assets/pin.svg') }
-               alt=''/>
-             
-               </div>
+              <Pinned/>
 
               
                </div>
@@ -84,21 +95,46 @@ import Editnotes from './Editnote';
                
                >
                </InputBase>
-               {this.props.Display.Reminder === "" ? (
-                <div>
-                </div>
-              ) : ( 
-                <div>
-                  <Chip
-                  label={this.props.Display.Reminder}
-                  onDelete={ () => this.handleReminderDelete(this.props.index) } 
-                />
-                </div>
-              )}
-               
-                 
-             
-               </div>
+                          <div className='reminderAndlabels'>
+                          <div>
+                          {this.props.Display.Reminder ? (
+                            <div>
+                              <Chip 
+                              
+                              style={{backgroundColor:this.props.Display.Color}}
+                              label={this.props.Display.Reminder}
+                              onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                            >
+                            
+                            </Chip>
+                            </div>
+                          ) 
+                          : 
+                          ( 
+                            <div>
+
+                            </div>
+                            )}
+                            </div>
+                        <div>
+                          {this.props.Display.Label ===''? 
+                           
+null
+                            
+                          :
+                          <div>
+                          <Chip style={{backgroundColor:this.props.Display.Color}}
+                          label={this.props.Display.Label}
+                          onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                          
+                          ></Chip>
+                    </div>
+                          
+                          }
+                        </div>
+                        
+                        
+                          </div>
                <toolbar className='toolbar'>
               <Reminder/>
                
@@ -117,7 +153,7 @@ import Editnotes from './Editnote';
                
              <Addimage/>
                
-             <Archive/>
+             <Archive valueofarchive={this.props.Display.Archived}/>
                
             <More/>
                <IconButton style = {
@@ -134,9 +170,11 @@ import Editnotes from './Editnote';
         <Editnotes open={this.state.openDailog}
         
         close={this.handleEdit}
+        note={this.props.Display}
         
         />
                 
+               </div>
                </Card>
    
    

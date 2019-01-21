@@ -14,6 +14,7 @@ import {
   MenuItem,
 
 } from '@material-ui/core';
+var userctr=require('../../controller/usercontroller')
 /**
  * theme of Muidrawer is overriden according to use in the page
  */
@@ -42,9 +43,22 @@ class Sidemenu extends Component {
       bin:false,
       reminder:false,
       notes:false,
-      open: false
+      open: false,
+      label:[],
     }
   }
+
+
+ async componentDidMount() {
+    
+  var notesValue =await userctr.add();
+  console.log('notes--',notesValue)
+  this.setState({
+    label: notesValue,
+    open:true
+  }) 
+
+} 
 
 
   openArchive=event=>
@@ -92,6 +106,38 @@ openNotes()
 
   render() {
     console.log("drawer", this.props.parentProps);
+console.log('labels--',this.state.label)
+var array=[];
+this.state.label.map((Option,index)=>{
+  if(Option.Label.length>1)
+array.push(Option);
+
+})
+console.log("array of labels",array)
+var labeledarray=[]
+array.map((opt,index)=>{
+
+labeledarray.push(opt.Label)
+
+
+
+})
+console.log('arra that is labeled--')
+var i=0;
+var a=labeledarray.map((value,index)=>{
+
+  return(
+    <ListItem
+    >
+    <img src={require('../../assets/label.svg')}/>
+    
+    {value[i++]}</ListItem>
+    
+    )
+
+})
+
+
 
     return ( <MuiThemeProvider theme = {
         theme
@@ -154,6 +200,7 @@ openNotes()
       <label className = 'divide' >
       LABLES  
       </label> 
+      {a}
       <MenuItem className='menuItem'>
       <div className='menunote'>
       <div>

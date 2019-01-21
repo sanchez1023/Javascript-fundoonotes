@@ -16,6 +16,7 @@ import More from './More';
 import Reminder from './Reminder';
 import Colorpallate from './Colorpallate';
 import Addimage from './Addimage';
+import Pinned from './Pinned';
 var userctr=require('../../controller/usercontroller')
 /*
 class declared to render and creaing gloabal values
@@ -37,12 +38,16 @@ class Note extends Component {
       menu:false,
     color:'',
     label:'',
+    arraynotes:[],
+    
       
 
     }
     this.handleReminder=this.handleReminder.bind(this)
     this.handleTrash=this.handleTrash.bind(this)
     this.handleColor=this.handleColor.bind(this)
+    this.handleLabel=this.handleLabel.bind(this)
+    this.handlePinned=this.handlePinned.bind(this)
   }
   openMore()
   {
@@ -70,53 +75,57 @@ class Note extends Component {
   console.log('state color',this.state.color)
   }
 
-  handleLabel(Label)
-  {
-    this.setState({
-      label:Label
-    })
-  }
+      async handleLabel(Label)
+      { 
+        this.state.arraynotes.push(Label)
+        
+        console.log('in handle label',Label)
+        await  this.setState({
+          label:this.state.arraynotes
+        })
+        console.log('label--',this.state.label)
+      }
   onOutsideclick() {
     this.setState({
       open: false
     })
   }
-  handleArchive()
-  {
-    this.setState({
-      isArchive:true
-    })
-  }
-  handlePinned()
-  {
-    this.setState({
-      isPin:true,
-    })
-  }
+              handleArchive()
+              {
+                this.setState({
+                  isArchive:true
+                })
+              }
+                     async      handlePinned(pinvalue)
+                      {
+                        console.log('pin value--',pinvalue)
+                        await this.setState({
+                          isPin:pinvalue
+                        })
+                        console.log('after set state',this.state.isPin)
+                      }
 
-   handleTrash(Trash)
-  {
-    console.log('rem',Trash);
-   
-this.setState({
+                            handleTrash(Trash)
+                            {
+                              console.log('rem',Trash);
+                            
+                          this.setState({
 
-  isTrash:Trash
-})
-
-
-    console.log('reminder',this.state.isTrash)
-  }
+                            isTrash:Trash
+                          })
+                            console.log('reminder',this.state.isTrash)
+                          }
 
 
-  async handleReminder(reminder)
-  {
-    console.log('rem',reminder);
-    
-   await this.setState({
-      reminder:reminder
-    })
-    console.log('reminder',this.state.reminder)
-  }
+                                    async handleReminder(reminder)
+                                    {
+                                      console.log('rem',reminder);
+                                      
+                                    await this.setState({
+                                        reminder:reminder
+                                      })
+                                      console.log('reminder',this.state.reminder)
+                                    }
   handleNotes = event =>{
 event.preventDefault();
 
@@ -128,7 +137,7 @@ this.setState({
   
 })
 
-userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this.state.isArchive,this.state.isTrash,this.state.reminder,this.state.colaborator,this.state.color);
+userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this.state.isArchive,this.state.isTrash,this.state.reminder,this.state.colaborator,this.state.color,this.state.label);
 
 
 
@@ -205,7 +214,8 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
 
 
       >
-      <div className = 'createnote' >
+     
+      <div className='cardcom'>
       <InputBase color = 'inherit'
       placeholder = 'Title' 
       value={this.state.title}
@@ -218,22 +228,11 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
 
 
       </InputBase> 
-      <IconButton style = {
-        {
-          marginLeft: '250px'
-        }
-      }
-      onClick={event => this.handlePinned(event)}> 
-      
-      
-      
-      <img src = {
-        require("../../assets/pin.svg")
-      }
-      /> 
-      </IconButton>
-
-      </div> 
+    <div>
+      <Pinned handlePin={this.handlePinned}/>
+      </div>
+      </div>
+   
       <InputBase placeholder = 'Take a note'
       value={this.state.description}
       onChange = {
@@ -244,7 +243,7 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       >
       </InputBase>
 
-      <div  className ='toolbarandclose'>
+ 
       < toolbar  className='toolbar'>
       
       <Reminder reminderProps={this.handleReminder}/>
@@ -289,7 +288,6 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       
       </toolbar>
 
-      </div>
 
 
       </Card>

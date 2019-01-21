@@ -111,6 +111,9 @@ firebase.firebase.auth().signInWithPopup(provider).then(function(result)
     var lname=display[1];
         localStorage.setItem('userKey',token)
         localStorage.setItem('email',email)
+       localStorage.setItem('firstname',fname)
+        localStorage.setItem('lastname', lname)
+
   toast('sign in succesful',{position:toast.POSITION.TOP_CENTER})
   window.location='http://localhost:3000/dashboard'
    //this.props.props.history.push('/dashboard');

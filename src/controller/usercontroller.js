@@ -51,8 +51,9 @@ export function getData(username, abc) {
 }
 
 
-export function arraynotes(title, description, isPin, isArchived, isTrash, reminder, colaborator,color) {
-   
+export async function arraynotes(title, description, isPin, isArchived, isTrash, reminder, colaborator,color,label) {
+   var labelarray=[];
+   labelarray.push(label)
    console.log('in constroller',color)
     var notes = {
         Title: title,
@@ -63,36 +64,60 @@ export function arraynotes(title, description, isPin, isArchived, isTrash, remin
         Reminder: reminder,
         Colaborator: colaborator,
         userid: localStorage.getItem('userKey'),
-        Color:color
+        Color:color,
+        Label:label
 
 
     }
 
 
     console.log('array',notes.Color);
-    database.database.ref('/notes').push(notes);
+    if(label != null){
+                 labelarray.map(async (option,index)=>{
+                     var labelDa = {
+                         name:option,
+                         user:notes.userid
+                     }
+                    var resp = await database.database.ref('/labels').push(labelDa);
+        var key =await resp.child("/labels").push().getKey();
+        notes.label = key;
+                })
+        
+    }
+     await database.database.ref('/notes').push(notes);
+      }
+   
+      var tryvalue =async function(value){
+      await value.forEach(function(value){
+            console.log('data: '+value);
+        })
+      }
+  
+  
 
 
-}
+
 export function retriveData() {
     const arrayvalue =  new Promise(async function(resolve, reject)  {
 
-      await  database.database.ref('notes').orderByChild("userid").equalTo(localStorage.getItem('userKey')).on('value', snap => {
+     await database.database.ref('notes').orderByChild("userid").equalTo(localStorage.getItem('userKey')).on('value', snap => {
+        console.log('response of data:'+snap);    
             var value = [];
-            snap.forEach(function (snap) {
+           snap.forEach(function (snap) {
 
                 value.push(snap.val());
-
-
+                 
                 var key = snap.key;
-
+                tryvalue(value);
                 resolve(value);
 
             });
+           
 
         });
+        
     })
-
+  
 
     var a = arrayvalue.then((value) => {
        // console.log("final ---", value);
@@ -110,6 +135,7 @@ export var add =  function () {
         try {
             var value = await retriveData();
            // console.log('in add--', value);
+           
             resolve(value);
         } catch (error) {
             reject(error)

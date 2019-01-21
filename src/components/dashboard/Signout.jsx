@@ -4,6 +4,7 @@ import React, {
 import { Popper,ClickAwayListener,  Paper, Card, Fab, Divider, Avatar, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 import firebase from '../../firebase'
+import Signoutcard from './Cardsignout';
 
 const theme=createMuiTheme({
   overrides:{
@@ -79,7 +80,7 @@ onOutsideclick()
   console.log('arraynotes',arrayNotes)
         var pinnedNotes=0;
         this.state.notes.map( (option, index) => {
-          if(option.Pinned === true && option.Trashed === false && option.Archived === false )
+          if(option.Pinned === true  )
           {
             pinnedNotes=pinnedNotes+1;
             console.log('index--',index)
@@ -90,7 +91,7 @@ console.log('sign out pinned',pinnedNotes);
   });
                     var archivedNotes=0;
                     this.state.notes.map( (option, index) => {
-                      if(option.Pinned === false && option.Trashed === false && option.Archived === true )
+                      if(option.Archived === true )
                       {
                         archivedNotes=archivedNotes+1;
                   }
@@ -99,7 +100,7 @@ console.log('sign out pinned',pinnedNotes);
                     });
                           var Notes=0;
                           this.state.notes.map( (option, index) => {
-                            if((option.Title!=='' ||option.Title==='' ) && (option.Trashed=== false && option.Archived === false && option.Pinned===false))
+                            if((option.Trashed !== true && option.Archived !== true && option.Pinned !==true ))
                             {
                             Notes=Notes+1;
                         }
@@ -115,6 +116,17 @@ console.log('sign out pinned',pinnedNotes);
                                       }
                                       localStorage.setItem('Reminder',reminder)
                                       console.log('sign out Rnotes--',reminder);
+                                        });
+
+                                 
+                                        var labeled=0;
+                                        this.state.notes.map( (option, index) => {
+                                          if(option.Label !=='' )
+                                          {
+                                          labeled=labeled+1;
+                                      }
+                                      localStorage.setItem('Label',labeled)
+                                      console.log('sign out Rnotes--l',labeled);
                                         });
 
 }
@@ -148,24 +160,8 @@ console.log('sign out pinned',pinnedNotes);
                    
                   <Popper  open={this.state.open }  anchorEl={this.state.anchorEl}>
                         <Paper className='paper'>
-                        <Card>
-                              <div>
-                              Welcome:   {localStorage.getItem('email')}
-                              </div>
-                              <Divider/>
-                                  <div>
-                                  Number of notes:{localStorage.getItem('Notes')}
-                                  </div>
-                                      <div>
-                                      Number of Archived Notes:{localStorage.getItem('Archived')}
-                                      </div>
-                                          <div>
-                                          Number of Pinned Notes:{localStorage.getItem('Pinned')}
-                                          </div>
-                                                <div>
-                                                Number of notes with reminder:{localStorage.getItem('Reminder')}
-
-                                                </div>
+                        
+                            <Signoutcard />
                                                 <Divider/>
                                                   <div className='signoutbutton'>
                                                   <div>                                                          <button variant='extended'
@@ -180,7 +176,7 @@ console.log('sign out pinned',pinnedNotes);
                                                        </div>
 
                                                   </div>
-                                                  </Card>
+                                                  
                           </Paper>
 
                   </Popper>
