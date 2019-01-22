@@ -1,0 +1,8 @@
+for(i=0;i<labeledarray.length;i++)
+{
+ 
+      
+     arr1.push( value[i]);
+    
+
+}

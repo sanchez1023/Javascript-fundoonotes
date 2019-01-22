@@ -61,6 +61,9 @@ async setLabel(event){
           })
           console.log('array label--',this.state.arraylabel)
           this.props.notetolabel(this.state.arraylabel)
+          this.setState({
+            labelvalue:'',
+          })
 
 }
 
@@ -85,7 +88,7 @@ async setLabel(event){
       
       <div>
               <Popper open={this.state.open} anchorEl={this.state.anchorEl} style={{
-                zIndex:"10"
+                zIndex:"435"
               }}>
                       <Paper className='more'>
                       <div className='t'>

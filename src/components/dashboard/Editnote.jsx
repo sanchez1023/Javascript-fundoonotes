@@ -6,6 +6,7 @@ import Addimage from './Addimage';
 import Archive from './Showarchived';
 import More from './More';
 import Pinned from './Pinned';
+var userctr=require('../../controller/usercontroller')
 
 
 class Editnotes extends Component{
@@ -45,10 +46,10 @@ class Editnotes extends Component{
   }
 render()
 {
+  
+ 
   return(
-    < ClickAwayListener onClickAway = {
-      () => this.onOutsideclick()
-    } >
+  
     <Dialog  open={this.props.open} fullWidth  >
     
     <Card className='incard'
@@ -127,7 +128,7 @@ render()
    
    
 </Dialog>
-</ ClickAwayListener>
+
 
   )
 }

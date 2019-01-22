@@ -5,6 +5,7 @@ import Dashboard from '../components/dashboard/Dashboard.jsx';
 import Note from '../components/dashboard/Note.jsx';
 import Showcards from '../components/dashboard/Shownotes';
 
+var userctr=require('../controller/usercontroller')
 
 class Dash extends Component{
     constructor()
@@ -15,11 +16,13 @@ class Dash extends Component{
             Trashed:false,
             Cardstyle:false,
             note:false,
+            notes:[]
         }
         this.navigate=this.navigate.bind(this)
         this.handleCardsview=this.handleCardsview.bind(this)
       
     }
+    
    
     navigate(archived,reminder,trash,note)
     {

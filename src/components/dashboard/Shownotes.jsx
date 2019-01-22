@@ -23,12 +23,14 @@ class Showcards extends Component{
     async componentDidMount() {
     
      var notesValue =await userctr.add();
-     console.log('notes--',notesValue)
+    console.log('notes-- in show',notesValue)
      this.setState({
        notes : notesValue,
        open:true
      }) 
 
+  //     var b= await userctr.getNotes();
+  // console.log('b---',b);
 } 
 
 // handledialogClick()
@@ -77,8 +79,13 @@ handleClose()
 
     render()
     {   var array=[];
+// var arrayv=[]
+//       this.state.notes.map((option,index)=>{
 
-  
+//         arrayv.push(option.data)
+//       })
+
+//   console.log('arrayv ',arrayv)
 
   
  if(this.props.notes){
@@ -176,7 +183,7 @@ else{
 
 
 
-  array= this.state.notes.map( (option, index) => {
+         array= this.state.notes.map( (option, index) => {
     if((option.Trashed !== true && option.Archived !== true && option.Pinned !==true ))
     {
     return( 

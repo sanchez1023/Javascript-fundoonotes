@@ -57,6 +57,13 @@ border-color: black
  
 
 }
+
+#buttonmenu{
+  width: 250px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
 .avatar{
 
     margin: 10;
@@ -348,11 +355,11 @@ border-style: groove;
   
 }
 .showcards{
-  width: 270px;
+  width: 275px;
   display: flex;
   flex-direction: column;
   margin-left: 20px;
- background-color: chartreuse;
+ 
   margin-top: 20px;
   
   border-color: rgba(202, 202, 192, 0.561);

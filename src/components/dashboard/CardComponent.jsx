@@ -8,7 +8,8 @@ import Addimage from './Addimage';
 import Archive from './Showarchived';
 import Editnotes from './Editnote';
 import Pinned from './Pinned';
-
+import Forever from './Deleteforever';
+var userctr=require('../../controller/usercontroller')
 
 
       
@@ -27,6 +28,8 @@ import Pinned from './Pinned';
        handleEdit=event=>{
          this.setState({ openDailog:!this.state.openDailog,})
         console.log("ref title",this.refs.Title.value)
+        var b=userctr.getNotes();
+  console.log('b---',b);
 
        }
        handleReminderDelete = ( index ) => {
@@ -57,12 +60,14 @@ import Pinned from './Pinned';
         //     console.log('option',optio[0])
         //   })
         //  })
+      
          
         
         
         let cardstyle=this.props.status ? 'showcards':'showcardslist'
          
        console.log('Display', this.props.Display);
+       console.log('idex--', this.props.index);
            
            return(
              
@@ -123,11 +128,15 @@ null
                             
                           :
                           <div>
-                          <Chip style={{backgroundColor:this.props.Display.Color}}
-                          label={this.props.Display.Label}
-                          onDelete={ () => this.handleReminderDelete(this.props.index) } 
-                          
-                          ></Chip>
+                          {this.props.Display.Label.map((key)=>
+
+                            <Chip style={{backgroundColor:this.props.Display.Color}}
+                            label={key}
+                            onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                            
+                            ></Chip>
+                          )}
+                        
                     </div>
                           
                           }
@@ -154,16 +163,17 @@ null
              <Addimage/>
                
              <Archive valueofarchive={this.props.Display.Archived}/>
-               
-            <More/>
-               <IconButton style = {
-                 {
-                   marginLeft: '100px'
-                 }
-               } >
-               
-               
-               </IconButton>
+               {this.props.Display.Trashed ?
+                (
+             <Forever/>
+
+                ):
+                (
+                  <More/>
+                )
+               }
+         
+              
                
                </toolbar>
              

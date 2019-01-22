@@ -12,6 +12,7 @@ import {
   MuiThemeProvider,
   createMuiTheme,
   MenuItem,
+  Button,
 
 } from '@material-ui/core';
 var userctr=require('../../controller/usercontroller')
@@ -23,10 +24,10 @@ const theme = createMuiTheme({
 
     MuiDrawer: {
       paperAnchorLeft: {
-
         left: 0,
         right: 'auto',
         top: '65px',
+        overflow: 'auto'
       }
     },
   }
@@ -50,8 +51,9 @@ class Sidemenu extends Component {
 
 
  async componentDidMount() {
+   
     
-  var notesValue =await userctr.add();
+  var notesValue =await userctr.giveLabels()
   console.log('notes--',notesValue)
   this.setState({
     label: notesValue,
@@ -105,37 +107,105 @@ openNotes()
 }
 
   render() {
-    console.log("drawer", this.props.parentProps);
-console.log('labels--',this.state.label)
-var array=[];
-this.state.label.map((Option,index)=>{
-  if(Option.Label.length>1)
-array.push(Option);
+console.log('labels in menu--',this.state.label)
+var arryofvalue=[];
+
+this.state.label.map((option,index)=>{
+
+arryofvalue.push(option.name);
 
 })
-console.log("array of labels",array)
-var labeledarray=[]
-array.map((opt,index)=>{
+    console.log("drawer", arryofvalue);
+var arrv=[];
+arryofvalue.map((option,index)=>{
 
-labeledarray.push(opt.Label)
-
-
+arrv.push(option);
 
 })
-console.log('arra that is labeled--')
-var i=0;
-var a=labeledarray.map((value,index)=>{
-
-  return(
-    <ListItem
-    >
-    <img src={require('../../assets/label.svg')}/>
+ console.log('labels--',arrv);
+ var arr1=[];
+  arrv.map((value,index)=>{
+  for(var i=0;i<=arrv.length;i++)
+  {
+   if(value!==undefined){
+        
+       arr1.push( value[i]);
+      
+   }
+  }
+ 
+})
+console.log('arra1',arr1);
+var arr2=[];
+var a=arr1.map((option,index)=>{
+ 
+  if(option!==undefined)
+    {
+      arr2.push(option)
+    }
+  })
+  console.log('arr 2 --',arr2)
+  var a=arr2.map((option,index)=>{
+      return(
     
-    {value[i++]}</ListItem>
+        <div>
+        <Button id='buttonmenu'>
+        <img src={require('../../assets/label.svg') }
+        style={{marginRight:'10px'}}
+        
+        />
+        {option}
+        </Button>
+        </div>
+      )
+    })
     
-    )
 
-})
+// var array=[];
+// this.state.label.map((Option,index)=>{
+//   if(Option.Label.length>1)
+// array.push(Option);
+
+// })
+// console.log("array of labels",array)
+// var labeledarray=[]
+// array.map((opt,index)=>{
+
+// labeledarray.push(opt.Label)
+
+
+
+// })
+// console.log('arra that is labeled--')
+// var i=0;
+// var arr1=[];
+// var a=labeledarray.map((value,index)=>{
+// for(i=0;i<labeledarray.length;i++)
+// {
+ 
+      
+//      arr1.push( value[i]);
+    
+
+// }
+
+ 
+// })
+// var a=arr1.map((Option,index)=>{
+//   return(
+
+//     <div>
+//     <Button id='buttonmenu'>
+//     <img src={require('../../assets/label.svg')}/>
+//     {Option}
+//     </Button>
+//     </div>
+//   )
+// })
+
+
+
+
 
 
 

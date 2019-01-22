@@ -77,7 +77,7 @@ onOutsideclick()
       notes:arrayNotes,
     }
   )
-  console.log('arraynotes',arrayNotes)
+ // console.log('arraynotes',arrayNotes)
         var pinnedNotes=0;
         this.state.notes.map( (option, index) => {
           if(option.Pinned === true  )
