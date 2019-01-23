@@ -5,7 +5,7 @@ import React, {
 import {
   IconButton,
 
-  SwipeableDrawer,
+  Drawer,
   List,
   ListItem,
   Divider,
@@ -13,6 +13,7 @@ import {
   createMuiTheme,
   MenuItem,
   Button,
+  
 
 } from '@material-ui/core';
 var userctr=require('../../controller/usercontroller')
@@ -27,7 +28,13 @@ const theme = createMuiTheme({
         left: 0,
         right: 'auto',
         top: '65px',
-        overflow: 'auto'
+     
+        height:'auto',
+        overflowY: 'scroll',
+    overflowX: 'hidden',
+    position: 'fixed',
+  
+      
       }
     },
   }
@@ -106,7 +113,9 @@ openNotes()
 
 }
 
-  render() {
+  render()
+   {
+
 console.log('labels in menu--',this.state.label)
 var arryofvalue=[];
 
@@ -115,7 +124,7 @@ this.state.label.map((option,index)=>{
 arryofvalue.push(option.name);
 
 })
-    console.log("drawer", arryofvalue);
+   // console.log("drawer", arryofvalue);
 var arrv=[];
 arryofvalue.map((option,index)=>{
 
@@ -144,7 +153,7 @@ var a=arr1.map((option,index)=>{
       arr2.push(option)
     }
   })
-  console.log('arr 2 --',arr2)
+  //console.log('arr 2 --',arr2)
   var a=arr2.map((option,index)=>{
       return(
     
@@ -205,7 +214,7 @@ var a=arr1.map((option,index)=>{
 
 
 
-
+let a=this.state.notes? 'menuItem':'menu'
 
 
 
@@ -216,7 +225,7 @@ var a=arr1.map((option,index)=>{
       <div className = 'drawer' >
 
 
-      <SwipeableDrawer anchor = {
+      <Drawer anchor = {
         'left'
       }
       tabIndex = {
@@ -226,11 +235,13 @@ var a=arr1.map((option,index)=>{
       open = {
         this.props.parentProps
       }
+      
 
       >
 
       <List className = 'list' >
-<MenuItem className='menuItem' onClick={(event)=>this.openNotes(event)}>
+      
+<MenuItem id='menuItem' onClick={(event)=>this.openNotes(event)}>
 <div className='menunote'>
       <div>
       <
@@ -245,7 +256,7 @@ var a=arr1.map((option,index)=>{
       </div>
       </div>
       </MenuItem>
-      <MenuItem className='menuItem' onClick={(event)=>this.openReminder(event)}>
+      <MenuItem id='menuItem' onClick={(event)=>this.openReminder(event)}>
       <div className='menunote'>
       <div>
      
@@ -271,7 +282,7 @@ var a=arr1.map((option,index)=>{
       LABLES  
       </label> 
       {a}
-      <MenuItem className='menuItem'>
+      <MenuItem id='menuItem'>
       <div className='menunote'>
       <div>
       <
@@ -288,7 +299,7 @@ var a=arr1.map((option,index)=>{
       </MenuItem>
       <
       Divider / >
-      <MenuItem className='menuItem' onClick={(event)=>this.openArchive(event)}>
+      <MenuItem id='menuItem' onClick={(event)=>this.openArchive(event)}>
  <div className='menunote'>
     <div>
       <
@@ -327,7 +338,7 @@ var a=arr1.map((option,index)=>{
 
 
 
-      </SwipeableDrawer>  
+      </Drawer>  
       </div>
        </MuiThemeProvider>
 

@@ -103,7 +103,7 @@ async handleTomorow(event){
         <img src={require('../../assets/remainder.svg')}/>
         </IconButton>
         <Card>
-                <Popper open={this.state.open} anchorEl={this.state.anchorEl}>
+                <Popper open={this.state.open} anchorEl={this.state.anchorEl} position='absolute' z-index='1'>
                         <Paper className='reminder'>
                         
         

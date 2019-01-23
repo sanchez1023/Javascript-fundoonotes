@@ -85,47 +85,51 @@ class Note extends Component {
         })
         console.log('label--',this.state.label)
       }
+
   onOutsideclick() {
     this.setState({
       open: false
     })
   }
-              handleArchive()
-              {
-                this.setState({
-                  isArchive:true
-                })
-              }
-                     async      handlePinned(pinvalue)
-                      {
-                        console.log('pin value--',pinvalue)
-                        await this.setState({
-                          isPin:pinvalue
-                        })
-                        console.log('after set state',this.state.isPin)
-                      }
+      handleArchive()
+      {
+        this.setState({
+          isArchive:true
+        })
+      }
 
-                            handleTrash(Trash)
-                            {
-                              console.log('rem',Trash);
-                            
-                          this.setState({
+      async handlePinned(pinvalue)
+      {
+        console.log('pin value--',pinvalue)
+        await this.setState({
+          isPin:pinvalue
+        })
+        console.log('after set state',this.state.isPin)
+      }
 
-                            isTrash:Trash
-                          })
-                            console.log('reminder',this.state.isTrash)
-                          }
+      handleTrash(Trash)
+      {
+        console.log('rem',Trash);
+      
+    this.setState({
+
+      isTrash:Trash
+    })
+      console.log('reminder',this.state.isTrash)
+    }
 
 
-                                    async handleReminder(reminder)
-                                    {
-                                      console.log('rem',reminder);
-                                      
-                                    await this.setState({
-                                        reminder:reminder
-                                      })
-                                      console.log('reminder',this.state.reminder)
-                                    }
+    async handleReminder(reminder)
+    {
+      console.log('rem',reminder);
+      
+    await this.setState({
+        reminder:reminder
+      })
+      console.log('reminder',this.state.reminder)
+    }
+
+    
   handleNotes = event =>{
 event.preventDefault();
 

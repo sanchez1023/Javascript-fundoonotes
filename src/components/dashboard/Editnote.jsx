@@ -11,17 +11,18 @@ var userctr=require('../../controller/usercontroller')
 
 class Editnotes extends Component{
 
-  constructor()
+  constructor(props)
   {
-    super()
+    super(props)
     this.state={
     
-      title:'',
-      Description:'',
+      title:this.props.note.Title,
+      Description:this.props.note.Description,
       pinned:false,
       archived:false,
       reminder:'',
       trashed:false,
+      key:[]
 
     }
 
@@ -37,16 +38,36 @@ class Editnotes extends Component{
     })
   }
   
-  onClose=()=>{
+  async onClose(event){
       console.log('in close');
       this.props.close()
+  
+    console.log('b----',this.state.key)
+    var index=this.props.index;
+   console.log('key-----',index)
+        var data={
+          Title:this.state.title,
+          Description:this.state.Description,
+          Archive:this.props.note.Archived,
+          Trashed:this.props.note.Trashed,
+          Label:this.props.Label,
+          Pinned:this.props.Pinned,
+          userid:this.props.userid
+        }
+           
+
+      
           
+
+         userctr.updatenote(index,data);
+      // console.log('note---',note);
+      //      console.log('index--',key);
           console.log('open--',this.state.open);
           
   }
 render()
 {
-  
+  console.log('note in edit ',this.props.note)
  
   return(
   
@@ -58,8 +79,16 @@ render()
 
     <div className='pinbase'>
     <InputBase
-  defaultValue={this.props.note.Title}
+  
+  value={this.state.title}
+  onChange = {
+    (event) => this.setState({
+      title: event.target.value
+    })
+  }
+
     onClick={this.handleEdit}
+
     >
     </InputBase>
    <Pinned/>
@@ -68,22 +97,53 @@ render()
     
     <div>
             <InputBase
-            defaultValue={this.props.note.Description}
+          
+            value={this.state.Description}
+            onChange = {
+              (event) => this.setState({
+                Description: event.target.value
+              })
+            }
+      
             >
+            
             </InputBase>
+            </div>
+            
             {this.props.note.Reminder===''?(
               <div>
               </div>
             ) : ( 
-              <div>
-             <Chip
-                        label={this.props.note.Reminder}
-                        onDelete={ () => this.handleReminderDelete(this.props.index) } 
-                      />
-  
-     </div>
+                              <div>
+                            <Chip
+                                        label={this.props.note.Reminder}
+                                        onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                                      />
+                  
+                              </div>
      )}
-    </div>
+
+                     <div>
+                          {this.props.note.Label ===''? 
+                           <div></div>
+
+                            
+                          :
+                          <div>
+                          {this.props.note.Label.map((key)=>
+
+                            <Chip style={{backgroundColor:this.props.note.Color}}
+                            label={key}
+                            onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                            
+                            ></Chip>
+                          )}
+                        </div>
+                          }
+                          </div>
+                    
+    
+    
   
     
       
@@ -112,7 +172,7 @@ render()
  <More/>
   
     
-  <IconButton onClick={this.onClose}>
+  <IconButton onClick={(event)=>this.onClose(event)}>
     
     close
   

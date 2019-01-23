@@ -95,7 +95,7 @@ console.log('sign out pinned',pinnedNotes);
                       {
                         archivedNotes=archivedNotes+1;
                   }
-                  console.log('sign out archive--',archivedNotes);
+                 // console.log('sign out archive--',archivedNotes);
                   localStorage.setItem('Archived',archivedNotes)
                     });
                           var Notes=0;
@@ -105,8 +105,8 @@ console.log('sign out pinned',pinnedNotes);
                             Notes=Notes+1;
                         }
                         localStorage.setItem('Notes',Notes)
-                        console.log('sign out notes--',Notes);
-                          });
+                       // console.log('sign out notes--',Notes);
+                         });
 
                                         var reminder=0;
                                         this.state.notes.map( (option, index) => {
@@ -115,7 +115,7 @@ console.log('sign out pinned',pinnedNotes);
                                           reminder=reminder+1;
                                       }
                                       localStorage.setItem('Reminder',reminder)
-                                      console.log('sign out Rnotes--',reminder);
+                                     // console.log('sign out Rnotes--',reminder);
                                         });
 
                                  
@@ -126,7 +126,7 @@ console.log('sign out pinned',pinnedNotes);
                                           labeled=labeled+1;
                                       }
                                       localStorage.setItem('Label',labeled)
-                                      console.log('sign out Rnotes--l',labeled);
+                                     // console.log('sign out Rnotes--l',labeled);
                                         });
 
 }

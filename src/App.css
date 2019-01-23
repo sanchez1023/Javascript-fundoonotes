@@ -255,20 +255,31 @@ flex-direction: row;
 
 
 }
-.menuitem{
-  margin-top: 100px;
+#menuItem{
+  
+  background-color: #ffe8a4;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px
 }
 .menunote{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 40px;
   margin-left: 10px;
   margin-bottom: 25px;
+  height:'auto';
+  background-color: rgba(#feefc3, #feefc3, #feefc3);
+  border-radius: 0px 25px 25px 0px;
+  
 
+}
+.menu{
+  
 }
 .menuname{
   margin-left: 20px;
+  height: 'auto'
 }
 .header{
   display: flex;
@@ -486,7 +497,7 @@ justify-content: flex-end;
 }
 .divide{
   margin-left: px;
-  padding-top: 30px;
+  height: 'auto';
 }
 .sea{
 

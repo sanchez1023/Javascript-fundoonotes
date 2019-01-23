@@ -93,7 +93,15 @@ var tryvalue = async function (value) {
 }
 
 
-
+ export function getNote(callback) {
+    const noteRef = database.database.ref('notes');
+    noteRef.orderByChild("userid").equalTo(localStorage.getItem("userKey")).on('value',function(snap) {
+         snap.forEach(function(snap){
+            var value = snap.val();
+            return callback(value);
+         });
+    });
+}
 
 
 export function retriveData() {
@@ -199,18 +207,47 @@ export function retriveData() {
             
             export function getNotes() {
                 var c=new Promise(async function (resolve, reject) {
-                await database.database.ref('notes').on("value", snap => {
+                await database.database.ref('notes').orderByChild('userid').equalTo(localStorage.getItem('userKey')).on("value", snap => {
                    var array=[]
                     snap.forEach(function (snap) {
                         var value = snap.key;
-                        array.push(snap.value)
+                        array.push(snap.key)
                         console.log('valave--', value)
                         resolve( array);
                     });
-                  //  console.log('bbc==',bbc)
+                 //  console.log('bbc==',array)
+                 //  resolve(array)
 
                 })
-                console.log('c-',c)
-                return c;
+               
             })
+            console.log('c-',c)
+            return c;
+        }
+
+        export var giveNote = function () {
+            return new Promise(async function (resolve, reject) {
+                try {
+                    var value = await getNotes();
+                   // console.log('in add--', value);
+
+                    resolve(value);
+                } catch (error) {
+                    reject(error)
+                }
+            })
+
+        }
+
+
+        export function  updatenote(key,note){
+console.log('key-----+++',key);
+
+console.log('note-----+++',note.Title);
+        database.database.ref('/notes').child (key).update({
+                Title:note.Title
+
+        })
+
+//console.log('update',b)
         }

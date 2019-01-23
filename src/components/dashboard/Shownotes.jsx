@@ -20,14 +20,25 @@ class Showcards extends Component{
           open:false,
         }
     }
-    async componentDidMount() {
-    
-     var notesValue =await userctr.add();
-    console.log('notes-- in show',notesValue)
-     this.setState({
-       notes : notesValue,
-       open:true
-     }) 
+  async   componentDidMount() {
+
+        var noteDetails= await userctr.add();
+          this.setState({
+            notes:noteDetails
+          })
+
+//       userctr.getNote(function(noteDetails) {
+//       if (noteDetails !== null && noteDetails !== undefined) {
+//         this.setState({
+//             notes: noteDetails
+//         });
+//     }
+//     else {
+//         this.setState({
+//             notes: []
+//         });
+//     }
+// });
 
   //     var b= await userctr.getNotes();
   // console.log('b---',b);
@@ -90,17 +101,24 @@ handleClose()
   
  if(this.props.notes){
 
-                    array= this.state.notes.map( (option, index) => {
+  array =   Object.keys(this.state.notes).map( (note) => {
+    var key=note;
+           var data=this.state.notes[key]
+           console.log('key in  notes',key)
+           console.log('note in show--',note)
+           console.log('data in show--',data)
+           
+
                       // if((option.Title!=='' ||option.Title=='')&&(option.Reminder!=='') && option.Archived === false && option.Trashed === false  &&  option.Pinned ===false)
-                      if((option.Trashed !== true && option.Archived !== true && option.Pinned !==true ))
+                      if((data.Trashed !== true && data.Archived !== true && data.Pinned !==true ))
                       {
                         return( 
                           <div>
                        
 
                       
-                      <CardComponent Display={ option }
-                      index={index}
+                      <CardComponent Display={ data }
+                      index={key}
                       status={this.props.viewProps }
                       
                       />
@@ -116,14 +134,16 @@ handleClose()
 
 else if(this.props.reminder){
   
-                array= this.state.notes.map( (option, index) => {
-                  if(option.Reminder!=='')
+  array =   Object.keys(this.state.notes).map( (option) => {
+    var key=option;
+           var data=this.state.notes[key]
+                  if(data.Reminder!=='')
                   {
 
                   return( 
                 
-                    <CardComponent Display={ option }
-                    index={index}
+                    <CardComponent Display={ data }
+                    index={key}
                     status={this.props.viewProps }/>
 
               )
@@ -132,12 +152,15 @@ else if(this.props.reminder){
               }
 
 else if(this.props.archive){
-array = this.state.notes.map( (option, index) => {
-  if((option.Archived !==false ))// && (option.Pinned === false && option.Trashed === false) )
+  array =   Object.keys(this.state.notes).map( (option) => {
+    var key=option;
+    console.log('key in  ')
+           var data=this.state.notes[key]
+  if((data.Archived !==false ))// && (option.Pinned === false && option.Trashed === false) )
   {return(
 
-    <CardComponent Display={ option }
-    index={index}
+    <CardComponent Display={ data }
+    index={key}
     status={this.props.viewProps }
     />
   
@@ -147,13 +170,15 @@ array = this.state.notes.map( (option, index) => {
 }
 else if(this.props.bin)
 {
-  array = this.state.notes.map( (option, index) => {
-    if(option.Pinned === false && option.Trashed === true && option.Archived === false )
+  array =   Object.keys(this.state.notes).map( (option) => {
+    var key=option;
+           var data=this.state.notes[key]
+    if(data.Pinned === false && data.Trashed === true && data.Archived === false )
     {return(
       
   
-      <CardComponent Display={ option }
-      index={index}
+      <CardComponent Display={ data}
+      index={key}
       status={this.props.viewProps }
       />
       
@@ -183,17 +208,19 @@ else{
 
 
 
-         array= this.state.notes.map( (option, index) => {
-    if((option.Trashed !== true && option.Archived !== true && option.Pinned !==true ))
+         array=Object.keys (this.state.notes).map((option) => {
+           var key=option;
+           var data=this.state.notes[key]
+    if((data.Trashed !== true && data.Archived !== true && data.Pinned !==true ))
     {
     return( 
   
 
   
-  <CardComponent Display={option
+  <CardComponent Display={data
   
   }
-  index={index}
+  index={key}
   status={this.props.viewProps }
   
   />

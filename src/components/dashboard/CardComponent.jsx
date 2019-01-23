@@ -21,15 +21,18 @@ var userctr=require('../../controller/usercontroller')
            this.state={
                notes:[],
                openDailog:false,
+              
    
            }
+           this.handleEdit=this.handleEdit.bind(this)
        }
 
-       handleEdit=event=>{
+       handleEdit=async event=>{
          this.setState({ openDailog:!this.state.openDailog,})
         console.log("ref title",this.refs.Title.value)
-        var b=userctr.getNotes();
-  console.log('b---',b);
+      
+      
+         // console.log('in saste key',this.state.key)
 
        }
        handleReminderDelete = ( index ) => {
@@ -67,7 +70,7 @@ var userctr=require('../../controller/usercontroller')
         let cardstyle=this.props.status ? 'showcards':'showcardslist'
          
        console.log('Display', this.props.Display);
-       console.log('idex--', this.props.index);
+       console.log('index--', this.props.index);
            
            return(
              
@@ -82,7 +85,7 @@ var userctr=require('../../controller/usercontroller')
                <InputBase
                defaultValue={this.props.Display.Title}
                readOnly={this.props.Display.Title}
-               onClick={this.handleEdit}
+               onClick={(event)=>this.handleEdit(event)}
                value={this.props.Display.Title}
                ref ='Title'
                >
@@ -178,9 +181,10 @@ null
                </toolbar>
              
         <Editnotes open={this.state.openDailog}
-        
+        keyValue={this.state.key}
         close={this.handleEdit}
         note={this.props.Display}
+        index={this.props.index}
         
         />
                 
