@@ -61,7 +61,7 @@ class Sidemenu extends Component {
    
     
   var notesValue =await userctr.giveLabels()
-  console.log('notes--',notesValue)
+ // console.log('notes--',notesValue)
   this.setState({
     label: notesValue,
     open:true
@@ -116,7 +116,7 @@ openNotes()
   render()
    {
 
-console.log('labels in menu--',this.state.label)
+//console.log('labels in menu--',this.state.label)
 var arryofvalue=[];
 
 this.state.label.map((option,index)=>{
@@ -131,7 +131,7 @@ arryofvalue.map((option,index)=>{
 arrv.push(option);
 
 })
- console.log('labels--',arrv);
+ //console.log('labels--',arrv);
  var arr1=[];
   arrv.map((value,index)=>{
   for(var i=0;i<=arrv.length;i++)
@@ -144,7 +144,7 @@ arrv.push(option);
   }
  
 })
-console.log('arra1',arr1);
+//console.log('arra1',arr1);
 var arr2=[];
 var a=arr1.map((option,index)=>{
  
@@ -214,7 +214,7 @@ var a=arr1.map((option,index)=>{
 
 
 
-let a=this.state.notes? 'menuItem':'menu'
+//let a=this.state.notes? 'menuItem':'menu'
 
 
 

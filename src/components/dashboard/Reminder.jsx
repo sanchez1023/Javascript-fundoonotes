@@ -104,7 +104,7 @@ async handleTomorow(event){
         </IconButton>
         <Card>
                 <Popper open={this.state.open} anchorEl={this.state.anchorEl} position='absolute' z-index='1'>
-                        <Paper className='reminder'>
+                        <Paper className='reminder' position='absolute' zindex='1'>
                         
         
                         
@@ -160,5 +160,5 @@ async handleTomorow(event){
           }
     
   }
-  var a=new Reminder();
+  
   export default Reminder

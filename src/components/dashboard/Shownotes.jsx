@@ -20,36 +20,31 @@ class Showcards extends Component{
           open:false,
         }
     }
-  async   componentDidMount() {
+     componentDidMount() {
 
-        var noteDetails= await userctr.add();
-          this.setState({
-            notes:noteDetails
-          })
+        // var noteDetails= await userctr.add();
+        //   this.setState({
+        //     notes:noteDetails
+        //   })
 
-//       userctr.getNote(function(noteDetails) {
-//       if (noteDetails !== null && noteDetails !== undefined) {
-//         this.setState({
-//             notes: noteDetails
-//         });
-//     }
-//     else {
-//         this.setState({
-//             notes: []
-//         });
-//     }
-// });
+        userctr.getNote(dataList => {
+          //console.log("DataList: ", dataList);
+          
+          if(dataList !== undefined && dataList !== null) {
+            this.setState({
+                  notes:dataList
+                })
+          }
+          else {
+            this.setState({
+              notes:[]
+            })
+          }
 
-  //     var b= await userctr.getNotes();
-  // console.log('b---',b);
+        })
 } 
 
-// handledialogClick()
-// {
-//   this.setState({
-//     open:true,
-//   })
-// }
+
 handleClose()
 {
   this.setState({
@@ -90,13 +85,6 @@ handleClose()
 
     render()
     {   var array=[];
-// var arrayv=[]
-//       this.state.notes.map((option,index)=>{
-
-//         arrayv.push(option.data)
-//       })
-
-//   console.log('arrayv ',arrayv)
 
   
  if(this.props.notes){
@@ -104,9 +92,9 @@ handleClose()
   array =   Object.keys(this.state.notes).map( (note) => {
     var key=note;
            var data=this.state.notes[key]
-           console.log('key in  notes',key)
-           console.log('note in show--',note)
-           console.log('data in show--',data)
+          //  console.log('key in  notes',key)
+          //  console.log('note in show--',note)
+          //  console.log('data in show--',data)
            
 
                       // if((option.Title!=='' ||option.Title=='')&&(option.Reminder!=='') && option.Archived === false && option.Trashed === false  &&  option.Pinned ===false)
@@ -114,29 +102,27 @@ handleClose()
                       {
                         return( 
                           <div>
-                       
-
-                      
-                      <CardComponent Display={ data }
+           <CardComponent Display={data}
                       index={key}
                       status={this.props.viewProps }
                       
                       />
                       </div>
-                    
-                    
+   
                     )
                   }
-
                     })
 }
 
 
 else if(this.props.reminder){
   
-  array =   Object.keys(this.state.notes).map( (option) => {
-    var key=option;
+  array =   Object.keys(this.state.notes).map( (note) => {
+    var key=note;
            var data=this.state.notes[key]
+          //  console.log('key in  notes',key)
+          //  console.log('note in show--',note)
+          //  console.log('data in show--',data)
                   if(data.Reminder!=='')
                   {
 
@@ -188,20 +174,22 @@ else if(this.props.bin)
 
 }
 else{
-  // array = this.state.notes.map( (option, index) => {
-  //   if(option.Pinned === true && option.Trashed === false && option.Archived === false )
-  //   {
-  //     return(
+ var  pinarray=Object.keys (this.state.notes).map((option) => {
+    var key=option;
+    var data=this.state.notes[key]
+    if(data.Pinned !== false )
+    {
+      return(
       
-  //      <CardComponent Display={option}
-  //      index={index}
-  //      status={this.props.viewProps}
+       <CardComponent Display={data}
+       index={key}
+       status={this.props.viewProps}
        
-  //      />    
-  //     ) 
-  //   }
+       />    
+      ) 
+    }
 
-  // })
+  })
 
 
 
@@ -243,7 +231,7 @@ else{
       
      {array}
            
-                    
+           {pinarray}         
 
             </div>
         )

@@ -88,7 +88,7 @@ export async function arraynotes(title, description, isPin, isArchived, isTrash,
 
 var tryvalue = async function (value) {
     await value.forEach(function (value) {
-        console.log('data: ' + value);
+        //console.log('data: ' + value);
     })
 }
 
@@ -96,10 +96,12 @@ var tryvalue = async function (value) {
  export function getNote(callback) {
     const noteRef = database.database.ref('notes');
     noteRef.orderByChild("userid").equalTo(localStorage.getItem("userKey")).on('value',function(snap) {
-         snap.forEach(function(snap){
+         //snap.forEach(function(snap){
             var value = snap.val();
+           // console.log('value---',value)
             return callback(value);
-         });
+            
+        // });
     });
 }
 
@@ -110,7 +112,7 @@ export function retriveData() {
                 await database.database.ref('notes').orderByChild("userid").equalTo(localStorage.getItem('userKey')).once('value', snap => {
                     // console.log('response of data:'+snap);    
                     var value = []
-                    snap.forEach(function (snap) {
+                   snap.forEach(function (snap) {
 
 
                         value.push(snap.val())
@@ -119,7 +121,7 @@ export function retriveData() {
 
 
                         var key = snap.key;
-                        console.log('key--', key)
+                        //console.log('key--', key)
                         tryvalue(value);
                         resolve(value);
 
@@ -135,13 +137,13 @@ export function retriveData() {
                 })
                
                 var a = arrayvalue.then((vale) => {
-                    console.log("final ---", vale);
+                 //   console.log("final ---", vale);
                     return vale;})
 
 
 
-                console.log('a--', a)
-                console.log('value of a', arrayvalue)
+               // console.log('a--', a)
+              //  console.log('value of a', arrayvalue)
                 return a;
 
         
@@ -153,7 +155,7 @@ export function retriveData() {
                 return new Promise(async function (resolve, reject) {
                     try {
                         var value = await retriveData();
-                        console.log('in add--', value);
+                      //  console.log('in add--', value);
 
 
                         resolve(value);
@@ -167,7 +169,7 @@ export function retriveData() {
             export function getLabel() {
                 const arrayva = new Promise(async function (resolve, reject) {
                     await database.database.ref('/labels').orderByChild("user").equalTo(localStorage.getItem('userKey')).once('value', snap => {
-                        console.log('response of data:', snap);
+                        //console.log('response of data:', snap);
                         var value = [];
                         snap.forEach(function (snap) {
 
@@ -176,17 +178,17 @@ export function retriveData() {
                             var key = snap.key;
 
                             resolve(value);
-                            console.log('value--', key)
+                           // console.log('value--', key)
 
                         })
                     })
                 })
-                console.log('array value of albels--', arrayva)
+              //  console.log('array value of albels--', arrayva)
                 var a = arrayva.then(async (value) => {
-                    console.log("final ---", value);
+                   // console.log("final ---", value);
                     await value;
                 })
-                console.log('value of a--', a);
+              //  console.log('value of a--', a);
                 return arrayva;
 
             }
@@ -195,7 +197,7 @@ export function retriveData() {
                 return new Promise(async function (resolve, reject) {
                     try {
                         var value = await getLabel();
-                        console.log('in add--', value);
+                        //console.log('in add--', value);
 
                         resolve(value);
                     } catch (error) {
@@ -212,7 +214,7 @@ export function retriveData() {
                     snap.forEach(function (snap) {
                         var value = snap.key;
                         array.push(snap.key)
-                        console.log('valave--', value)
+                        //console.log('valave--', value)
                         resolve( array);
                     });
                  //  console.log('bbc==',array)
@@ -243,11 +245,64 @@ export function retriveData() {
         export function  updatenote(key,note){
 console.log('key-----+++',key);
 
-console.log('note-----+++',note.Title);
-        database.database.ref('/notes').child (key).update({
-                Title:note.Title
-
-        })
+console.log('note-----+++',note);
+        database.database.ref('/notes').child(key).update(note)
 
 //console.log('update',b)
         }
+
+        export function removeReminder(key,note)
+        {
+               note={
+                   Reminder:"",
+               }
+               updatenote(key,note)
+
+        }
+
+
+        export function pinUnpin(key, note){
+
+            if(note.Pinned === false) {
+                note.Pinned= true;
+                note.Trashed=false;
+                note.Archived=false;
+            }
+            else {
+                note.Pinned= false;
+            }
+            updatenote(key,note)
+
+        }
+    
+        export function handleLabels(key ,note,index){
+            console.log('in labels--',key)
+            console.log('index--',index)
+           for(var i=0;i<note.Label.length;i++)
+           {
+               if(index==i){
+                   note.Label.splice(i,i+1)
+
+                   }
+               }
+               updatenote(key,note)
+           }
+
+            export function handleArchive(key,note)
+{
+
+    
+        if(note.Archived === false) {
+            note.Archived = true;
+            note.Pinned=false;
+            note.Trashed=false; 
+        }
+        else {
+            note.Archived = false;
+        }
+
+        updatenote(key,note)
+    
+    }
+
+     

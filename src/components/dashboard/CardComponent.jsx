@@ -15,9 +15,9 @@ var userctr=require('../../controller/usercontroller')
       
      export default class CardComponent extends Component{
    
-       constructor()
+       constructor(props)
        {
-           super()
+           super(props)
            this.state={
                notes:[],
                openDailog:false,
@@ -25,6 +25,7 @@ var userctr=require('../../controller/usercontroller')
    
            }
            this.handleEdit=this.handleEdit.bind(this)
+           this.handleView=this.handleView.bind(this)
        }
 
        handleEdit=async event=>{
@@ -35,26 +36,40 @@ var userctr=require('../../controller/usercontroller')
          // console.log('in saste key',this.state.key)
 
        }
-       handleReminderDelete = ( index ) => {
 
-        let tempArray = this.state.notes;
+
+       handleArchive(note,key){
+console.log('note in archive',note);
+console.log('key in archive',key)
+userctr.handleArchive(key,note);
+       }
+
+removeLabel=(key,note,index)=>{
+
+  console.log("index in  label --",index)
     
-        console.log("tempArray---before", tempArray);
+        console.log('in label', note);
+        console.log('in label key',key);
+        userctr.handleLabels(key,note,index)
+
+}
+
+    handleView(note,key,event){
+      console.log("note in pinned",note)
+      console.log("note in pinned",key)
+      userctr.pinUnpin(key,note)
+    }
+
+
+       handleReminderDelete = ( index ,note) => {
+
         
-        for( let i=0; i<tempArray.length; i++)
-        {
-          if(i === index)
-          {
-            tempArray[i].Reminder = "";
-          }
-        }
+        console.log("index in  reminder --",index)
     
-        console.log("tempArray---after", tempArray);
-    
-        this.setState({
-          notes: tempArray
-        })
+        console.log("--before", note);
+          userctr.removeReminder(index,note)
       }
+       
        render()
        { 
         //  this.props.Display.map((opti,index)=>{
@@ -69,8 +84,10 @@ var userctr=require('../../controller/usercontroller')
         
         let cardstyle=this.props.status ? 'showcards':'showcardslist'
          
-       console.log('Display', this.props.Display);
+      //  console.log('Display', this.props.Display);
        console.log('index--', this.props.index);
+       var Key=this.props.index;
+       console.log('index--', Key);
            
            return(
              
@@ -90,9 +107,33 @@ var userctr=require('../../controller/usercontroller')
                ref ='Title'
                >
                </InputBase>
-              <Pinned/>
-
+               <div>
+             {  this.props.Display.Pinned ?(
+             
+              <div>
+              <IconButton  onClick={(event)=>this.handleView(this.props.Display,this.props.index,event)} >
+              <img src={require('../../assets/pinned.svg')}/>
               
+            
+              
+              </IconButton>
+              </div>
+
+
+)
+               :(
+                <div>
+                <IconButton onClick={(event)=>this.handleView(this.props.Display,this.props.index,event)}>
+                <img src={require('../../assets/pin.svg')}/>
+                </IconButton>
+                
+                
+                </div>
+
+                )
+               
+             }
+             </div>
                </div>
                <div>
                <InputBase
@@ -111,7 +152,7 @@ var userctr=require('../../controller/usercontroller')
                               
                               style={{backgroundColor:this.props.Display.Color}}
                               label={this.props.Display.Reminder}
-                              onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                              onDelete={ () => this.handleReminderDelete(this.props.index,this.props.Display) } 
                             >
                             
                             </Chip>
@@ -131,11 +172,12 @@ null
                             
                           :
                           <div>
-                          {this.props.Display.Label.map((key)=>
-
+                          
+                          {this.props.Display.Label.map((option,index)=>
+                            
                             <Chip style={{backgroundColor:this.props.Display.Color}}
-                            label={key}
-                            onDelete={ () => this.handleReminderDelete(this.props.index) } 
+                            label={option}
+                            onDelete={ () => this.removeLabel (this.props.index,this.props.Display,index) } 
                             
                             ></Chip>
                           )}
@@ -165,7 +207,15 @@ null
                
              <Addimage/>
                
-             <Archive valueofarchive={this.props.Display.Archived}/>
+             <div>
+             <IconButton onClick={(event)=>this.handleArchive(this.props.Display,this.props.index)}>
+             <img src={require('../../assets/archive.svg')}/>
+             </IconButton>
+             
+             </div>
+             
+             
+             
                {this.props.Display.Trashed ?
                 (
              <Forever/>

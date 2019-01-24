@@ -25,6 +25,7 @@ class Editnotes extends Component{
       key:[]
 
     }
+    this.handleView=this.handleView.bind(this)
 
   }
 
@@ -65,9 +66,25 @@ class Editnotes extends Component{
           console.log('open--',this.state.open);
           
   }
+
+  handleView(note,key,event){
+    console.log("note in pinned",note)
+    console.log("note in pinned",key)
+    userctr.pinUnpin(key,note)
+  }
+
+
+  handleReminderDelete = ( index ,note) => {
+
+        
+    console.log("index in  reminder --",index)
+
+    console.log("--before", note);
+      userctr.removeReminder(index,note)
+  }
 render()
 {
-  console.log('note in edit ',this.props.note)
+ // console.log('note in edit ',this.props.note)
  
   return(
   
@@ -91,8 +108,35 @@ render()
 
     >
     </InputBase>
-   <Pinned/>
-    </div>
+    <div>
+             {  this.props.note.Pinned ?(
+             
+              <div>
+              <IconButton  onClick={(event)=>this.handleView(this.props.note,this.props.index,event)} >
+              <img src={require('../../assets/pinned.svg')}/>
+              
+            
+              
+              </IconButton>
+              </div>
+
+
+)
+               :(
+                <div>
+                <IconButton onClick={(event)=>this.handleView(this.props.note,this.props.index,event)}>
+                <img src={require('../../assets/pin.svg')}/>
+                </IconButton>
+                
+                
+                </div>
+
+                )
+               
+             }
+             </div>
+               </div>
+    
    
     
     <div>
