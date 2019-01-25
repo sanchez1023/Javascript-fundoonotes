@@ -1,351 +1,397 @@
-// // let tempPinnedNotesArray = this.state.notes.map( (option, index) => {
-// //     if(option.Pinned === true && option.Trashed === false && option.Archived === false )
-// //     {
-// //       return(
+// // // let tempPinnedNotesArray = this.state.notes.map( (option, index) => {
+// // //     if(option.Pinned === true && option.Trashed === false && option.Archived === false )
+// // //     {
+// // //       return(
     
-// //         <div>   
-// //         <h>pinned</h>
-// //         <Card className='cardnotes'>
+// // //         <div>   
+// // //         <h>pinned</h>
+// // //         <Card className='cardnotes'>
      
-// //       <div>
-// //       <InputBase
-// //       defaultValue={option.Title}
-// //       >
+// // //       <div>
+// // //       <InputBase
+// // //       defaultValue={option.Title}
+// // //       >
       
       
-// //       </InputBase>
-// //       </div>
-// //       <div>
-// //       <InputBase
-// //       defaultValue={option.Description}
+// // //       </InputBase>
+// // //       </div>
+// // //       <div>
+// // //       <InputBase
+// // //       defaultValue={option.Description}
       
-// //       >
+// // //       >
         
-// //       </InputBase>
-// //       </div>
-// //       <toolbar>
-// //       < IconButton
-// //       onClick={event => this.handleReminder(event)}>
+// // //       </InputBase>
+// // //       </div>
+// // //       <toolbar>
+// // //       < IconButton
+// // //       onClick={event => this.handleReminder(event)}>
       
     
       
-// //       <img src = {
-// //         require('../../assets/reminderalarm.svg')
-// //       }
-// //       /> 
-// //        </IconButton>
+// // //       <img src = {
+// // //         require('../../assets/reminderalarm.svg')
+// // //       }
+// // //       /> 
+// // //        </IconButton>
 
 
-// //       < IconButton
-// //       onClick={event => this.addAccount(event)}> 
+// // //       < IconButton
+// // //       onClick={event => this.addAccount(event)}> 
      
-// //       <
-// //       img src = {
-// //         require('../../assets/addaccount.svg')
-// //       }
-// //       /> 
-// //        </IconButton>
+// // //       <
+// // //       img src = {
+// // //         require('../../assets/addaccount.svg')
+// // //       }
+// // //       /> 
+// // //        </IconButton>
 
-// //       <IconButton 
-// //       onClick={event => this.handleColor(event)}>
+// // //       <IconButton 
+// // //       onClick={event => this.handleColor(event)}>
       
       
       
-// //       <img src = {
-// //         require('../../assets/colorplate.svg')
-// //       }
-// //       />
-// //       </IconButton>
+// // //       <img src = {
+// // //         require('../../assets/colorplate.svg')
+// // //       }
+// // //       />
+// // //       </IconButton>
 
 
-// //       <IconButton 
-// //       onClick={event => this.handleImage(event)}>
+// // //       <IconButton 
+// // //       onClick={event => this.handleImage(event)}>
       
-// //       <img src = {
-// //         require('../../assets/image.svg')
-// //       }
-// //       /> 
-// //       </IconButton>
+// // //       <img src = {
+// // //         require('../../assets/image.svg')
+// // //       }
+// // //       /> 
+// // //       </IconButton>
 
 
-// //       <IconButton
-// //       onClick={event => this.handleArchive(event)}>
+// // //       <IconButton
+// // //       onClick={event => this.handleArchive(event)}>
       
       
      
-// //       <img src = {
-// //         require('../../assets/archive.svg')
-// //       }
+// // //       <img src = {
+// // //         require('../../assets/archive.svg')
+// // //       }
 
-// //       /> 
-// //       </IconButton>
+// // //       /> 
+// // //       </IconButton>
 
 
-// //       <IconButton
-// //       onClick={event =>this.openMore(event)} >
+// // //       <IconButton
+// // //       onClick={event =>this.openMore(event)} >
       
       
-// //       <img src = {
-// //         require('../../assets/more.svg')
-// //       }
-// //       /> 
+// // //       <img src = {
+// // //         require('../../assets/more.svg')
+// // //       }
+// // //       /> 
       
-// //        </IconButton > <IconButton style = {
-// //         {
-// //           marginLeft: '100px'
-// //         }
-// //       } >
+// // //        </IconButton > <IconButton style = {
+// // //         {
+// // //           marginLeft: '100px'
+// // //         }
+// // //       } >
       
       
-// //       </IconButton>
+// // //       </IconButton>
   
-// //       </toolbar>
-// //       <More openmenu={this.state.more}/>
+// // //       </toolbar>
+// // //       <More openmenu={this.state.more}/>
      
       
-// //       </Card>
-// //       </div>
-// // )
-// //     }
-// //   })
+// // //       </Card>
+// // //       </div>
+// // // )
+// // //     }
+// // //   })
 
 
-// //   / <Popper   open={open }  anchorEl={anchorEl} placement={placement}>
+// // //   / <Popper   open={open }  anchorEl={anchorEl} placement={placement}>
 
-// // // {({ TransitionProps }) => (
-// // //   <Fade {...TransitionProps} timeout={3500}>
-// // //     <Paper>
-// // //     <div>
-// // //     <Card>
-// // //   <Menu>
-// // //   <MenuItem>sgasas</MenuItem>
-// // //   <MenuItem>sgasas</MenuItem>
-// // //   </Menu>
-// // //   </C
-// // //   </div>
-// // //     </Paper>
-// // //   </Fade>
-// // // )}
-// // // // </Popper></Popper>
+// // // // {({ TransitionProps }) => (
+// // // //   <Fade {...TransitionProps} timeout={3500}>
+// // // //     <Paper>
+// // // //     <div>
+// // // //     <Card>
+// // // //   <Menu>
+// // // //   <MenuItem>sgasas</MenuItem>
+// // // //   <MenuItem>sgasas</MenuItem>
+// // // //   </Menu>
+// // // //   </C
+// // // //   </div>
+// // // //     </Paper>
+// // // //   </Fade>
+// // // // )}
+// // // // // </Popper></Popper>
 
-// // <Menu open={open} anchorEl={anchorEl}>
+// // // <Menu open={open} anchorEl={anchorEl}>
 
-// // <MenuItem>delete note </MenuItem>
-// // <MenuItem>Add Label</MenuItem>
+// // // <MenuItem>delete note </MenuItem>
+// // // <MenuItem>Add Label</MenuItem>
 
 
-// // </Menu>
+// // // </Menu>
 
-// // <Dialog open={this.state.open}></Dialog>
+// // // <Dialog open={this.state.open}></Dialog>
         
 
-// import React, {
-//     Component
-//   } from 'react';
-// import { Popper,ClickAwayListener,  Paper, Card, Fab, Divider, Avatar, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+// // import React, {
+// //     Component
+// //   } from 'react';
+// // import { Popper,ClickAwayListener,  Paper, Card, Fab, Divider, Avatar, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
-// import firebase from '../../firebase'
-// import Signoutcard from './Cardsignout';
+// // import firebase from '../../firebase'
+// // import Signoutcard from './Cardsignout';
 
-// const theme=createMuiTheme({
-//   overrides:{
-//     MuiAvatar:{
+// // const theme=createMuiTheme({
+// //   overrides:{
+// //     MuiAvatar:{
       
-//       colorDefault: {
-//                         color: "#fafafa",
-//                      backgroundColor: "tomato",
-//     }
+// //       colorDefault: {
+// //                         color: "#fafafa",
+// //                      backgroundColor: "tomato",
+// //     }
 
-//   }
-//   }
-// })
-
-
-
-// var userctr=require('../../controller/usercontroller')
+// //   }
+// //   }
+// // })
 
 
-//   class Sign extends Component{
 
-//     constructor()
-//     {
-//         super()
-//        this.state={
-//         notes:[],
+// // var userctr=require('../../controller/usercontroller')
+
+
+// //   class Sign extends Component{
+
+// //     constructor()
+// //     {
+// //         super()
+// //        this.state={
+// //         notes:[],
       
-//         anchorEl: null,
-//         open: false,
-//         initial:"",
-//        }
-//     }
-//     handleClick=event=>{
-//                 console.log('in popper handle click')
-//                 var b=localStorage.getItem('email')
-//                 var ava=b.substring(0,1)
-//                 var c=ava.toLocaleUpperCase();
+// //         anchorEl: null,
+// //         open: false,
+// //         initial:"",
+// //        }
+// //     }
+// //     handleClick=event=>{
+// //                 console.log('in popper handle click')
+// //                 var b=localStorage.getItem('email')
+// //                 var ava=b.substring(0,1)
+// //                 var c=ava.toLocaleUpperCase();
                 
                 
              
-//                         const { currentTarget } = event;
-//                           this.setState ({
-//                             anchorEl: currentTarget,
-//                             open: !this.state.open,
-//                             initial:c,
-//                           });
-//                 console.log('state',this.state.open)
-//                 console.log('anchor el',this.state.anchorEl)
-//     };
-// handleSignout=event=>{
-// {
-//             event.preventDefault();
-//           console.log("insignout")
-//           firebase.firebase.auth().signOut()
-//           localStorage.clear();
-//           window.location='http://localhost:3000/login'
-//           }
-// }
-// onOutsideclick()
-// {
-//   this.setState({
-//     open: false
-//   })
-// }
-//    async componentDidMount()
-// {
-//  await userctr. getNote(arrayNotes=>{
-//     console.log('arraynotes',arrayNotes)
-//     this.setState(
-//       {
-//         notes:arrayNotes,
-//       }
-//     )
-//   });
+// //                         const { currentTarget } = event;
+// //                           this.setState ({
+// //                             anchorEl: currentTarget,
+// //                             open: !this.state.open,
+// //                             initial:c,
+// //                           });
+// //                 console.log('state',this.state.open)
+// //                 console.log('anchor el',this.state.anchorEl)
+// //     };
+// // handleSignout=event=>{
+// // {
+// //             event.preventDefault();
+// //           console.log("insignout")
+// //           firebase.firebase.auth().signOut()
+// //           localStorage.clear();
+// //           window.location='http://localhost:3000/login'
+// //           }
+// // }
+// // onOutsideclick()
+// // {
+// //   this.setState({
+// //     open: false
+// //   })
+// // }
+// //    async componentDidMount()
+// // {
+// //  await userctr. getNote(arrayNotes=>{
+// //     console.log('arraynotes',arrayNotes)
+// //     this.setState(
+// //       {
+// //         notes:arrayNotes,
+// //       }
+// //     )
+// //   });
  
 
-//         var pinnedNotes=0;
-//         console.log('pinned',pinnedNotes)
-//         Object.keys(this.state.notes).map( (note) => {
-//           var key=note;
-//           var data=this.state.notes[key]
-//           console.log('data in sign',data)
-//           if(data.Pinned === true  )
-//           {
-//             pinnedNotes=pinnedNotes+1;
-//            // console.log('index--',index)
+// //         var pinnedNotes=0;
+// //         console.log('pinned',pinnedNotes)
+// //         Object.keys(this.state.notes).map( (note) => {
+// //           var key=note;
+// //           var data=this.state.notes[key]
+// //           console.log('data in sign',data)
+// //           if(data.Pinned === true  )
+// //           {
+// //             pinnedNotes=pinnedNotes+1;
+// //            // console.log('index--',index)
           
-//       }
-// localStorage.setItem('Pinned',pinnedNotes)
-// console.log('sign out pinned',pinnedNotes);
-//   });
-//                     var archivedNotes=0;
-//                     Object.keys(this.state.notes).map( (note) => {
-//                       var key=note;
-//            var data=this.state.notes[key]
-//                       if(data.Archived === true )
-//                       {
-//                         archivedNotes=archivedNotes+1;
-//                   }
-//                  console.log('sign out archive--',archivedNotes);
-//                   localStorage.setItem('Archived',archivedNotes)
-//                     });
-//                           var Notes=0;
-//                           Object.keys(this.state.notes).map( (note) => {
-//                             var key=note;
-//            var data=this.state.notes[key]
-//                             if((data.Trashed !== true && data.Archived !== true && data.Pinned !==true ))
-//                             {
-//                             Notes=Notes+1;
-//                         }
-//                         localStorage.setItem('Notes',Notes)
-//                       console.log('sign out notes--',Notes);
-//                          });
+// //       }
+// // localStorage.setItem('Pinned',pinnedNotes)
+// // console.log('sign out pinned',pinnedNotes);
+// //   });
+// //                     var archivedNotes=0;
+// //                     Object.keys(this.state.notes).map( (note) => {
+// //                       var key=note;
+// //            var data=this.state.notes[key]
+// //                       if(data.Archived === true )
+// //                       {
+// //                         archivedNotes=archivedNotes+1;
+// //                   }
+// //                  console.log('sign out archive--',archivedNotes);
+// //                   localStorage.setItem('Archived',archivedNotes)
+// //                     });
+// //                           var Notes=0;
+// //                           Object.keys(this.state.notes).map( (note) => {
+// //                             var key=note;
+// //            var data=this.state.notes[key]
+// //                             if((data.Trashed !== true && data.Archived !== true && data.Pinned !==true ))
+// //                             {
+// //                             Notes=Notes+1;
+// //                         }
+// //                         localStorage.setItem('Notes',Notes)
+// //                       console.log('sign out notes--',Notes);
+// //                          });
 
-//                                         var reminder=0;
-//                                         Object.keys(this.state.notes).map( (note) => {
-//                                           var key=note;
-//            var data=this.state.notes[key]
-//                                           if(data.Reminder !=='' )
-//                                           {
-//                                           reminder=reminder+1;
-//                                       }
-//                                       localStorage.setItem('Reminder',reminder)
-//                                      console.log('sign out Rnotes--',reminder);
-//                                         });
+// //                                         var reminder=0;
+// //                                         Object.keys(this.state.notes).map( (note) => {
+// //                                           var key=note;
+// //            var data=this.state.notes[key]
+// //                                           if(data.Reminder !=='' )
+// //                                           {
+// //                                           reminder=reminder+1;
+// //                                       }
+// //                                       localStorage.setItem('Reminder',reminder)
+// //                                      console.log('sign out Rnotes--',reminder);
+// //                                         });
 
                                  
-//                                         var labeled=0;
-//                                         Object.keys(this.state.notes).map( (note) => {
-//                                           var key=note;
-//            var data=this.state.notes[key]
+// //                                         var labeled=0;
+// //                                         Object.keys(this.state.notes).map( (note) => {
+// //                                           var key=note;
+// //            var data=this.state.notes[key]
 
 
-//                                           if(data.Label !=='' )
-//                                           {
-//                                           labeled=labeled+1;
-//                                       }
-//                                       localStorage.setItem('Label',labeled)
-//                                       console.log('sign out Rnotes--l',labeled);
-//                                         });
+// //                                           if(data.Label !=='' )
+// //                                           {
+// //                                           labeled=labeled+1;
+// //                                       }
+// //                                       localStorage.setItem('Label',labeled)
+// //                                       console.log('sign out Rnotes--l',labeled);
+// //                                         });
 
-// }
+// // }
 
 
-//     render()
-//     {
-//       var b=localStorage.getItem('email')
-//       var ava=b.substring(0,1)
-//       var c=ava.toLocaleUpperCase();
+// //     render()
+// //     {
+// //       var b=localStorage.getItem('email')
+// //       var ava=b.substring(0,1)
+// //       var c=ava.toLocaleUpperCase();
       
 
      
      
-//         return(
+// //         return(
         
-//           <div className =''>
+// //           <div className =''>
         
         
       
-//   <MuiThemeProvider theme={
-//         theme
-//       }>
-//         <Avatar className='avatar'
-//         onClick={(event)=>this.handleClick(event)}
+// //   <MuiThemeProvider theme={
+// //         theme
+// //       }>
+// //         <Avatar className='avatar'
+// //         onClick={(event)=>this.handleClick(event)}
          
-//         > {c} 
+// //         > {c} 
          
-//          </Avatar>
-//          </MuiThemeProvider>
+// //          </Avatar>
+// //          </MuiThemeProvider>
                    
-//                   <Popper  open={this.state.open }  anchorEl={this.state.anchorEl}>
-//                         <Paper className='paper'>
+// //                   <Popper  open={this.state.open }  anchorEl={this.state.anchorEl}>
+// //                         <Paper className='paper'>
                         
-//                             <Signoutcard />
-//                                                 <Divider/>
-//                                                   <div className='signoutbutton'>
-//                                                   <div>                                                          <button variant='extended'
+// //                             <Signoutcard />
+// //                                                 <Divider/>
+// //                                                   <div className='signoutbutton'>
+// //                                                   <div>                                                          <button variant='extended'
 
-//                                                           onClick={event=>this.handleSignout(event)}
+// //                                                           onClick={event=>this.handleSignout(event)}
 
-//                                                           >
+// //                                                           >
 
-//                                                           Sign Out
+// //                                                           Sign Out
 
-//                                                        </button>
-//                                                        </div>
+// //                                                        </button>
+// //                                                        </div>
 
-//                                                   </div>
+// //                                                   </div>
                                                   
-//                           </Paper>
+// //                           </Paper>
 
-//                   </Popper>
+// //                   </Popper>
 
          
 
-// </div>
+// // </div>
 
 
 
-//         )
-//     }
-//   }
-//   export default Sign
+// //         )
+// //     }
+// //   }
+// //   export default Sign
+
+
+
+
+
+
+
+
+
+
+
+
+// {this.props.note?
+//     (<div>
+//         <Tooltip title={option.colorName}>
+//         <IconButton style ={{backgroundColor:option.colorCode,
+//             borderColor:darkBlack
+        
+        
+//         }}
+//         value={option.colorCode}
+//         onClick={(event)=>this.handlecolor(event)}
+        
+//         >
+        
+//         </IconButton>
+//         </Tooltip>
+    
+//     </div>)
+
+// :(
+//     <Tooltip title={option.colorName}>
+//     <IconButton style ={{backgroundColor:option.colorCode,
+//         borderColor:darkBlack
+    
+    
+//     }}
+//     value={option.colorCode}
+//     onClick={(event)=>this.handlecolor(event)}
+    
+//     >
+    
+//     </IconButton>
+//     </Tooltip>)
+
+// })

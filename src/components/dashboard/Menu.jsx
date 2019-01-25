@@ -54,6 +54,7 @@ class Sidemenu extends Component {
       open: false,
       label:[],
     }
+
   }
 
 
@@ -214,8 +215,10 @@ var a=arr1.map((option,index)=>{
 
 
 
-//let a=this.state.notes? 'menuItem':'menu'
-
+let notesty=this.state.notes? 'menuItem':'menu'
+let archivesty=this.state.Archive? 'menuItem':'menu'
+let remindersty=this.state.reminder? 'menuItem':'menu'
+let binsty=this.state.bin? 'menuItem':'menu'
 
 
     return ( <MuiThemeProvider theme = {
@@ -241,7 +244,7 @@ var a=arr1.map((option,index)=>{
 
       <List className = 'list' >
       
-<MenuItem id='menuItem' onClick={(event)=>this.openNotes(event)}>
+<MenuItem id={notesty} onClick={(event)=>this.openNotes(event)}>
 <div className='menunote'>
       <div>
       <
@@ -256,7 +259,7 @@ var a=arr1.map((option,index)=>{
       </div>
       </div>
       </MenuItem>
-      <MenuItem id='menuItem' onClick={(event)=>this.openReminder(event)}>
+      <MenuItem id={remindersty} onClick={(event)=>this.openReminder(event)}>
       <div className='menunote'>
       <div>
      
@@ -282,7 +285,7 @@ var a=arr1.map((option,index)=>{
       LABLES  
       </label> 
       {a}
-      <MenuItem id='menuItem'>
+      <MenuItem id=''>
       <div className='menunote'>
       <div>
       <
@@ -299,7 +302,7 @@ var a=arr1.map((option,index)=>{
       </MenuItem>
       <
       Divider / >
-      <MenuItem id='menuItem' onClick={(event)=>this.openArchive(event)}>
+      <MenuItem id={archivesty} onClick={(event)=>this.openArchive(event)}>
  <div className='menunote'>
     <div>
       <
@@ -315,7 +318,7 @@ var a=arr1.map((option,index)=>{
       </div>
       </MenuItem>
 
-      <MenuItem className='menuItem' onClick={(event)=>this.openBin(event)}>
+      <MenuItem id={binsty} onClick={(event)=>this.openBin(event)}>
       <div className='menunote'>
       <div>
       

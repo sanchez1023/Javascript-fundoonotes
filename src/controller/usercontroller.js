@@ -304,5 +304,60 @@ console.log('note-----+++',note);
         updatenote(key,note)
     
     }
+export function editnote(Title,Description,note,key){
 
-     
+    console.log('note in edit note before--',note)
+ note={
+    Title:Title,
+    Description:Description
+    }
+   
+    console.log('note in edit note after--',note)
+    updatenote(key,note)
+}
+     export function deleteNote(key,note){
+
+        console.log('in controoller',key);
+        console.log('in controller note',note)
+const noteRef = database.database.ref('notes');
+        noteRef.child(key).remove();
+
+     }
+     export function isTrashNote(key,note) {
+        if(note.Trashed === false) {
+            note.Trashed = true;
+        }
+        else {
+            note.Trashed = false;
+        }
+
+        updatenote(key,note);
+        // window.location.href = '/home/notes';
+    }
+    export function unTrashNote(key,note) {
+        if(note.Trashed === true) {
+            note.Trashed = false;
+        }
+        else {
+            note.Trashed = false;
+        }
+
+        updatenote(key,note);
+        // window.location.href = '/home/notes';
+    }
+    export function setReminder(reminder,key,note){
+
+        note={
+            Reminder:reminder,
+        }
+        updatenote(key,note)
+
+    }
+    export function setColor(newcolor,note,key){
+console.log('in set color',newcolor);
+
+        note={
+            Color:newcolor,
+        }
+        updatenote(key,note)
+    }

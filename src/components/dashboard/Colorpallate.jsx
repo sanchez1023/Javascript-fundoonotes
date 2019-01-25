@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { IconButton ,Paper,Popper,Card,ClickAwayListener, Tooltip} from '@material-ui/core';
 import { black } from 'material-ui/styles/colors';
 import { darkBlack } from 'material-ui/styles/colors';
+var userctr=require('../../controller/usercontroller')
 
 
 const colorPaletteClassName = [
@@ -66,6 +67,7 @@ class  Colorpallate extends Component{
         open:false,
         anchorEl:null,
         cardName:'',
+        color:'',
     }
     this.handlecolor=this.handlecolor.bind(this)
     }
@@ -76,8 +78,19 @@ class  Colorpallate extends Component{
       })
     }
 
+
+  editColor(event,note,key){
+           
+            console.log('value of color',event.target.value)
+            var color=event.target.value;
+            console.log('value of key',key)
+            console.log('value of color',note)
+            userctr.setColor(color,note,key)
+    }
     handlecolor=event=>
     {
+        console.log('props',this.props.note);
+        console.log('props',this.props.key);
         console.log('in handlecolor--',event.target.value)
         this.props.notetocolor(event.target.value)
     }
@@ -89,32 +102,57 @@ class  Colorpallate extends Component{
       }));
     }
 render()
-
+ 
+     
 { 
-    
+    console.log('props',this.props.note);
+    console.log('props',this.props.index);
     var array = colorPaletteClassName .map((option)=>{
 
 return(
-    <Tooltip title={option.colorName}>
+    this.props.note?
+  ( <div>
+      <Tooltip title={option.colorName}>
         <IconButton style ={{backgroundColor:option.colorCode,
             borderColor:darkBlack
         
         
         }}
         value={option.colorCode}
-        onClick={(event)=>this.handlecolor(event)}
+        onClick={(event)=>this.editColor(event,this.props.note,this.props.index)}
         
         >
         
         </IconButton>
-        </Tooltip>)
+        </Tooltip>
+        </div>
+  ):(
+<div>
+    <Tooltip title={option.colorName}>
+    <IconButton style ={{backgroundColor:option.colorCode,
+        borderColor:darkBlack
     
-    })
+    
+    }}
+    value={option.colorCode}
+    onClick={(event)=>this.handlecolor(event)}
+    
+    >
+    
+    </IconButton>
+    </Tooltip>
+    </div>
+
+        )
+    
+    
+    )}
+    )
     
     return(
       
 <div>
-<IconButton onClick={(event)=>this.handleClick(event)}>
+<IconButton onClick={(event)=>this.handleClick(event,this.props.note,this.props.index)}>
 <img src={require('../../assets/colorplate.svg')}/>
 </IconButton>
 <Card>

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import Editnotes from './Editnote';
 import CardComponent from '../dashboard/CardComponent';
+import { Divider } from '@material-ui/core';
 
 var userctr=require('../../controller/usercontroller')
 
@@ -173,7 +174,7 @@ else if(this.props.bin)
   })
 
 }
-else{
+else if(this.state.notes.pinned!==false){
  var  pinarray=Object.keys (this.state.notes).map((option) => {
     var key=option;
     var data=this.state.notes[key]
@@ -190,8 +191,8 @@ else{
     }
 
   })
-
-
+}
+else{
 
 
 
@@ -229,9 +230,18 @@ else{
            
       <div className='displaydiv'>
       
+<div className='pinned'>
+
+
+
+      {pinarray} 
+    
+      </div>
+      <Divider/>
+      <div className='pinned'>        
      {array}
-           
-           {pinarray}         
+     </div>
+       
 
             </div>
         )

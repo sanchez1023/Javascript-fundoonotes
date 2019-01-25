@@ -237,15 +237,15 @@ userctr.arraynotes(this.state.title,this.state.description,this.state.isPin,this
       </div>
       </div>
    
-      <InputBase placeholder = 'Take a note'
+     <div  className='content'  contentEditable='true'
       value={this.state.description}
       onChange = {
         (event) => this.setState({
           description: event.target.value
         })
-      }
-      >
-      </InputBase>
+      }>
+      </div>
+      
 
  
       < toolbar  className='toolbar'>

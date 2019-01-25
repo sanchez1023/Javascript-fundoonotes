@@ -49,6 +49,7 @@ async handlelabel(){
      await  this.setState({
         trashed:true
       })
+      
       this.props.trash(this.state.trashed)
   }
 async setLabel(event){

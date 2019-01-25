@@ -2,6 +2,7 @@ import React, {
     Component
   } from 'react';
 import { IconButton, Popper ,Paper,MenuItem} from '@material-ui/core';
+var userctr=require('../../controller/usercontroller')
 
   class  Forever extends Component{
 
@@ -13,37 +14,43 @@ constructor()
         open:false,
         anchorEl:null,
     }
+    this.deleteNote=this.deleteNote.bind(this)
 }
 
-handleClick=event=>{
+handleClick(event,note,key){
     const { currentTarget } = event;
   this.setState(state => ({
     anchorEl: currentTarget,
     open: !this.state.open,
     
   }));
+  console.log('note in open forever',note)
+  console.log('key in open forever',key)
 
 }
 
-deletNote(){
+deleteNote(event,note,key){
 
-    console.log('in delete forever')
+    console.log('in delete forever',note,key)
+    console.log('in delete forever',key)
+    userctr.deleteNote(key,note);
 }
 
 
-restoreNotes()
+restoreNotes(event,note ,key)
 {
-    this.setState({
-        trashed:false
-    })
+    console.log('in delete forever',note,key)
+    console.log('in delete forever',key)
+    userctr.isTrashNote(key,note)
 }
 render( )
 {
+    console.log('in delete ',this.props.key)
   
     return(
      
 <div>
-<IconButton  onClick={(event)=>this.handleClick(event)}>
+<IconButton  onClick={(event)=>this.handleClick(event,this.props.note,this.props.index)}>
 <img src={require('../../assets/more.svg')}/>
 </IconButton>
 
@@ -55,13 +62,13 @@ render( )
               <div className='t'>
              
               <div>
-              <MenuItem onClick={(event)=>this.deleteNote(event)} >Delete Forever</MenuItem>
+              <MenuItem onClick={(event)=>this.deleteNote(event,this.props.note,this.props.index)} >Delete Forever</MenuItem>
               </div>
             
               <div className='tommorow'>
               
               <div>
-              <MenuItem onClick={(event)=>this.restoreNotes(event)}>Restore </MenuItem>
+              <MenuItem onClick={(event)=>this.restoreNotes(event,this.props.note,this.props.index)}>Restore </MenuItem>
               </div>
               </div>
               </div>

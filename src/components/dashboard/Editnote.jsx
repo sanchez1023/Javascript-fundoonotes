@@ -37,30 +37,32 @@ class Editnotes extends Component{
         pinned:false,
         trashed:false
     })
+    this.onClose=this.onClose.bind(this)
   }
   
-  async onClose(event){
+  async onClose(note,key){
       console.log('in close');
       this.props.close()
   
     console.log('b----',this.state.key)
     var index=this.props.index;
-   console.log('key-----',index)
-        var data={
-          Title:this.state.title,
-          Description:this.state.Description,
-          Archive:this.props.note.Archived,
-          Trashed:this.props.note.Trashed,
-          Label:this.props.Label,
-          Pinned:this.props.Pinned,
-          userid:this.props.userid
-        }
-           
-
+   console.log('key-----',key)
       
+       var   Title=this.state.title
+       var   Description=this.state.Description
+
+
+         note={
+           Title:this.state.title,
+           Description:this.state.Description
+         }
+        
+           console.log('in edit--',Title)
+
+           console.log('in edit--',Description)
           
 
-         userctr.updatenote(index,data);
+         userctr.updatenote(key,note);
       // console.log('note---',note);
       //      console.log('index--',key);
           console.log('open--',this.state.open);
@@ -104,7 +106,7 @@ render()
     })
   }
 
-    onClick={this.handleEdit}
+   
 
     >
     </InputBase>
@@ -216,7 +218,7 @@ render()
  <More/>
   
     
-  <IconButton onClick={(event)=>this.onClose(event)}>
+  <IconButton onClick={(event)=>this.onClose(this.props.note,this.props.index,event)}>
     
     close
   

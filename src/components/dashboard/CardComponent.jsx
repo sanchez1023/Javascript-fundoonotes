@@ -9,6 +9,7 @@ import Archive from './Showarchived';
 import Editnotes from './Editnote';
 import Pinned from './Pinned';
 import Forever from './Deleteforever';
+import Cardmore from './Cardmore';
 var userctr=require('../../controller/usercontroller')
 
 
@@ -84,7 +85,7 @@ removeLabel=(key,note,index)=>{
         
         let cardstyle=this.props.status ? 'showcards':'showcardslist'
          
-      //  console.log('Display', this.props.Display);
+       console.log('Display', this.props.Display);
        console.log('index--', this.props.index);
        var Key=this.props.index;
        console.log('index--', Key);
@@ -165,14 +166,10 @@ removeLabel=(key,note,index)=>{
                             </div>
                             )}
                             </div>
-                        <div>
-                          {this.props.Display.Label ===''? 
-                           
-null
+                        
                             
-                          :
-                          <div>
-                          
+                        {this.props.Display.Label &&  
+                      <div>
                           {this.props.Display.Label.map((option,index)=>
                             
                             <Chip style={{backgroundColor:this.props.Display.Color}}
@@ -182,15 +179,21 @@ null
                             ></Chip>
                           )}
                         
-                    </div>
-                          
-                          }
-                        </div>
-                        
+                    </div> }
+
+                    
                         
                           </div>
+                          {this.props.Display.Trashed ?
+                            (
+                         <Forever note={this.props.Display}
+                         index={this.props.index}
+                         />
+                            ):(
                <toolbar className='toolbar'>
-              <Reminder/>
+              <Reminder note={this.props.Display}
+              index={this.props.index}
+              />
                
                <IconButton
                onClick={event => this.addAccount(event)}> 
@@ -202,7 +205,10 @@ null
                /> 
                 </IconButton>
                
-               <Colorpallate/>
+               <Colorpallate note={this.props.Display}
+               index={this.props.index}
+               
+               />
                
                
              <Addimage/>
@@ -216,19 +222,14 @@ null
              
              
              
-               {this.props.Display.Trashed ?
-                (
-             <Forever/>
-
-                ):
-                (
-                  <More/>
-                )
-               }
-         
+               
+                  <Cardmore note={this.props.Display}
+                  index={this.props.index}
+                  />
+                
               
                
-               </toolbar>
+               </toolbar>)}
              
         <Editnotes open={this.state.openDailog}
         keyValue={this.state.key}
