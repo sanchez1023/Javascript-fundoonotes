@@ -52,20 +52,22 @@ class Editnotes extends Component{
        var   Description=this.state.Description
 
 
-         note={
-           Title:this.state.title,
-           Description:this.state.Description
-         }
+        //  note={
+        //    Title:this.state.title,
+        //    Description:this.state.Description
+        //  }
         
            console.log('in edit--',Title)
 
            console.log('in edit--',Description)
           
 
-         userctr.updatenote(key,note);
+        // userctr.updatenote(key,note);
       // console.log('note---',note);
       //      console.log('index--',key);
-          console.log('open--',this.state.open);
+      userctr.editnote(this.state.title,this.state.Description,note,key)    
+      
+      console.log('open--',this.state.open);
           
   }
 

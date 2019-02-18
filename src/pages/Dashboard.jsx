@@ -46,7 +46,11 @@ class Dash extends Component{
         this.setState({
             Cardstyle:!this.state.Cardstyle,
         })
+        console.log('in dashboard',this.state.Cardstyle)
     }
+
+
+    
     render(){
        
 return(

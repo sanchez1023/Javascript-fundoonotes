@@ -284,22 +284,8 @@ let binsty=this.state.bin? 'menuItem':'menu'
       <label className = 'divide' >
       LABLES  
       </label> 
-      {a}
-      <MenuItem id=''>
-      <div className='menunote'>
-      <div>
-      <
-      img src = {
-        require('../../assets/pencil.svg')
-      }
-      />
-      </div>
-      <div className='menuname'>
-      Edit Label
-      </div>
-    
-      </div>
-      </MenuItem>
+      {a} 
+     
       <
       Divider / >
       <MenuItem id={archivesty} onClick={(event)=>this.openArchive(event)}>

@@ -206,7 +206,7 @@ firebase.firebase.auth().signInWithPopup(provider).then(function(result)
       <h1 > Login to Fundoonotes </h1>
        <div >
       <TextField id = 'child'
-
+    
       label = " email address"
       placeholder = "enter email id"
       error = {
@@ -229,6 +229,7 @@ firebase.firebase.auth().signInWithPopup(provider).then(function(result)
 
 
       <TextField id = 'child'
+  
       label = " Password"
       type = 'password'
       placeholder = "enter password"
